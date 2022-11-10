@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        .container{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        form li {
+            list-style: none;
+        }
+        li .login_btn {
+            width: 320px;
+            height:30px;
+            padding: 10pxss;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>로그인</h1>
+        <form action="loginPro.php">
+            <ul>
+                <li>아이디 : <input type="text" name="id"></li>
+                <li>비밀 번호 : <input type="password" name="password"></li>
+                <li><input type="submit" value="LOGIN" class="login_btn"></li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>
