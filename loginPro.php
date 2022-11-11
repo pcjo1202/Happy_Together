@@ -10,7 +10,7 @@
   $loginPro = mysql_fetch_array($result); 
 
   if($loginPro[0]) {
-    if($password.equal(loginPro[1])){
+    if("$password" == "$loginPro[1]"){
       echo '로그인 성공';
     }
     else {
