@@ -31,13 +31,32 @@
     header>h1 {
       font-size: 4rem;
     }
-
+    .loginBox {
+      margin-top : 40px;
+      width :200px;
+      height : 50px;
+      text-align : center;
+    }
+    .loginBox a {
+      color : blue;
+    }
+    .a_login:hover, .a_join:hover {
+      color: black;
+      font-weight : bold;
+      font-size : 1.05rem;
+    }
+    /* .loginBox {
+      width : 100px;
+      height : 40px;
+      line-height : 30px;
+      text-align: center;
+      border: 4px solid black;
+    } */
     ul {
       list-style-type: none;
       display: flex;
       gap: 2rem;
     }
-
     button {
       padding: 10px 20px;
       font-size: 1.5rem;
@@ -81,10 +100,8 @@
     <?php  
       if(!isset($_SESSION['id'])){
         echo "<div class='loginBox'>
-          <button><a href='login.html'>Login</a></button>
-        </div>
-        <div>
-          <a href='join.html'>회원가입</a>
+          <a href='login.html' class='a_login'>로그인</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+          <a href='join.html' class='a_join'>회원가입</a>
         </div>";
       }
       else {
