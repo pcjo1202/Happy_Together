@@ -1,10 +1,8 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
     * {
@@ -75,11 +73,22 @@
         <button>자유게시판</button>
       </li>
     </ul>
-    <div class="loginBox">
-      <button><a href="login.html">Login</a></button>
-    </div>
-    <a href="join.html">회원가입</a>
-  </div>
+    <?php  
+      if(!isset($_SESSION['id'])){
+        echo "<div class='loginBox'>
+          <button><a href='login.html'>Login</a></button>
+        </div>
+        <div>
+          <a href='join.html'>회원가입</a>
+        </div>";
+      }
+      else {
+        $id = $_SESSION['id'];
+        echo "<p><span class='span_id'>$id</span>님 환영합니다.</a>";
+        echo "<a href='logout.php'>로그아웃</a>";
+      }
+    ?>
+    
 </body>
 
 </html>
