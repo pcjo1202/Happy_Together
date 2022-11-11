@@ -82,6 +82,7 @@
         document.addEventListener("DOMContentLoaded", function(){
             let form = document.getElementById("form");
             let id_check = document.getElementById("id_check");
+            
             id_check.addEventListener("click", function(){
                 location = 'idCheckPro.php?id=' + form.id.value;
             })
@@ -116,9 +117,9 @@
                     form.birth.focus();
                     return;
                 }
-                if(form.tel.value.length == 0){
+                if(form.phone.value.length == 0){
                     alert("전화번호를 입력하시오.");
-                    form.tel.focus();
+                    form.phone.focus();
                     return;
                 }
                 if(form.email.value.length == 0){
@@ -164,7 +165,7 @@
             </tr>
             <tr>
                 <th>전화번호</th>
-                <td><input type="text" name="tel"></td>
+                <td><input type="text" name="phone"></td>
             </tr>
             <tr>
                 <th>이메일</th>

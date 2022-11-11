@@ -6,7 +6,7 @@
 
   $id = $_POST['id'];
   $password = $_POST['password'];
-  $query = "select id, password from member where id='$id'";
+  $query = "select id, password, name from member where id='$id'";
   $result = mysql_query($query, $connection);
   $loginPro = mysql_fetch_array($result); 
 
@@ -18,6 +18,7 @@
       </script>";
       session_start();
       $_SESSION['id'] = $id;
+      $_SESSION['name'] = $loginPro[2];
     }
     else {
       echo "<script>alert('비밀번호가 다릅니다.'); history.back();</script>";

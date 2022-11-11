@@ -105,8 +105,8 @@
         </div>";
       }
       else {
-        $id = $_SESSION['id'];
-        echo "<p><span class='span_id'>$id</span>님 환영합니다.</a><br>";
+        $name = $_SESSION['name'];
+        echo "<p><span class='span_id'>$name</span>님 환영합니다.</a><br>";
         echo "<a href='logout.php' class='a_logout'>로그아웃</a>";
       }
     ?>

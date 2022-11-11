@@ -12,7 +12,7 @@
  $birth = $_POST['birth'];
  $phone = $_POST['phone'];
  $email = $_POST['email'];
-echo "$id, $password, $name, $nickname, $gender, $birth, $phone";
+echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
  $query = "insert into member(id, password, name, nickname, gender, birth, phone, email)
             values('$id', '$password', '$name', '$nickname', '$gender', '$birth', '$phone', '$email')";
  $result = mysql_query($query, $connection);
