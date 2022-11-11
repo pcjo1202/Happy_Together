@@ -13,15 +13,30 @@
             justify-content: center;
             align-items: center;
         }
-        form li {
-            list-style: none;
+        form {
+            border: 10px solid black;
+            border-radius: 20px;
+            padding: 50px;
         }
-        li .login_btn {
-            width: 320px;
+        table {
+            margin: 10px;
+        }
+        table tr {
+            margin-bottom: 5px;
+        }
+        .table_id{
+            text-align: left;
+        }
+        .login_btn {
+            width: 240px;
             height:30px;
-            padding: 10pxss;
             margin: 10px;
             cursor: pointer;
+        }
+        .login_btn:hover {
+            background-color: black;
+            color:white;
+            font-weight: 20px;
         }
     </style>
 </head>
@@ -29,11 +44,20 @@
     <div class="container">
         <h1>로그인</h1>
         <form action="loginPro.php" method="post">
-            <ul>
-                <li>아이디 : <input type="text" name="id"></li>
-                <li>비밀 번호 : <input type="password" name="password"></li>
-                <li><input type="submit" value="LOGIN" class="login_btn"></li>
-            </ul>
+            <table>
+                <tr>
+                    <th class="table_id">아이디 : </th>
+                    <td><input type="text" name="id"></td>
+                </tr>
+                <tr>
+                    <th>비밀 번호 : </th>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="LOGIN" class="login_btn"></td>
+                </tr>
+        </table>
+        
         </form>
     </div>
 </body>

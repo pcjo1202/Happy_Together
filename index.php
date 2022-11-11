@@ -42,14 +42,19 @@
       padding: 10px 20px;
       font-size: 1.5rem;
     }
-
-    .ath:hover {
+    .ath:hover, .game:hover, .std:hover, .free:hover {
       font-size: 1.58rem;
       color: blue;
     }
-    .game:hover {
-      font-size: 1.58rem;
-      color: blue;
+    .span_id{
+      color : blue;
+      font-weight : bold;
+      font-size : 1.08rem;
+    }
+    .a_logout {
+      text-decoration : none;
+      color : red;
+      margin-left : 45px;
     }
   </style>
 </head>
@@ -67,10 +72,10 @@
         <button class="game">게임</button>
       </li>
       <li>
-        <button>스터디</button>
+        <button class="std">스터디</button>
       </li>
       <li>
-        <button>자유게시판</button>
+        <button class="free">자유게시판</button>
       </li>
     </ul>
     <?php  
@@ -84,8 +89,8 @@
       }
       else {
         $id = $_SESSION['id'];
-        echo "<p><span class='span_id'>$id</span>님 환영합니다.</a>";
-        echo "<a href='logout.php'>로그아웃</a>";
+        echo "<p><span class='span_id'>$id</span>님 환영합니다.</a><br>";
+        echo "<a href='logout.php' class='a_logout'>로그아웃</a>";
       }
     ?>
     
