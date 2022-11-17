@@ -32,8 +32,12 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
 </script>";
  }
 <<<<<<< HEAD
+<<<<<<< HEAD
  mysqli_close($connection);
 =======
  mysqli_close($connection);
 ?>
 >>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
+=======
+ mysqli_close($connection);
+>>>>>>> 45f04bb (코드가 꼬여서 일단 그냥 커밋..)

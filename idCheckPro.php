@@ -16,10 +16,13 @@ $query = "select * from member where id='$id'";
 $result = mysqli_query($connection, $query);
 $idCheckPro = mysqli_fetch_array($result); 
 
+<<<<<<< HEAD
 $result = mysqli_query($connection, $query);
 $idCheckPro = mysqli_fetch_array($result);
 
 
+=======
+>>>>>>> 45f04bb (코드가 꼬여서 일단 그냥 커밋..)
 if (!isset($idCheckPro[0])) {
     echo "<script>alert(`사용 가능한 ID입니다.`); history.back();</script>";
 } else {
