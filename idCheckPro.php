@@ -3,18 +3,22 @@ header("Content-Type:text/html;charset=utf-8");
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
 
 =======
 $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
 >>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
+=======
+$connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
+>>>>>>> 9499a98 (관리자)
 
 
 $id = $_GET['id'];
 
 $query = "select * from member where id='$id'";
 $result = mysqli_query($connection, $query);
-$idCheckPro = mysqli_fetch_array($result); 
+$idCheckPro = mysqli_fetch_array($result);
 
 <<<<<<< HEAD
 $result = mysqli_query($connection, $query);
