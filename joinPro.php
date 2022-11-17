@@ -1,7 +1,9 @@
 <?php 
  header("Content-Type:text/html;charset=utf-8");
- $connection = mysql_connect('localhost','happy','together');
- mysql_select_db('happytogether',$connection);
+//  $connection = mysql_connect('13.209.79.194:58727','remoteJO','remoteJO');
+//  mysql_select_db('happyTogether',$connection);
+ $connection = mysqli_connect('13.209.79.194:58727','remoteJO','remoteJO');
+ mysqli_select_db($connection,'happyTogether');
  
 
  $id = $_POST['id'];
@@ -12,12 +14,13 @@
  $birth = $_POST['birth'];
  $phone = $_POST['phone'];
  $email = $_POST['email'];
+ 
 echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
  $query = "insert into member(id, password, name, nickname, gender, birth, phone, email)
             values('$id', '$password', '$name', '$nickname', '$gender', '$birth', '$phone', '$email')";
- $result = mysql_query($query, $connection);
+ $result = mysqli_query($connection,$query);
 
- mysql_close($connection);
+ mysqli_close($connection);
 ?>
 <script>
     alert("회원가입에 성공하였습니다.!!!!!");

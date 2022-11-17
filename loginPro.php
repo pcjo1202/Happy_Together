@@ -1,14 +1,19 @@
 <?php
  header("Content-Type:text/html;charset=utf-8");
-  $connection = mysql_connect('localhost','happy','together');
-  mysql_select_db('happytogether',$connection);
+ $dbname = 'happyTogether';
+
+ $connection = mysqli_connect('13.209.79.194:58727','remoteJO','remoteJO');
+
+ mysqli_select_db($connection, $dbname);
+  // $connection = mysql_connect('13.209.79.194:58727','remoteJO','remoteJO');
+  // mysql_select_db('happyTogether',$connection);
   
 
   $id = $_POST['id'];
   $password = $_POST['password'];
   $query = "select id, password, name from member where id='$id'";
-  $result = mysql_query($query, $connection);
-  $loginPro = mysql_fetch_array($result); 
+  $result = mysqli_query($connection,$query);
+  $loginPro = mysqli_fetch_array($result); 
 
   if($loginPro[0]) {
     if("$password" == "$loginPro[1]"){
@@ -26,4 +31,3 @@
   }else {
     echo "<script>alert('아이디가 다릅니다.'); history.back();</script>";
   }
-  ?>
