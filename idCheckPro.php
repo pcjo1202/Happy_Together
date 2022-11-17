@@ -14,9 +14,9 @@ $result = mysql_query($query, $connection);
 $idCheckPro = mysql_fetch_array($result); 
 
 if(!isset($idCheckPro[0])){
-    echo "<script>alert(`ì‚¬ìš© ê°€ëŠ¥í•œ IDì…ë‹ˆë‹¤.`); history.back();</script>";
+    echo "<script>alert(`?‚¬?š© ê°??Š¥?•œ ID?…?‹ˆ?‹¤.`); history.back();</script>";
 }else {
-    echo "<script>alert('ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ IDì…ë‹ˆë‹¤.'); history.back();</script>";
+    echo "<script>alert('?´ë¯? ?‚¬?š©ì¤‘ì¸ ID?…?‹ˆ?‹¤.'); history.back();</script>";
 }
 
 
