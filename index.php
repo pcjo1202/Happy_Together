@@ -76,6 +76,10 @@
       color : red;
       margin-left : 45px;
     }
+    .a_myInfo:hover, .a_logout:hover {
+      font-size : 1.03rem;
+      font-weight : bold;
+    }
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", function(){
@@ -139,7 +143,7 @@
       }
       else {
         $name = $_SESSION['name'];
-        echo "<p><span class='span_id'>$name</span>님 환영합니다.</a><br>";
+        echo "<p><span class='span_id'><a class='a_myInfo' href='myInfo.php'>$name</a></span>님 환영합니다.</a><br>";
         echo "<a href='logout.php' class='a_logout'>로그아웃</a>";
       }
     ?>
