@@ -60,8 +60,9 @@
     button {
       padding: 10px 20px;
       font-size: 1.5rem;
+      cursor: pointer;
     }
-    .ath:hover, .game:hover, .std:hover, .free:hover {
+    .cate0:hover, .cate1:hover, .cate2:hover, .cate3:hover {
       font-size: 1.58rem;
       color: blue;
     }
@@ -76,26 +77,58 @@
       margin-left : 45px;
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+            let cate0 = document.querySelector(".cate0");
+            let cate1 = document.querySelector(".cate1");
+            let cate2 = document.querySelector(".cate2");
+            let cate3 = document.querySelector(".cate3");
+            let cate0Value = cate0.innerText;
+            let cate1Value = cate1.innerText;
+            let cate2Value = cate2.innerText;
+            let cate3Value = cate3.innerText;
+            cate0.addEventListener("click", function(){
+              location = "board.php?main_category_name="+cate0Value;
+            })
+            cate1.addEventListener("click", function(){
+              location = "board.php?main_category_name="+cate1Value;
+            })
+            cate2.addEventListener("click", function(){
+              location = "board.php?main_category_name="+cate2Value;
+            })
+            cate3.addEventListener("click", function(){
+              location = "board.php?main_category_name="+cate3Value;
+            })
+        });
+
+  </script>
 </head>
 
 <body>
+  <?php  
+    $connection = mysql_connect('localhost','happy','together');
+    mysql_select_db('happytogether',$connection);
+
+
+    $query = "select main_category_name from main_category";
+    $query2 = "select count(*) from main_category";
+    $result2 = mysql_query($query2, $connection);
+    $category_count = mysql_fetch_array($result2);
+    $result = mysql_query($query, $connection);
+    $category = mysql_fetch_array($result);
+  ?>
+
   <div class="container">
     <header>
       <h1>해피투게더</h1>
     </header>
     <ul>
-      <li>
-        <button class="ath">운동</button>
-      </li>
-      <li>
-        <button class="game">게임</button>
-      </li>
-      <li>
-        <button class="std">스터디</button>
-      </li>
-      <li>
-        <button class="free">자유게시판</button>
-      </li>
+      <?php  for($i=0; $i < $category_count[0]; $i++){
+        echo "<li>
+          <button class='cate$i'>$category[0]</button>
+        </li>";
+        $category = mysql_fetch_array($result);
+      }?>      
     </ul>
     <?php  
       if(!isset($_SESSION['id'])){
