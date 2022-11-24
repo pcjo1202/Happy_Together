@@ -17,6 +17,12 @@ $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogeth
 $id = $_GET['id'];
 
 $query = "select * from member where id='$id'";
+<<<<<<< HEAD
+=======
+$result = mysqli_query($connection, $query);
+$idCheckPro = mysqli_fetch_array($result); 
+
+>>>>>>> f6eadd8 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
 $result = mysqli_query($connection, $query);
 $idCheckPro = mysqli_fetch_array($result);
 

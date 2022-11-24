@@ -17,6 +17,7 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
             values('$id', '$password', '$name', '$nickname', '$gender', '$birth', '$phone', '$email')";
  $result = mysqli_query($connection, $query);
 
+<<<<<<< HEAD
  $query2  = "select * from member where id = '$id'";
  $result2 = mysqli_query($connection, $query2);
  $joinCheck = mysqli_fetch_array($result2);
@@ -33,6 +34,7 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
  }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  mysqli_close($connection);
 =======
  mysqli_close($connection);
@@ -41,3 +43,13 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
 =======
  mysqli_close($connection);
 >>>>>>> 45f04bb (코드가 꼬여서 일단 그냥 커밋..)
+=======
+ mysqli_close($connection);
+=======
+?>
+<script>
+alert("회원가입에 성공하였습니다.!!!!!");
+location = "login.html";
+</script>
+>>>>>>> f6eadd8 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
+>>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)

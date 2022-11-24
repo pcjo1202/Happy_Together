@@ -49,6 +49,12 @@
     </style>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
+<<<<<<< HEAD
+=======
+      <<
+      <<
+      << < HEAD
+>>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
 
       // li 배열로 만든 거임 querySelectorAll!
       let sub_cate = document.querySelectorAll(".sub_cate");
@@ -93,13 +99,22 @@
           //     current.innerHTML = sub_category_name;
           // }
           location = 'board.php?main_category_name=' + main_category_name + '&sub_category_name=' + sub_cate[i]
+<<<<<<< HEAD
             .innerText;
+=======
+            .innerText; ===
+          ===
+          =
+>>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
           for (let j = 0; j < sub_cate.length; j++) {
             if (sub_cate[j].style.color == "blue") {
               sub_cate[j].style.color = "black";
               sub_cate[j].style.fontWeight = "normal";
               sub_cate[j].style.backgroundColor = "#d2d6d9";
+<<<<<<< HEAD
 
+=======
+>>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
             }
           }
           sub_cate[i].style.color = "blue";
@@ -107,13 +122,20 @@
           sub_cate[i].style.backgroundColor = "#a8adb4";
           if (sub_cate[i].style.color == "blue") {
             current.innerHTML = sub_cate[i].innerText;
+<<<<<<< HEAD
           }
 
+=======
+          } >>>
+          >>>
+          > 2 b712e0(메인 게시글 DB 연결 및 카테고리 화면 노출 성공)
+>>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
         })
       }
     });
     </script>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   </head>
 
@@ -124,6 +146,11 @@
 =======
 </head>
 <body>
+=======
+  </head>
+
+  <body>
+>>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
     <?php 
         $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
         $main_category_name = $_GET['main_category_name'];
@@ -167,6 +194,7 @@
     ?>
 >>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
     <div class="container">
+<<<<<<< HEAD
       <<<<<<< HEAD <input type="hidden" class="sub_category" value="<?= $sub_category ?>">
         <input type="hidden" class="sub_category_name" value="<?= $sub_category_name[0] ?>">
         <div class="top"><a href="index.php" class="home">HATO</a>
@@ -184,6 +212,27 @@
             <h3>현재 게시글 : <span class="current"> </span></h3>
             <table>
               <tr>
+=======
+      <input type="hidden" class="sub_category" value="<?=$sub_category ?>">
+      <input type="hidden" class="sub_category_name" value="<?=$sub_category_name[0]?>">
+      <div class="top"><a href="index.php" class="home">HATO</a>
+        <h1><span class="main_category_name"><?=$main_category_name ?></span>&ensp; 게시판</h1>
+      </div>
+
+      <ul class="board_ul">
+        <?php
+                 for($i=0; $i < $sub_count[0]; $i++) {
+                     echo "<li><div class='sub_cate'> $sub_category_name[0]</div></li>";
+                     $sub_category_name = mysqli_fetch_array($result);
+
+                }
+            ?>
+<<<<<<< HEAD
+        </ul>
+        <h3>현재 게시글 : <span class="current"> </span></h3>
+        <table>
+            <tr>
+>>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
                 <th>번호</th>
                 <th>제목</th>
                 <th>장소</th>
@@ -289,8 +338,34 @@
                 <td><?=$classPro[5]?></td>
             </tr>
             <?php } ?>
+=======
+      </ul>
+      <h3>현재 게시글 : <span class="current"> </span></h3>
+      <<<<<<< HEAD <table>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>장소</th>
+          <th>일정</th>
+          <th>주최자</th>
+          <th>작성 일자</th>
+        </tr>
+        <tr>
+          <td><?=$classPro[0]?></td>
+          <td><?=$classPro[1]?></td>
+          <td><?=$classPro[2]?></td>
+          <td><?=$classPro[3]?></td>
+          <td><?=$classPro[4]?></td>
+          <td><?=$classPro[6]?></td>
+        </tr>
+>>>>>>> f6eadd8 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
         </table>
+<<<<<<< HEAD
 >>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
+=======
+        =======
+        >>>>>>> 2b712e0 (메인 게시글 DB 연결 및 카테고리 화면 노출 성공)
+>>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
     </div>
 
   </body>
