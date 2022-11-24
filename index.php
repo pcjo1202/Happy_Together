@@ -110,16 +110,14 @@
 
 <body>
   <?php  
-    $connection = mysql_connect('localhost','happy','together');
-    mysql_select_db('happytogether',$connection);
-
+    $connection = mysqli_connect('localhost','happy','together','happytogether');
 
     $query = "select main_category_name from main_category";
     $query2 = "select count(*) from main_category";
-    $result2 = mysql_query($query2, $connection);
-    $category_count = mysql_fetch_array($result2);
-    $result = mysql_query($query, $connection);
-    $category = mysql_fetch_array($result);
+    $result2 = mysqli_query($connection, $query2);
+    $category_count = mysqli_fetch_array($result2);
+    $result = mysqli_query($connection, $query);
+    $category = mysqli_fetch_array($result);
   ?>
 
   <div class="container">
@@ -131,7 +129,7 @@
         echo "<li>
           <button class='cate$i'>$category[0]</button>
         </li>";
-        $category = mysql_fetch_array($result);
+        $category = mysqli_fetch_array($result);
       }?>      
     </ul>
     <?php  

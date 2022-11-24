@@ -2,16 +2,15 @@
 header("Content-Type:text/html;charset=utf-8");
 
 
-$connection = mysql_connect('localhost','happy','together');
-mysql_select_db('happytogether',$connection);
+$connection = mysqli_connect('localhost','happy','together','happytogether');
 
 
 
 $id = $_GET['id'];
 
 $query = "select * from member where id='$id'";
-$result = mysql_query($query, $connection);
-$idCheckPro = mysql_fetch_array($result); 
+$result = mysqli_query($connection, $query);
+$idCheckPro = mysqli_fetch_array($result); 
 
 if(!isset($idCheckPro[0])){
     echo "<script>alert(`사용 가능한 ID입니다.`); history.back();</script>";

@@ -1,14 +1,14 @@
 <?php
  header("Content-Type:text/html;charset=utf-8");
-  $connection = mysql_connect('localhost','happy','together');
-  mysql_select_db('happytogether',$connection);
+ $connection = mysqli_connect('localhost','happy','together','happytogether');
+
   
 
   $id = $_POST['id'];
   $password = $_POST['password'];
   $query = "select id, password, name from member where id='$id'";
-  $result = mysql_query($query, $connection);
-  $loginPro = mysql_fetch_array($result); 
+  $result = mysqli_query($connection, $query);
+  $loginPro = mysqli_fetch_array($result); 
 
   if($loginPro[0]) {
     if("$password" == "$loginPro[1]"){
