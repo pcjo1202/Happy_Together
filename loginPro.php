@@ -1,12 +1,12 @@
 <?php
  header("Content-Type:text/html;charset=utf-8");
- 
+
  $connection = mysqli_connect('localhost','happy','together','happytogether');
 
   $id = $_POST['id'];
   $password = $_POST['password'];
   $query = "select id, password, name from member where id='$id'";
-  $result = mysqli_query($connection,$query);
+
   $result = mysqli_query($connection, $query);
   $loginPro = mysqli_fetch_array($result); 
 

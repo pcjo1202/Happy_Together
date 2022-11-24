@@ -9,6 +9,8 @@ $connection = mysqli_connect('localhost','happy','together','happytogether');
 $id = $_GET['id'];
 
 $query = "select * from member where id='$id'";
+$result = mysqli_query($connection, $query);
+$idCheckPro = mysqli_fetch_array($result); 
 
 $result = mysqli_query($connection, $query);
 $idCheckPro = mysqli_fetch_array($result); 

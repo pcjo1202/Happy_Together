@@ -17,7 +17,6 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
 
  $result = mysqli_query($connection, $query);
 
- mysqli_close($connection);
 ?>
 <script>
 alert("회원가입에 성공하였습니다.!!!!!");
