@@ -23,6 +23,10 @@
         p{text-align:center; font-size:50px; color:#ff9c57;}
         .plus{ img src="image/plus.png" width="50" height="60" }
     </style>
+
+    <script language="javascript">
+    function showPopup() { window.open("pop.html", "category_insert", "width=400, height=300, left=100, top=50"); }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -40,7 +44,7 @@
             }
         ?>
     <form action="" style="width: 50px; float:right; " >
-            <input type="image" src="image/plus.png" alt="plus" width="48" height="48" margine-right="30px">
+            <input type="image" src="image/plus.png" alt="plus" width="48" height="48" margine-right="30px"  onclick="showPopup();">
     </form>
     </div>
     <br>
