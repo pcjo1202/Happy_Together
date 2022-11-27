@@ -2,12 +2,9 @@
  header("Content-Type:text/html;charset=utf-8");
  $dbname = 'happyTogether';
 
- $connection = mysqli_connect('13.209.79.194:58727','remoteJO','remoteJO');
+ $connection = mysqli_connect('52.78.0.158:56946','remoteJO','remoteJO');
 
  mysqli_select_db($connection, $dbname);
-  // $connection = mysql_connect('13.209.79.194:58727','remoteJO','remoteJO');
-  // mysql_select_db('happyTogether',$connection);
-  
 
   $id = $_POST['id'];
   $password = $_POST['password'];
