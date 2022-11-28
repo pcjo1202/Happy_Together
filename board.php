@@ -142,6 +142,11 @@
                 <th>주최자</th>
                 <th>작성 일자</th>
             </tr>
+            <?php if($classPro[0].length == 0){
+                echo "<tr><td colspan='6'>게시글이 존재하지 않습니다.</td></tr>";
+                }else{
+                ?>
+            
             <tr>
                 <td><?=$classPro[0]?></td>
                 <td><?=$classPro[1]?></td>
@@ -150,6 +155,7 @@
                 <td><?=$classPro[4]?></td>
                 <td><?=$classPro[6]?></td>
             </tr>
+            <?php } ?>
         </table>
     </div>
 
