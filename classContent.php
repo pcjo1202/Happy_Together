@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,10 +32,6 @@
         align-items: center;
         padding: 1rem;
         font-size: 1.2rem;
-      }
-
-      .logo img{
-        width: 100px;
       }
 
       .left {
@@ -152,9 +149,9 @@
         border: none;
         border-radius: 10px;
       }
-      .subBtn {
+      input[type="button"], input[type="submit"] {
         width: 80%;
-        grid-area: subBtn;
+        /* grid-area: subBtn; */
         border: none;
         justify-self: center;
         padding: 10px 0;
@@ -163,54 +160,99 @@
         transition: all 0.5s;
         cursor: pointer;
       }
-      .subBtn:hover {
+      input[type="button"]:hover {
         background-color: #e0ffc8;
       }
 
       .footer {
       }
     </style>
-  </head>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        let befBtn = document.querySelector(".befBtn");
+        let updBtn = document.querySelector(".updBtn");
+        let delBtn = document.querySelector(".delBtn");
+        let regBtn = document.querySelector(".regBtn");
+        let leader_id = document.querySelector(".leader_id").value;
+        let session_id = document.querySelector(".session_id").value;
+        let idx = document.querySelector(".idx");
+        
 
+        if(session_id == leader_id){
+          regBtn.style.display = 'none';
+        }else if(session_id.length==0){
+          updBtn.style.display='none';
+          delBtn.style.display='none';
+          regBtn.style.display = 'none';
+        }else if(session_id != leader_id){
+          updBtn.style.display='none';
+          delBtn.style.display='none';
+        }
+
+
+        befBtn.addEventListener("click", function() {
+          history.back();
+        })
+        // 삭제 기능 완료
+        delBtn.addEventListener("click", function() {
+          location = 'classDeletePro.php?class_idx=' + idx.value;
+        })
+        // 신청 기능 
+        regBtn.addEventListener("click", function(){
+          location = 'classRegisterPro.php?class_idx=' + idx.value+'&class_leader_id='+leader_id;
+        }) 
+
+      })
+    </script>
+  </head>
   <body>
+  <?php 
+    $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
+    
+    $class_idx = $_GET['class_idx'];
+    $current_id = $_SESSION['id'];
+
+    $class_query = "select * from class where class_idx = '$class_idx'";
+    $class_result = mysqli_query($connection, $class_query);
+    $classPro = mysqli_fetch_array($class_result);
+?>
     <div class="container">
       <header>
         <div class="left">
           <div class="logoBox">
-            <a class="logo" href="#"><img src="./image/logo.png" alt="" srcset=""></a>
+            <a class="logo" href="index.php">HATO</a>
           </div>
-          <div class="subTitle">모임만들기</div>
+          <div class="subTitle">모임 상세보기</div>
         </div>
         <div class="right">
           <div class="myPage">
-            <button>마이페이지</button>
+            <button><a href='myInfo.php'>마이페이지</a></button>
           </div>
         </div>
       </header>
 
       <main>
         <div class="wrapper">
-          <form class="formBox" action="./makerTest.php" method="post">
+          <form class="formBox" action="classUpdatePro.php" method="post">
+            <input type="hidden" value="<?=$classPro[0]?>" class="idx" name="class_idx">
+            <input type="hidden" value="<?=$classPro[4]?>" class="leader_id" name="leader_id">
+            <input type="hidden" value="<?=$current_id?>" class="session_id">
             <div class="title">
               <span>제목</span>
-              <input type="text" value="" name="title" />
+              <input type="text" value="<?=$classPro[1]?>" name="title" />
             </div>
             <div class="category">
               <span>카테고리</span>
-              <input type="text" value="" name="mainCategory" /> /
-              <input type="text" value="" name="subCategory" />
+              <input type="text" value="<?=$classPro[6]?>" name="mainCategory" readonly/> &ensp;/
+              <input type="text" value="<?=$classPro[7]?>" name="subCategory" readonly/>
             </div>
             <div class="members">
               <span>모집인원</span>
-              <input type="number" name="memberCount" value="" />
+              <input type="number" name="memberCount" value="<?=$classPro[5]?>" />
             </div>
             <div class="place">
               <span>장소</span>
-              <input type="text" name="place" value="" />
-            </div>
-            <div class="date">
-              <span>시간</span>
-              <input type="date" name="date" id="" />
+              <input type="text" name="place" value="<?=$classPro[3]?>" />
             </div>
             <textarea
               class="contents"
@@ -218,9 +260,32 @@
               id=""
               cols="30"
               rows="10"
-              placeholder="모입 시간, 장소, 모집인원"
-            ></textarea>
-            <input class="subBtn" type="submit" value="저장하기" />
+              placeholder="
+              모입 시간, 장소, 모집인원
+              "
+            ><?=$classPro[2]?></textarea>
+
+            <!-- 수정 삭제 신청 이전 버튼 css 수정 필요!!!!!!!!!!!!!!!!!! -->
+            <?php
+            // if (!strcmp($classPro[4], $current_id)){
+            //   echo "<input class='updBtn' type='submit' value='수정' />
+            //     <input class='delBtn' type='button' value='삭제' />
+            //     <input class='befBtn' type='button' value='이전' />";
+            //     return;
+            // } else if(!isset($_SESSION['id'])) {
+            //   echo "<input class='befBtn' type='button' value='이전' />";
+            //   return;
+            // }else{
+            //   echo "<input class='regBtn' type='button' value='신청' />
+            //   <input class='befBtn' type='button' value='이전' />";
+            //   return;
+            // }
+            ?>
+            <input class='updBtn' type='submit' value='수정' />
+            <input class='delBtn' type='button' value='삭제' />
+            <input class='regBtn' type='button' value='신청' />
+            <input class='befBtn' type='button' value='이전' />
+            
           </form>
         </div>
       </main>

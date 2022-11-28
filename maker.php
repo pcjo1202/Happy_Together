@@ -171,13 +171,17 @@
       }
     </style>
   </head>
-
   <body>
+    <?php 
+        $main_category_name = $_GET['main_category_name'];
+        $sub_category_name = $_GET['sub_category_name'];
+    ?>
     <div class="container">
       <header>
         <div class="left">
           <div class="logoBox">
-            <a class="logo" href="#"><img src="./image/logo.png" alt="" srcset=""></a>
+            <a class="logo" href="mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category_name?>">
+            <img src="./image/logo.png" alt="" srcset=""></a>
           </div>
           <div class="subTitle">모임만들기</div>
         </div>
@@ -189,16 +193,17 @@
       </header>
 
       <main>
+        <?php ?>
         <div class="wrapper">
-          <form class="formBox" action="./makerTest.php" method="post">
+          <form class="formBox" action="makerPro.php" method="post">
             <div class="title">
               <span>제목</span>
               <input type="text" value="" name="title" />
             </div>
             <div class="category">
               <span>카테고리</span>
-              <input type="text" value="" name="mainCategory" /> /
-              <input type="text" value="" name="subCategory" />
+              <input type="text" value="<?=$main_category_name?>" name="mainCategory" readonly/> /
+              <input type="text" value="<?=$sub_category_name?>" name="subCategory" readonly/>
             </div>
             <div class="members">
               <span>모집인원</span>
@@ -207,10 +212,6 @@
             <div class="place">
               <span>장소</span>
               <input type="text" name="place" value="" />
-            </div>
-            <div class="date">
-              <span>시간</span>
-              <input type="date" name="date" id="" />
             </div>
             <textarea
               class="contents"
