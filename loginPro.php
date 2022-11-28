@@ -1,15 +1,13 @@
 <?php
  header("Content-Type:text/html;charset=utf-8");
- $dbname = 'happyTogether';
-
- $connection = mysqli_connect('52.78.0.158:56946','remoteJO','remoteJO');
-
- mysqli_select_db($connection, $dbname);
+ 
+ $connection = mysqli_connect('localhost','happy','together','happytogether');
 
   $id = $_POST['id'];
   $password = $_POST['password'];
   $query = "select id, password, name from member where id='$id'";
   $result = mysqli_query($connection,$query);
+  $result = mysqli_query($connection, $query);
   $loginPro = mysqli_fetch_array($result); 
 
   if($loginPro[0]) {
