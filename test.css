@@ -9,25 +9,37 @@ ul {
   list-style: none;
 }
 
+a{
+  text-decoration: none;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100vh;
+  padding: 0.5rem 0;
 }
 
 header {
   padding: 1rem 0.7rem;
   width: 100%;
+  height: 130px;
+  border-bottom: 2px solid #000;
+
   display: flex;
   gap: 1rem;
   justify-content: space-around;
   align-items: center;
 }
 
+.logo a img{
+  width: 150px;
+}
+
 .mainCategoryBox {
-  flex: 0.5;
+  flex: 1;
 }
 
 .mainCategoryBox>ul {
@@ -61,8 +73,7 @@ section {
 
 .subCategoryBox {
   width: 100%;
-  padding: 0.7rem 0;
-  border-bottom: 2px solid #000;
+  padding: 1rem 0;
 }
 
 .subCategoryBox ul {
@@ -95,6 +106,7 @@ main {
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  position: relative;
 }
 
 main .classList {
@@ -118,13 +130,43 @@ main .classList .classItem {
   column-gap: 1rem;
   row-gap: 3rem;
   cursor: pointer;
-  transition: background 0.2s ease-in;
-  transition: border 0.2s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 main .classList .classItem:hover {
-  border: 2px solid #000;
+  background-color: #c9c9c9;
   cursor: pointer;
+}
+
+.makerBtn{
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+}
+.makerBtn button{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.6rem;  
+
+  padding: 1rem;
+  border: 1px solid #b4c3ac;
+  border-radius: 10px;
+  background-color: #cdfee5;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.makerBtn button img{
+  width: 30px;
+}
+
+.makerBtn button:hover{
+  background-color: #b4c3ac;
+}
+
+.makerBtn button:active{
+  transform: scale(0.9);
 }
 
 footer {
