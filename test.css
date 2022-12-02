@@ -175,6 +175,7 @@
     text-align: center;
   }
   
+<<<<<<< HEAD
   .pager {
     display :block;
   }
@@ -182,3 +183,8 @@
     padding: 0.5rem 0;
   }
 
+=======
+  footer .copyright {
+    padding: 0.5rem 0;
+  }
+>>>>>>> 62c1874 (mainClassList.php 거의 완성)

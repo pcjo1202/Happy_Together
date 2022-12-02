@@ -124,6 +124,32 @@ $category = mysqli_fetch_array($result);
     font-weight: bold;
   }
   </style>
+<<<<<<< HEAD
+=======
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+            let cate0 = document.querySelector(".cate0");
+            let cate1 = document.querySelector(".cate1");
+            let cate2 = document.querySelector(".cate2");
+            let cate3 = document.querySelector(".cate3");
+            let cate0Value = cate0.innerText;
+            let cate1Value = cate1.innerText;
+            let cate2Value = cate2.innerText;
+            let cate3Value = cate3.innerText;
+            cate0.addEventListener("click", function(){
+              location = "mainClassList.php?main_category_name="+cate0Value;
+            })
+            cate1.addEventListener("click", function(){
+              location = "mainClassList.php?main_category_name="+cate1Value;
+            })
+            cate2.addEventListener("click", function(){
+              location = "mainClassList.php?main_category_name="+cate2Value;
+            })
+            cate3.addEventListener("click", function(){
+              location = "mainClassList.php?main_category_name="+cate3Value;
+            })
+        });
+>>>>>>> 62c1874 (mainClassList.php 거의 완성)
 
 </head>
 
