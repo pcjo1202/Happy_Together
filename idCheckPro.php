@@ -2,8 +2,12 @@
 header("Content-Type:text/html;charset=utf-8");
 
 
+<<<<<<< HEAD
 $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
 
+=======
+$connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
+>>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
 
 
 $id = $_GET['id'];

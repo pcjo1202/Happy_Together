@@ -128,6 +128,12 @@ $category = mysqli_fetch_array($result);
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+  <?php  
+    // $connection = mysqli_connect('localhost','happy','together','happytogether');
+    $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
+>>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
 
 
   <div class="container">

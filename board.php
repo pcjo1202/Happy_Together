@@ -114,14 +114,28 @@
     });
     </script>
 
+<<<<<<< HEAD
   </head>
 
   <body>
     <?php
   $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
   $main_category_name = $_GET['main_category_name'];
+=======
+</head>
+<body>
+    <?php 
+        $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
+        $main_category_name = $_GET['main_category_name'];
+        
+       
+        $query = "select sub_category_name from sub_category where main_category = '$main_category_name'";
+        $count_query = "select count(*) from sub_category where main_category = '$main_category_name'";
+        
+>>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
 
 
+<<<<<<< HEAD
   $query = "select sub_category_name from sub_category where main_category = '$main_category_name'";
   $count_query = "select count(*) from sub_category where main_category = '$main_category_name'";
 
@@ -141,6 +155,17 @@
   $result_class = mysqli_query($connection, $query_class);
   $classPro = mysqli_fetch_array($result_class);
   ?>
+=======
+        $sub_category = $_GET['sub_category_name'];
+        if(!$sub_category){
+            $sub_category = $sub_category_name[0];
+        }
+        $query_class = "select class_idx, class_title, class_place,
+        class_leader_id, total_member, write_date from class where sub_category = '$sub_category'";
+        $result_class = mysqli_query($connection, $query_class);
+        $classPro = mysqli_fetch_array($result_class);
+    ?>
+>>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
     <div class="container">
       <<<<<<< HEAD <input type="hidden" class="sub_category" value="<?= $sub_category ?>">
         <input type="hidden" class="sub_category_name" value="<?= $sub_category_name[0] ?>">
@@ -231,6 +256,7 @@
                   $sub_category_name = mysqli_fetch_array($result);
                 }
                 ?>
+<<<<<<< HEAD
                 </ul>
                 <h3>현재 게시글 : <span class="current"> </span></h3>
                 <table>
@@ -253,6 +279,18 @@
                 </table>
                 >>>>>>> 217a8c0 (게시글 테이블 완성 및 출력 성공)
                 >>>>>>> 2af9763 (게시글 테이블 완성 및 출력 성공)
+=======
+            
+            <tr>
+                <td><?=$classPro[0]?></td>
+                <td><a href="classContent.php?class_idx=<?=$classPro[0]?>"><?=$classPro[1]?></a></td>
+                <td><?=$classPro[2]?></td>
+                <td><?=$classPro[3]?></td>
+                <td><?=$classPro[5]?></td>
+            </tr>
+            <?php } ?>
+        </table>
+>>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
     </div>
 
   </body>

@@ -31,4 +31,9 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
     location = 'index.php';
 </script>";
  }
+<<<<<<< HEAD
  mysqli_close($connection);
+=======
+ mysqli_close($connection);
+?>
+>>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
