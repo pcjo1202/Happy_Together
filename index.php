@@ -92,16 +92,16 @@
             let cate2Value = cate2.innerText;
             let cate3Value = cate3.innerText;
             cate0.addEventListener("click", function(){
-              location = "board.php?main_category_name="+cate0Value;
+              location = "mainClassList.php?main_category_name="+cate0Value;
             })
             cate1.addEventListener("click", function(){
-              location = "board.php?main_category_name="+cate1Value;
+              location = "mainClassList.php?main_category_name="+cate1Value;
             })
             cate2.addEventListener("click", function(){
-              location = "board.php?main_category_name="+cate2Value;
+              location = "mainClassList.php?main_category_name="+cate2Value;
             })
             cate3.addEventListener("click", function(){
-              location = "board.php?main_category_name="+cate3Value;
+              location = "mainClassList.php?main_category_name="+cate3Value;
             })
         });
 
