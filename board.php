@@ -94,8 +94,7 @@
 </head>
 <body>
     <?php 
-        $connection = mysqli_connect('localhost','happy','together','happytogether');
-
+        $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
         $main_category_name = $_GET['main_category_name'];
         
        
@@ -113,8 +112,8 @@
         if(!$sub_category){
             $sub_category = $sub_category_name[0];
         }
-        $query_class = "select class_idx, class_title, class_place, class_date,
-        class_user_id, total_member, write_date from class where sub_category = '$sub_category'";
+        $query_class = "select class_idx, class_title, class_place,
+        class_leader_id, total_member, write_date from class where sub_category = '$sub_category'";
         $result_class = mysqli_query($connection, $query_class);
         $classPro = mysqli_fetch_array($result_class);
     ?>
@@ -138,7 +137,6 @@
                 <th>번호</th>
                 <th>제목</th>
                 <th>장소</th>
-                <th>일정</th>
                 <th>주최자</th>
                 <th>작성 일자</th>
             </tr>
@@ -149,11 +147,10 @@
             
             <tr>
                 <td><?=$classPro[0]?></td>
-                <td><?=$classPro[1]?></td>
+                <td><a href="classContent.php?class_idx=<?=$classPro[0]?>"><?=$classPro[1]?></a></td>
                 <td><?=$classPro[2]?></td>
                 <td><?=$classPro[3]?></td>
-                <td><?=$classPro[4]?></td>
-                <td><?=$classPro[6]?></td>
+                <td><?=$classPro[5]?></td>
             </tr>
             <?php } ?>
         </table>

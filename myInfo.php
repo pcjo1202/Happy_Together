@@ -62,16 +62,22 @@
 </head>
 <body>
     <?php 
-        $connection = mysqli_connect('localhost','happy','together','happytogether');
+        $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);        
+        // 마이 페이지에서 자기 정보 보기
         if(!isset($_SESSION['id'])){
             echo "<script>alert('로그인을 하시오.'); location ='login.html';</script>";
             return;
         }
         $id = $_SESSION['id'];
-        $query = "select name, gender, phone, nickname, birth, email  from member where id ='$id'";
-        $result = mysqli_query($connection, $query);
-        $myInfo = mysqli_fetch_array($result);
+        $myInfo_query = "select name, gender, phone, nickname, birth, email  from member where id ='$id'";
+        $myInfo_result = mysqli_query($connection, $myInfo_query);
+        $myInfo = mysqli_fetch_array($myInfo_result);
     
+        // 주최하는 모임 출력!
+        $lead_query = "select * from class where class_leader_id = '$id'";
+        $lead_result = mysqli_query($connection, $lead_query);
+        $lead_count = mysqli_num_rows($lead_result);
+        $leadClass = mysqli_fetch_array($lead_result);
     ?>
 
     <a href = "login.html" class="a_home">HATO</a>
@@ -92,13 +98,27 @@
     </table>
     </div>
     <div class="content2">
-        내가 만든 모임<br>
-        <hr>
-        축구할사람 구해요<br>
-        ...<br>
-        ...<br>
-        ...
-        <hr>
+        내가 만든 모임
+        <table>
+            <tr>
+                <th>NO</th>
+                <th>TITLE</th>
+                <th>분야</th>
+                <th>일자</th>
+            </tr>
+            <?php 
+            for($i=0; $i < $lead_count; $i++) {
+                
+                echo "<tr>
+                        <td>$leadClass[0]</td>
+                        <td>$leadClass[1]</td>
+                        <td>$leadClass[6] / $leadClass[7]</td>
+                        <td>$leadClass[8]</td>
+                    </tr>";
+                    $leadClass = mysqli_fetch_array($lead_result);
+            } ?>
+            
+        </table>
         참여중인 모임<br>
         <hr>
        농구할사람 구해요<br>

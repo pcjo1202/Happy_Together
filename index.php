@@ -110,7 +110,8 @@
 
 <body>
   <?php  
-    $connection = mysqli_connect('localhost','happy','together','happytogether');
+    // $connection = mysqli_connect('localhost','happy','together','happytogether');
+    $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
 
     $query = "select main_category_name from main_category";
     $query2 = "select count(*) from main_category";
