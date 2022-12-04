@@ -25,7 +25,8 @@
     </style>
 
     <script language="javascript">
-    function showPopup() { window.open("pop.html", "category_insert", "width=400, height=300, left=100, top=50"); }
+    function mainPopup() { window.open("maincate_pop.html", "category_insert", "width=400, height=300, left=100, top=50"); }
+    function subPopup() { window.open("subcate_pop.php", "category_insert", "width=400, height=300, left=100, top=50"); }
     </script>
 </head>
 <body>
@@ -44,7 +45,7 @@
             }
         ?>
     <form action="" style="width: 50px; float:right; " >
-            <input type="image" src="image/plus.png" alt="plus" width="48" height="48" margine-right="30px"  onclick="showPopup();">
+            <input type="image" src="image/plus.png" alt="plus" width="48" height="48" margine-right="30px"  onclick="mainPopup();">
     </form>
     </div>
     <br>
@@ -57,6 +58,9 @@
                 echo "<button>".$value."</button>";
             }
         ?>
+        <form action="" style="width: 50px; float:right; " >
+            <input type="image" src="image/plus.png" alt="plus" width="48" height="48" margine-right="30px"  onclick="subPopup();">
+        </form>
     </div>
 
 </body>
