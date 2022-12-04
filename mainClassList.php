@@ -49,12 +49,17 @@ if (!$sub_category) {
 $query_class = "select class_idx, class_title, class_place,
       class_leader_id, total_member, write_date, sub_category from class where sub_category = '$sub_category'";
 
-$class_count_query = "select count(*) from class where sub_category = '$sub_category'";
-$result_class_count = mysqli_query($connection, $class_count_query);
-$class_count = mysqli_fetch_array($result_class_count);
+// $class_count_query = "select count(*) from class where sub_category = '$sub_category'";
+// $result_class_count = mysqli_query($connection, $class_count_query);
+// $class_count = mysqli_fetch_array($result_class_count);
 
 $result_class = mysqli_query($connection, $query_class);
 $class = mysqli_fetch_array($result_class);
+
+// 모임 개수 구하기
+$class_count_result = mysqli_query($connection, $query_class);
+$class_count = mysqli_num_rows($class_count_result);
+// 총 모임 개수 $class_count
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -163,7 +168,7 @@ $class = mysqli_fetch_array($result_class);
         <main>
           <ul class="classList">
             <?php
-          for ($i = 0; $i < $class_count[0]; $i++) {
+          for ($i = 0; $i < $class_count; $i++) {
             echo "
               <li class='classItem'>
                 <input type='hidden' class='idx' value='$class[0]'>
