@@ -1,4 +1,4 @@
-
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -149,7 +149,7 @@
         border: none;
         border-radius: 10px;
       }
-      input[type="button"] {
+      input[type="button"], input[type="submit"] {
         width: 80%;
         /* grid-area: subBtn; */
         border: none;
@@ -167,6 +167,23 @@
       .footer {
       }
     </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        let befBtn = document.querySelector(".befBtn");
+        let updBtn = document.querySelector(".updBtn");
+        let delBtn = document.querySelector(".delBtn");
+        let idx = document.querySelector(".idx");
+
+        befBtn.addEventListener("click", function() {
+          history.back();
+        })
+        // 삭제 기능 완료
+        delBtn.addEventListener("click", function() {
+          location = 'classDeletePro.php?class_idx=' + idx.value;
+        })
+
+      })
+    </script>
   </head>
 
   <body>
@@ -174,6 +191,7 @@
     $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
     
     $class_idx = $_GET['class_idx'];
+    $current_id = $_SESSION['id'];
 
     $class_query = "select * from class where class_idx = '$class_idx'";
     
@@ -198,16 +216,16 @@
 
       <main>
         <div class="wrapper">
-          <form class="formBox" action="#" method="post">
-            <input type="hidden" value="<?=$classPro[0] ?>" name="class_idx">
+          <form class="formBox" action="classUpdatePro.php" method="post">
+            <input type="hidden" value="<?=$classPro[0] ?>" class="idx" name="class_idx">
             <div class="title">
               <span>제목</span>
               <input type="text" value="<?=$classPro[1]?>" name="title" />
             </div>
             <div class="category">
               <span>카테고리</span>
-              <input type="text" value="<?=$classPro[6]?>" name="mainCategory" /> /
-              <input type="text" value="<?=$classPro[7]?>" name="subCategory" />
+              <input type="text" value="<?=$classPro[6]?>" name="mainCategory" readonly/> &ensp;/
+              <input type="text" value="<?=$classPro[7]?>" name="subCategory" readonly/>
             </div>
             <div class="members">
               <span>모집인원</span>
@@ -227,9 +245,15 @@
               모입 시간, 장소, 모집인원
               "
             ><?=$classPro[2]?></textarea>
-            <input class="regBtn" type="button" value="신청" />
-            <input class="updBtn" type="button" value="수정" />
-            <input class="delBtn" type="button" value="삭제" />
+
+            <!-- 수정 삭제 신청 이전 버튼 css 수정 필요!!!!!!!!!!!!!!!!!! -->
+            <?php
+            if (!strcmp($classPro[4], $current_id)){
+              echo "<input class='updBtn' type='submit' value='수정' />
+                <input class='delBtn' type='button' value='삭제' />";
+            } else {
+              echo "<input class='regBtn' type='button' value='신청' />";
+            }?>
             <input class="befBtn" type="button" value="이전" />
           </form>
         </div>

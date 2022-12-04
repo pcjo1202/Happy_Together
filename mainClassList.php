@@ -27,7 +27,6 @@ function query_select($query)
   return $data;
 }
 
-
 //쿼리문 대한 결과 mysqli_result 반환
 $result_sub = mysqli_query($connection, $query_sub);
 $count_result = mysqli_query($connection, $count_query_sub);
@@ -99,16 +98,30 @@ $class = mysqli_fetch_array($result_class);
             subItem[i].addEventListener("click", function(){
                 location = 'mainClassList.php?main_category_name='+main_category_name+'&sub_category_name='+subItem[i].innerText;
                 })
-            }
+        }
+
+        // 게시글 클릭 시
+        let classItem = document.querySelectorAll(".classItem");
+        let idx = document.querySelectorAll(".idx");
+
+        for(let i=0; i< classItem.length; i++) {
+          classItem[i].addEventListener("click", function(){
+            location = 'classContent.php?class_idx='+idx[i].value;
+          })
+        }
         
     })
     </script>
   </head>
 
   <body>
+    <!-- main_category_name get으로 가져온 것 -->
     <input type="hidden" class="main_category_name" value="<?=$main_category_name ?>">
+    <!-- sub_category get으로 가져온 것 -->
     <input type="hidden" class="sub_category" value="<?=$sub_category ?>">
+    <!-- sub_category 초기값 설정한 것 -->
     <input type="hidden" class="sub_category_name" value="<?=$sub_category_db[0]?>">
+
     <div class="container">
       <header>
         <div class="logo">
@@ -130,7 +143,7 @@ $class = mysqli_fetch_array($result_class);
           </ul>
         </div>
         <div class="myPage">
-          <a href="#">마이페이지</a>
+          <a href="myInfo.php">마이페이지</a>
         </div>
       </header>
       <section>
@@ -153,21 +166,16 @@ $class = mysqli_fetch_array($result_class);
           for ($i = 0; $i < $class_count[0]; $i++) {
             echo "
               <li class='classItem'>
+                <input type='hidden' class='idx' value='$class[0]'>
                 <h3 class='title'>$class[1]</h3>
                 <div class='category'>$sub_category / $main_category_name</div>
                 <span class='nickname'>$class[3]</span>
                 <span class='peopleNum'>$class[4]</span>
               </li>
             ";
+            $class = mysqli_fetch_array($result_class);
           }
-
           ?>
-            <!-- <li class="classItem" id="1">
-              <h3 class="title">제목</h3>
-              <div class="category">축구/풋살</div>
-              <span class="nickname">닉네임</span>
-              <span class="peopleNum">1/100</span>
-            </li> -->
           </ul>
           <div class="makerBtn">
             <a href="./maker.html">
@@ -184,14 +192,6 @@ $class = mysqli_fetch_array($result_class);
         <div class="copyright">copyright 천지창조</div>
       </footer>
     </div>
-    <?php
-  echo "
-        <script>
-          const MainCategory = document.querySelector('.{$main_category_name}');
-        </script>
-      "
-  ?>
-   
   </body>
 
 </html>

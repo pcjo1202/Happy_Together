@@ -80,7 +80,7 @@
         $leadClass = mysqli_fetch_array($lead_result);
     ?>
 
-    <a href = "login.html" class="a_home">HATO</a>
+    <a href = "index.php" class="a_home">HATO</a>
     <div class ="mp">마이페이지</div>            
     <div class="content">
         

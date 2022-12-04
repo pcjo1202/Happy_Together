@@ -1,7 +1,8 @@
 <?php
+header("Content-Type:text/html;charset=utf-8");
     $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
 
-    $idx = $_POST['class_idx'];
+    $idx = $_GET['class_idx'];
     $id = $_SESSION['id'];
 
     $leader_query = "select class_leader_id from class where class_idx = '$idx'";
@@ -13,10 +14,25 @@
     $insert_result = mysqli_query($connection, $insert_query);
 
     $cate_query = "select main_category, sub_category from class where class_idx='$idx'";
+    $cate_result = mysqli($connection, $cate_query);
+    $catePro = mysqli_fetch_array($cate_result);
 
-    echo "<script>
+
+    $insert_confirm_query = "select * from register_class where class_idx=$idx";
+    $confirm_result = mysqli_query($connection, $insert_confirm_query);
+    $register_confirm = mysqli_fetch_array($confirm_result);
+    
+    if($register_confirm[0]){
+        echo "<script>
             alert('신청 완료.');
-            location = 'board.php?main_category=$cate_query[0]&sub_category=$cate_query[1]';
+            location = 'mainClassList.php?main_category=$catePro[0]&sub_category=$catePro[1]';
         </script>";
+    }else {
+        echo "<script>
+            alert('신청 실패');
+            location = 'mainClassList.php?main_category=$catePro[0]&sub_category=$catePro[1]';
+        </script>";
+    }
+    
 
 ?>
