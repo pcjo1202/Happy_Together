@@ -193,6 +193,9 @@
         let updBtn = document.querySelector(".updBtn");
         let delBtn = document.querySelector(".delBtn");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fdef4e9 (신청하기 완료)
         let regBtn = document.querySelector(".regBtn");
         let leader_id = document.querySelector(".leader_id").value;
         let session_id = document.querySelector(".session_id").value;
@@ -210,9 +213,12 @@
           delBtn.style.display='none';
         }
 
+<<<<<<< HEAD
 =======
         let idx = document.querySelector(".idx");
 >>>>>>> 108a217 (Merge branch 'donghyun' of https://github.com/pcjo1202/Happy_Together into donghyun)
+=======
+>>>>>>> fdef4e9 (신청하기 완료)
 
         befBtn.addEventListener("click", function() {
           history.back();
@@ -222,6 +228,9 @@
           location = 'classDeletePro.php?class_idx=' + idx.value;
         })
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fdef4e9 (신청하기 완료)
         // 신청 기능 
         regBtn.addEventListener("click", function(){
           location = 'classRegisterPro.php?class_idx=' + idx.value+'&class_leader_id='+leader_id;
@@ -230,6 +239,7 @@
       })
     </script>
   </head>
+<<<<<<< HEAD
 =======
 =======
 
@@ -239,6 +249,8 @@
   </head>
 
 >>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
+=======
+>>>>>>> fdef4e9 (신청하기 완료)
   <body>
   <?php 
     $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
@@ -249,6 +261,7 @@
     $current_id = $_SESSION['id'];
 
     $class_query = "select * from class where class_idx = '$class_idx'";
+<<<<<<< HEAD
     $class_result = mysqli_query($connection, $class_query);
 =======
 =======
@@ -260,6 +273,9 @@
     $class_result = mysqli_query($connection, $class_query);
 
 >>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
+=======
+    $class_result = mysqli_query($connection, $class_query);
+>>>>>>> fdef4e9 (신청하기 완료)
     $classPro = mysqli_fetch_array($class_result);
 ?>
     <div class="container">
@@ -291,8 +307,14 @@
 >>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
 =======
           <form class="formBox" action="classUpdatePro.php" method="post">
+<<<<<<< HEAD
             <input type="hidden" value="<?=$classPro[0] ?>" class="idx" name="class_idx">
 >>>>>>> 108a217 (Merge branch 'donghyun' of https://github.com/pcjo1202/Happy_Together into donghyun)
+=======
+            <input type="hidden" value="<?=$classPro[0]?>" class="idx" name="class_idx">
+            <input type="hidden" value="<?=$classPro[4]?>" class="leader_id" name="leader_id">
+            <input type="hidden" value="<?=$current_id?>" class="session_id">
+>>>>>>> fdef4e9 (신청하기 완료)
             <div class="title">
               <span>제목</span>
               <input type="text" value="<?=$classPro[1]?>" name="title" />
@@ -362,6 +384,7 @@
 
             <!-- 수정 삭제 신청 이전 버튼 css 수정 필요!!!!!!!!!!!!!!!!!! -->
             <?php
+<<<<<<< HEAD
             if (!strcmp($classPro[4], $current_id)){
               echo "<input class='updBtn' type='submit' value='수정' />
                 <input class='delBtn' type='button' value='삭제' />";
@@ -371,6 +394,27 @@
 >>>>>>> 108a217 (Merge branch 'donghyun' of https://github.com/pcjo1202/Happy_Together into donghyun)
             <input class="befBtn" type="button" value="이전" />
 >>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
+=======
+            // if (!strcmp($classPro[4], $current_id)){
+            //   echo "<input class='updBtn' type='submit' value='수정' />
+            //     <input class='delBtn' type='button' value='삭제' />
+            //     <input class='befBtn' type='button' value='이전' />";
+            //     return;
+            // } else if(!isset($_SESSION['id'])) {
+            //   echo "<input class='befBtn' type='button' value='이전' />";
+            //   return;
+            // }else{
+            //   echo "<input class='regBtn' type='button' value='신청' />
+            //   <input class='befBtn' type='button' value='이전' />";
+            //   return;
+            // }
+            ?>
+            <input class='updBtn' type='submit' value='수정' />
+            <input class='delBtn' type='button' value='삭제' />
+            <input class='regBtn' type='button' value='신청' />
+            <input class='befBtn' type='button' value='이전' />
+            
+>>>>>>> fdef4e9 (신청하기 완료)
           </form>
         </div>
       </main>
