@@ -183,7 +183,7 @@ $class_count = mysqli_num_rows($class_count_result);
           ?>
           </ul>
           <div class="makerBtn">
-            <a href="./maker.html">
+            <a href="maker.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>">
               <button>
                 <img src="./image/plus.png" alt="">
                 <span>모임 만들기</span>
