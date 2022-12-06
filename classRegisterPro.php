@@ -54,6 +54,7 @@ header("Content-Type:text/html;charset=utf-8");
     }
     $id = $_SESSION['id'];
 
+    // 중복 신청 막기!!!!!
     $confirm_over_qeury = "select * from register_class where register_id='$id'";
     $confirm_over_result = mysqli_query($connection, $confirm_over_qeury);
     $confirm_over_pro = mysqli_fetch_array($confirm_over_result);
@@ -66,6 +67,7 @@ header("Content-Type:text/html;charset=utf-8");
                         values('$idx', '$leader_id', '$id')";
     $insert_result = mysqli_query($connection, $insert_query);
 
+    // 카테고리 찾기
     $cate_query = "select main_category, sub_category from class where class_idx='$idx'";
     $cate_result = mysqli_query($connection, $cate_query);
     $catePro = mysqli_fetch_array($cate_result);

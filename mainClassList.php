@@ -46,20 +46,66 @@ if (!$sub_category) {
   $sub_category = $sub_category_db[0];
 }
 
-$query_class = "select class_idx, class_title, class_place,
-      class_leader_id, total_member, write_date, sub_category from class where sub_category = '$sub_category'";
+// $query_class = "select class_idx, class_title, class_place,
+//       class_leader_id, total_member, write_date, sub_category from class where sub_category = '$sub_category'";
 
-// $class_count_query = "select count(*) from class where sub_category = '$sub_category'";
-// $result_class_count = mysqli_query($connection, $class_count_query);
-// $class_count = mysqli_fetch_array($result_class_count);
-
-$result_class = mysqli_query($connection, $query_class);
-$class = mysqli_fetch_array($result_class);
+// $result_class = mysqli_query($connection, $query_class);
+// $class = mysqli_fetch_array($result_class);
+$class_total = "select count(*) from class where sub_category = '$sub_category'";
 
 // 모임 개수 구하기
-$class_count_result = mysqli_query($connection, $query_class);
-$class_count = mysqli_num_rows($class_count_result);
+$class_total_result = mysqli_query($connection, $class_total);
+$class_total = mysqli_fetch_array($class_total_result);
 // 총 모임 개수 $class_count
+
+// 페이징 처리
+/* paging : 한 페이지 당 데이터 개수 */
+$list_num = 6;
+
+/* paging : 한 블럭 당 페이지 수 */
+$page_num = 5;
+
+/* paging : 현재 페이지 */
+$page = isset($_GET["page"])? $_GET["page"] : 1;
+
+/* paging : 전체 페이지 수 = 전체 데이터 / 페이지당 데이터 개수, ceil : 올림값, floor : 내림값, round : 반올림 */
+$total_page = ceil($class_total[0] / $list_num);
+// echo "전체 페이지 수 : .$total_page ,,, $class_total";
+
+/* paging : 전체 블럭 수 = 전체 페이지 수 / 블럭 당 페이지 수 */
+$total_block = ceil($total_page / $page_num);
+
+/* paging : 현재 블럭 번호 = 현재 페이지 번호 / 블럭 당 페이지 수 */
+$now_block = ceil($page / $page_num);
+
+/* paging : 블럭 당 시작 페이지 번호 = (해당 글의 블럭번호 - 1) * 블럭당 페이지 수 + 1 */
+$s_pageNum = ($now_block - 1) * $page_num + 1;
+// 데이터가 0개인 경우
+if($s_pageNum <= 0){
+    $s_pageNum = 1;
+};
+
+/* paging : 블럭 당 마지막 페이지 번호 = 현재 블럭 번호 * 블럭 당 페이지 수 */
+$e_pageNum = $now_block * $page_num;
+// 마지막 번호가 전체 페이지 수를 넘지 않도록
+if($e_pageNum > $total_page){
+    $e_pageNum = $total_page;
+};
+
+/* paging : 시작 번호 = (현재 페이지 번호 - 1) * 페이지 당 보여질 데이터 수 */
+$start = ($page - 1) * $list_num;
+
+/* paging : 쿼리 작성 - limit 몇번부터, 몇개 */
+$query_class = "select class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
+        sub_category from class where sub_category='$sub_category' order by class_idx desc limit $start, $list_num";
+
+/* paging : 쿼리 전송 */
+$result_class = mysqli_query($connection, $query_class);
+$class = mysqli_fetch_array($result_class);
+$class_count = mysqli_num_rows($result_class);
+
+/* paging : 글번호 */
+$cnt = $start + 1;
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -114,6 +160,17 @@ $class_count = mysqli_num_rows($class_count_result);
             location = 'classContent.php?class_idx='+idx[i].value;
           })
         }
+
+        // main_category 클릭했을 때
+        let mainItem = document.querySelectorAll(".mainItem");
+        
+        for(let i=0; i<mainItem.length; i++) {
+          mainItem[i].addEventListener("click",function() {
+            location = 'mainClassList.php?main_category_name='+mainItem[i].innerText;
+          })
+        }
+
+
         
     })
     </script>
@@ -161,6 +218,7 @@ $class_count = mysqli_num_rows($class_count_result);
               <li class='subItem'>$sub_category_db[0]</li>
              ";
             $sub_category_db = mysqli_fetch_array($result_sub);
+            $cnt ++;
           }
           ?>
           </ul>
@@ -182,6 +240,37 @@ $class_count = mysqli_num_rows($class_count_result);
           }
           ?>
           </ul>
+          <!-- 페이징 처리 -->
+          <p class="pager">
+
+            <?php
+            /* paging : 이전 페이지 */
+            if($page <= 1){
+            ?>
+            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=1">이전</a>
+            <?php } else{ ?>
+            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=<?php echo ($page-1); ?>">이전</a>
+            <?php };?>
+
+            <?php
+            /* pager : 페이지 번호 출력 */
+            for($print_page = $s_pageNum; $print_page <= $e_pageNum; $print_page++){
+            ?>
+            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=<?php echo $print_page; ?>"><?php echo $print_page; ?></a>
+            <?php };?>
+
+            <?php
+            /* paging : 다음 페이지 */
+            if($page >= $total_page){
+            ?>
+            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=<?php echo $total_page; ?>">다음</a>
+            <?php } else{ ?>
+            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=<?php echo ($page+1); ?>">다음</a>
+            <?php };?>
+
+
+            <!-- 모임 만들기 버튼 -->
+        </p>
           <div class="makerBtn">
             <a href="maker.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>">
               <button>
