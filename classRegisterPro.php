@@ -13,7 +13,7 @@ session_start();
     $id = $_SESSION['id'];
 
     // 중복 신청 막기!!!!!
-    $confirm_over_qeury = "select * from register_class where register_id='$id'";
+    $confirm_over_qeury = "select * from register_class where class_idx = '$idx' and register_id='$id'";
     $confirm_over_result = mysqli_query($connection, $confirm_over_qeury);
     $confirm_over_pro = mysqli_fetch_array($confirm_over_result);
     if($confirm_over_pro[0]){
