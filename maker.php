@@ -187,7 +187,7 @@
         </div>
         <div class="right">
           <div class="myPage">
-            <button>마이페이지</button>
+            <button><a href="myInfo.php">마이페이지</a></button>
           </div>
         </div>
       </header>
