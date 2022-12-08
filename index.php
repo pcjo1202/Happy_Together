@@ -125,6 +125,7 @@ $category = mysqli_fetch_array($result);
   }
   </style>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   <script>
     document.addEventListener("DOMContentLoaded", function(){
@@ -150,16 +151,21 @@ $category = mysqli_fetch_array($result);
             })
         });
 >>>>>>> 62c1874 (mainClassList.php 거의 완성)
+=======
+>>>>>>> 749def1 (파일 다시 리셋!! 아몰라)
 
 </head>
 
 <body>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   <?php  
     // $connection = mysqli_connect('localhost','happy','together','happytogether');
     $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
 >>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
+=======
+>>>>>>> 749def1 (파일 다시 리셋!! 아몰라)
 
 
   <div class="container">

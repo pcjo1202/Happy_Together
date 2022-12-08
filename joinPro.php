@@ -17,7 +17,6 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
             values('$id', '$password', '$name', '$nickname', '$gender', '$birth', '$phone', '$email')";
  $result = mysqli_query($connection, $query);
 
-<<<<<<< HEAD
  $query2  = "select * from member where id = '$id'";
  $result2 = mysqli_query($connection, $query2);
  $joinCheck = mysqli_fetch_array($result2);
@@ -32,6 +31,7 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
     location = 'index.php';
 </script>";
  }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -53,3 +53,6 @@ location = "login.html";
 </script>
 >>>>>>> f6eadd8 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
 >>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
+=======
+ mysqli_close($connection);
+>>>>>>> 749def1 (파일 다시 리셋!! 아몰라)

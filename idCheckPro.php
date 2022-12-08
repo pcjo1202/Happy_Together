@@ -14,18 +14,17 @@ $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogeth
 >>>>>>> 9499a98 (관리자)
 
 
+
 $id = $_GET['id'];
 
 $query = "select * from member where id='$id'";
-<<<<<<< HEAD
-=======
 $result = mysqli_query($connection, $query);
 $idCheckPro = mysqli_fetch_array($result); 
 
->>>>>>> f6eadd8 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
 $result = mysqli_query($connection, $query);
 $idCheckPro = mysqli_fetch_array($result);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 $result = mysqli_query($connection, $query);
 $idCheckPro = mysqli_fetch_array($result);
@@ -33,6 +32,9 @@ $idCheckPro = mysqli_fetch_array($result);
 
 =======
 >>>>>>> 45f04bb (코드가 꼬여서 일단 그냥 커밋..)
+=======
+
+>>>>>>> 749def1 (파일 다시 리셋!! 아몰라)
 if (!isset($idCheckPro[0])) {
     echo "<script>alert(`사용 가능한 ID입니다.`); history.back();</script>";
 } else {

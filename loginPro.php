@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 header("Content-Type:text/html;charset=utf-8");
 
 $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
@@ -13,26 +14,18 @@ $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogeth
 =======
 =======
 >>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
+=======
+>>>>>>> 749def1 (파일 다시 리셋!! 아몰라)
 header("Content-Type:text/html;charset=utf-8");
+
 $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
 >>>>>>> 45f04bb (코드가 꼬여서 일단 그냥 커밋..)
 
-=======
- header("Content-Type:text/html;charset=utf-8");
-
- $connection = mysqli_connect('localhost','happy','together','happytogether');
-
-  $id = $_POST['id'];
-  $password = $_POST['password'];
-  $query = "select id, password, name from member where id='$id'";
-
-  $result = mysqli_query($connection, $query);
-  $loginPro = mysqli_fetch_array($result); 
->>>>>>> f6eadd8 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
 
 $id = $_POST['id'];
 $password = $_POST['password'];
 $query = "select id, password, name from member where id='$id'";
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 $result = mysqli_query($connection, $query);
@@ -41,10 +34,18 @@ $loginPro = mysqli_fetch_array($result);
 
 
 =======
+=======
+
+>>>>>>> 749def1 (파일 다시 리셋!! 아몰라)
 $result = mysqli_query($connection, $query);
+
 $loginPro = mysqli_fetch_array($result);
 
+<<<<<<< HEAD
 >>>>>>> 45f04bb (코드가 꼬여서 일단 그냥 커밋..)
+=======
+
+>>>>>>> 749def1 (파일 다시 리셋!! 아몰라)
 if ($loginPro[0]) {
   if ("$password" == "$loginPro[1]") {
     echo "<script> 
@@ -52,9 +53,13 @@ if ($loginPro[0]) {
         location.href='index.php';
       </script>";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 45f04bb (코드가 꼬여서 일단 그냥 커밋..)
+=======
+
+>>>>>>> 749def1 (파일 다시 리셋!! 아몰라)
     session_start();
     $_SESSION['id'] = $id;
     $_SESSION['name'] = $loginPro[2];
