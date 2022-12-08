@@ -29,31 +29,43 @@
     <div class="container">
     <a href="admin.html">* 관리자 페이지 *</a>  
     </div>
-    <!-- <p>"<?php echo $s_name; ?>"님, 안녕하세요.</p>
-    <p>
-        <a href="admin.php" class="bar" >홈으로 |</a>
-        <a href="admin_user.php" class="bar">게시판 관리 |</a>
-        <a href="admin_user.php" class="bar">회원 관리 |</a>
-        <a href="admin_user.php" class="bar">카테고리 관리 |</a>
-        <a href="admin_user.php" class="bar">공지사항 관리 |</a>
-        <a href="logout.php" class="bar">로그아웃</a>
-    </p> -->
+   
     <hr>
     <p>총 <?php echo $num; ?>명</p>
     <table>
         <tr class="title">
-            <td>번호</td>
-            <td>이름</td>
             <td>아이디</td>
-            <td>생년월일</td>
-            <td>주소</td>
-            <td>이메일</td>
+            <td>비밀번호</td>
+            <td>이름</td>
+            <td>닉네임</td>
+            <td>성별</td>
+            <td>생일</td>
             <td>전화번호</td>
+            <td>이메일주소</td>
             <td>가입일</td>
-            <td>수정</td>
-            <td>삭제</td>
+            <td>번호</td>
         </tr>
     </table>   
-  
+  <?php
+    $database = "happytogether";
+    $connect=mysql_connect('localhost','happy', 'hato')or die("mySQL 서버 연결 Error!");
+    mysql_select_db($database, $connect);
+    $query = "select * from member";
+    $result = mysql_query($query,$connect);
+
+    $num = mysql_num_rows($result);
+
+    print "<table>";
+
+    for($i=0; $i<$num; $i++) {
+        $ans = mysql_fetch_row($result);       
+        print "<tr class='title'><td>".$ans[0]."</td><td>".$ans[1]."</td><td>".$ans[2];
+        print "</td><td>".$ans[3]."</td><td>".$ans[4]."</td><td>".$ans[5]."</td><td>".$ans[6]."</td><td>".$ans[7]."</td><td>".$ans[8]."</td><td>".$ans[9]."</td></tr><br>";
+        
+    }
+
+    print "</table>"
+
+  ?>
 </body>
 </html>

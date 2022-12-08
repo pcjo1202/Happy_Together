@@ -1,6 +1,6 @@
 <?php
 header("Content-Type:text/html;charset=utf-8");
- $connection = mysql_connect('localhost', 'happy','together');
+ $connection = mysql_connect('localhost', 'happy','hato');
  mysql_select_db('happytogether');
  
  $id = $_POST['id'];
