@@ -4,15 +4,13 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원목록</title>
+    <title>사용자 목록</title>
     <style type="text/css">
         .container {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
+        display: flex; }
+        .left{width: 400px;  margin: auto 0;}
+        .center{flex:3; text-align: center;}
+        .right{width:400px; text-align:right; margin: auto 0;}
         button{background-color:black; border:none; color:white;}
         .button:hover{background-color:red; border:none; color:black;}
         body{font-size:16px;}
@@ -29,9 +27,11 @@
  </style>
 </head>
 <body>
-    <div class="container">
-    <a href="admin.html">* 관리자 페이지 *</a>  
-    </div>   
+<div class="container">
+    <div class="left">  <a href="admin.html">* 관리자 페이지 *</a> </div>
+    <div class="center"> <h1>유저 설정</h1> </div>
+    <div class="right">  </div>
+</div>    
     <hr>
 
     <table>
@@ -45,7 +45,7 @@
      
   <?php
     $database = "happytogether";
-    $connect=mysql_connect('localhost','happy', 'hato')or die("mySQL 서버 연결 Error!");
+    $connect=mysql_connect('localhost','happy', 'together')or die("mySQL ?���? ?���? Error!");
     mysql_select_db($database, $connect);
     $query = "select * from member";
     $result = mysql_query($query,$connect);

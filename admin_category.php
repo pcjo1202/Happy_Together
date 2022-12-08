@@ -5,15 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원목록</title>
+    <title>카테고리 페이지</title>
     <style type="text/css">
         .container {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+        display: flex; }
+        .left{width: 400px;  margin: auto 0;}
+        .center{flex:3; text-align: center;}
+        .right{width:400px; text-align:right; margin: auto 0;}
 
         a {
             text-decoration: none;
@@ -21,6 +19,7 @@
             font-size: 40px;
             align: center;
         }
+        a:hover{color:rgb(255, 153, 0);}
 
         body {
             font-size: 16px
@@ -76,15 +75,17 @@
 </head>
 
 <body>
-    <div class="container">
-        <a href="admin.html">* 관리자 페이지 *</a>
-    </div>
-    <br>
-    <hr>
+<div class="container">
+    <div class="left">  <a href="admin.html">* 관리자 페이지 *</a> </div>
+    <div class="center"> <h1>카테고리</h1> </div>
+    <div class="right"> </div>
+</div>  
+<hr>
+
     <p> 메인 카테고리 </p>
     <div class="category">
         <?php
-            $arr = array("구기종목","운동","스터디");
+            $arr = array("sport","study","anything");
             foreach ($arr as $value) 
             {
                 echo "<button>".$value."</button>";
@@ -99,7 +100,7 @@
     <p> 서브 카테고리 </p>
     <div class="category">
         <?php
-            $arr = array("축구","농구","야구");
+            $arr = array("soccer","baseball");
             foreach ($arr as $value) 
             {
                 echo "<button>".$value."</button>";

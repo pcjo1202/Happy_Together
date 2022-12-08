@@ -7,12 +7,10 @@
     <title>게시글페이지</title>
     <style type="text/css">
         .container {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
+        display: flex; }
+        .left{width: 400px;  margin: auto 0;}
+        .center{flex:3; text-align: center;}
+        .right{width:400px; text-align:right; margin: auto 0;}
         button{background-color:black; border:none; color:white;}
         .button:hover{background-color:red; border:none; color:black;}
         body{font-size:16px}
@@ -29,9 +27,11 @@
  </style>
 </head>
 <body>
-    <div class="container">
-    <a href="admin.html">* 관리자 페이지 *</a>  
-    </div>  
+<div class="container">
+    <div class="left">  <a href="admin.html">* 관리자 페이지 *</a> </div>
+    <div class="center"> <h1>게시판 관리</h1> </div>
+    <div class="right"> </div>
+</div>    
     <hr>
     <table>
         <tr class="title">

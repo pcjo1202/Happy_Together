@@ -10,7 +10,7 @@
         display: flex; }
         .left{width: 400px;  margin: auto 0;}
         .center{flex:3; text-align: center;}
-        .right{float:1; text-align:right; margin: auto 0;}
+        .right{width:400px; text-align:right; margin: auto 0;}
         button{background-color:white; border:1px solid black; color:black;}
         .addbut{background-color:white; border: 3px solid black; color:black; font-size:30px; }
         .addbut:hover{background-color:gray; border: 3px solid black; color:white; font-size:30px;}
@@ -31,7 +31,7 @@
 <body>
 <div class="container">
     <div class="left">  <a href="admin.html">* 관리자 페이지 *</a> </div>
-    <div class="center"> <h1>공지사항 페이지</h1> </div>
+    <div class="center"> <h1>공지사항</h1> </div>
     <div class="right"><a href="admin_post.html"><button class="addbut">공지사항 추가하기</button> </a>  </div>
 </div>    
     <hr>
@@ -45,7 +45,7 @@
      
   <?php
     $database = "happytogether";
-    $connect=mysql_connect('localhost','happy', 'hato')or die("mySQL ?���? ?���? Error!");
+    $connect=mysql_connect('localhost','happy', 'together')or die("mySQL ?���? ?���? Error!");
     mysql_select_db($database, $connect);
     $query = "select * from member";
     $result = mysql_query($query,$connect);
