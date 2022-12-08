@@ -2,7 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 21px;
+  }
+  body {
+    background-color: #dadde2;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   ul {
@@ -17,7 +26,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 1100px;
     height: 100vh;
     padding: 0.5rem 0;
   }
@@ -41,6 +50,11 @@
   .mainCategoryBox {
     flex: 1;
   }
+
+  /*
+  배경 #DADDE2
+  버튼 #B1BDC5
+   */
   
   .mainCategoryBox>ul {
     display: flex;
@@ -49,15 +63,15 @@
   }
   
   .mainCategoryBox>ul .mainItem {
-    background-color: #c9c9c9;
-    border: 1px solid #0000002c;
+    background-color: #B1BDC5;
+    border: 1px solid #00000015;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     transition: transform 0.5s ease;
     cursor: pointer;
   }
   
-  .mainCategoryBox>ul .mainItem:focus {
+  .mainCategoryBox>ul .mainItem:hover {
     background-color: #9c9c9c;
     color: #fcfcfc;
     transform: scale(1.1);
@@ -86,16 +100,15 @@
   }
   
   .subCategoryBox ul>.subItem {
-    background-color: #f2ffea;
-    border: 1px solid #2d8c2d78;
+    background-color: #B1BDC5;
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    transition: all 0.5s ease;
+    transition: all 200ms ease-out;
     cursor: pointer;
   }
   
   .subCategoryBox ul>.subItem:hover {
-    background-color: #b4c3ac;
+    background-color: #889fa5;
     transform: scale(1.2);
   }
   
@@ -120,7 +133,7 @@
   }
   
   main .classList .classItem {
-    background-color: #d1e9c5;
+    background-color: #B1BDC5;
     border-radius: 10px;
     padding: 1rem 1.5rem;
   
@@ -128,7 +141,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     column-gap: 1rem;
-    row-gap: 3rem;
+    row-gap: 2rem;
     cursor: pointer;
     transition: all 0.2s ease-in;
   }
@@ -139,22 +152,23 @@
   }
   
   .makerBtn{
-    position: absolute;
+    position: fixed;
     right: 5%;
     bottom: 5%;
+    transition: all 200ms ease-in;
   }
   .makerBtn button{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 0.6rem;  
-  
     padding: 1rem;
-    border: 1px solid #b4c3ac;
+    gap: 0.6rem;  
+    color: #c9c9c9;
+    border: none;
     border-radius: 10px;
-    background-color: #cdfee5;
+    background-color: #43655A;
     cursor: pointer;
-    transition: all 0.1s ease-in;
+    transition: all 200ms ease-in;
   }
   
   .makerBtn button img{
@@ -162,7 +176,7 @@
   }
   
   .makerBtn button:hover{
-    background-color: #b4c3ac;
+    background-color: #889fa5;
   }
   
   .makerBtn button:active{
