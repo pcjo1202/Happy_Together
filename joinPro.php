@@ -31,28 +31,4 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
     location = 'index.php';
 </script>";
  }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
  mysqli_close($connection);
-=======
- mysqli_close($connection);
-?>
->>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
-=======
- mysqli_close($connection);
->>>>>>> 45f04bb (코드가 꼬여서 일단 그냥 커밋..)
-=======
- mysqli_close($connection);
-=======
-?>
-<script>
-alert("회원가입에 성공하였습니다.!!!!!");
-location = "login.html";
-</script>
->>>>>>> f6eadd8 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
->>>>>>> c408d92 (메인 게시글 DB 연결 및 카테고리 화면  노출 성공)
-=======
- mysqli_close($connection);
->>>>>>> 749def1 (파일 다시 리셋!! 아몰라)

@@ -2,16 +2,7 @@
 header("Content-Type:text/html;charset=utf-8");
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
-
-=======
-$connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
->>>>>>> 6e7e4ba (모임 상세보기 수정, 삭제, 신청 완료)
-=======
-$connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
->>>>>>> 9499a98 (관리자)
 
 
 
@@ -24,17 +15,7 @@ $idCheckPro = mysqli_fetch_array($result);
 $result = mysqli_query($connection, $query);
 $idCheckPro = mysqli_fetch_array($result);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-$result = mysqli_query($connection, $query);
-$idCheckPro = mysqli_fetch_array($result);
 
-
-=======
->>>>>>> 45f04bb (코드가 꼬여서 일단 그냥 커밋..)
-=======
-
->>>>>>> 749def1 (파일 다시 리셋!! 아몰라)
 if (!isset($idCheckPro[0])) {
     echo "<script>alert(`사용 가능한 ID입니다.`); history.back();</script>";
 } else {
