@@ -46,13 +46,8 @@ if (!$sub_category) {
   $sub_category = $sub_category_db[0];
 }
 
-// $query_class = "select class_idx, class_title, class_place,
-//       class_leader_id, total_member, write_date, sub_category from class where sub_category = '$sub_category'";
 
-// $result_class = mysqli_query($connection, $query_class);
-// $class = mysqli_fetch_array($result_class);
 $class_total = "select count(*) from class where sub_category = '$sub_category'";
-
 // 모임 개수 구하기
 $class_total_result = mysqli_query($connection, $class_total);
 $class_total = mysqli_fetch_array($class_total_result);
@@ -106,6 +101,24 @@ $class_count = mysqli_num_rows($result_class);
 
 /* paging : 글번호 */
 $cnt = $start + 1;
+
+// 검색하기 get으로 가져온다.
+$search_select = $_GET['search_select'];
+$search_text = $get['search_text'];
+if(strcmp($search_select, "제목")){
+  $search_query = "class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
+  sub_category from class where class_title like '%$search_text%' order by class_idx desc limit $start, $list_num";
+} else if(strcmp($search_select, "내용")){
+  $search_query = "class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
+  sub_category from class where class_contents like '%$search_text%' order by class_idx desc limit $start, $list_num";
+} else if(strcmp($search_select, "작성자")){
+  $search_query = "class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
+  sub_category from class where class_leader_id like '%$search_text%' order by class_idx desc limit $start, $list_num";
+}
+$search_result = mysqli_query($connection, $search_query);
+$searchPro = mysqli_fetch_array($search_result);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -169,18 +182,11 @@ $cnt = $start + 1;
             location = 'mainClassList.php?main_category_name='+mainItem[i].innerText;
           })
         }
-
-
-        
     })
     </script>
   </head>
 
   <body>
-    <!-- main_category_name get으로 가져온 것 -->
-    <input type="hidden" class="main_category_name" value="<?=$main_category_name ?>">
-    <!-- sub_category get으로 가져온 것 -->
-    <input type="hidden" class="sub_category" value="<?=$sub_category ?>">
     <!-- sub_category 초기값 설정한 것 -->
     <input type="hidden" class="sub_category_name" value="<?=$sub_category_db[0]?>">
 
@@ -222,27 +228,60 @@ $cnt = $start + 1;
           }
           ?>
           </ul>
+       
         </div>
+        <!-- 검색 기능 -->
+        <div class="search">
+          <form action="mainClassList.php" method="get"> 
+            <!-- main_category_name get으로 가져온 것 -->
+            <input type="hidden" class="main_category_name" name="main_category_name" value="<?=$main_category_name ?>">
+            <!-- sub_category get으로 가져온 것 -->
+            <input type="hidden" class="sub_category" name="sub_category_name" value="<?=$sub_category ?>">
+            <select name="search_select" class="search_select">
+              <option value="제목">제목</option>
+              <option value="내용">내용</option>
+              <option value="작성자">작성자</option>
+            </select>
+            <input type="text" name="search_text" placeholder="검색어 입력">
+            <input type="submit" value="검색">
+          </form>
+        </div>
+
         <main>
           <ul class="classList">
             <?php
-          for ($i = 0; $i < $class_count; $i++) {
-            echo "
-              <li class='classItem'>
-                <input type='hidden' class='idx' value='$class[0]'>
-                <h3 class='title'>$class[1]</h3>
-                <div class='category'>$sub_category / $main_category_name</div>
-                <span class='nickname'>$class[3]</span>
-                <span class='peopleNum'>$class[4]</span>
-              </li>
-            ";
-            $class = mysqli_fetch_array($result_class);
-          }
+            if($class_total[0] == 0){
+              echo "<h3>모임이 존재하지 않습니다.</h3>";
+            }else {
+              for ($i = 0; $i < $class_count; $i++) {
+                echo "
+                  <li class='classItem'>
+                    <input type='hidden' class='idx' value='$class[0]'>
+                    <h3 class='title'>$class[1]</h3>
+                    <div class='category'>$sub_category / $main_category_name</div>
+                    <span class='nickname'>$class[3]</span>
+                    <span class='peopleNum'>$class[4]</span>
+                  </li>
+                ";
+                $class = mysqli_fetch_array($result_class);
+              }
+            }
+          
           ?>
           </ul>
-          <!-- 페이징 처리 -->
-          <p class="pager">
-
+            <!-- 모임 만들기 버튼 -->
+        </p>
+          <div class="makerBtn">
+            <a href="maker.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>">
+              <button>
+                <img src="./image/plus.png" alt="">
+                <span>모임 만들기</span>
+              </button>
+            </a>
+          </div>
+        </main>
+        <!-- 페이징 처리 -->
+        <p class="pager">
             <?php
             /* paging : 이전 페이지 */
             if($page <= 1){
@@ -267,19 +306,6 @@ $cnt = $start + 1;
             <?php } else{ ?>
             <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=<?php echo ($page+1); ?>">다음</a>
             <?php };?>
-
-
-            <!-- 모임 만들기 버튼 -->
-        </p>
-          <div class="makerBtn">
-            <a href="maker.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>">
-              <button>
-                <img src="./image/plus.png" alt="">
-                <span>모임 만들기</span>
-              </button>
-            </a>
-          </div>
-        </main>
       </section>
 
       <footer>
