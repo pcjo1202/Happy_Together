@@ -45,14 +45,30 @@ $sub_category = $_GET['sub_category_name'];
 if (!$sub_category) {
   $sub_category = $sub_category_db[0];
 }
+// 검색하기 get으로 가져온다.
+$search_select = $_GET['search_select'];
+$search_text = $_GET['search_text'];
+// 검색하였을 경우와 하지 않았을 경우를 나누어야 한다.
+if(!$search_text){
+  $class_total = "select count(*) from class where sub_category = '$sub_category'";
+  // 모임 개수 구하기 페이징 처리에 필요한 모임 총 개수
+  
+}
+else if($search_text) {
+  if(!strcmp($search_select, "제목")){
+    $class_total = "select count(*) from class where sub_category = '$sub_category' and class_title like '%$search_text%'";
 
+  } else if(!strcmp($search_select, "내용")){
+    $class_total = "select count(*) from class where sub_category = '$sub_category' and class_contents like '%$search_text%'";
 
-$class_total = "select count(*) from class where sub_category = '$sub_category'";
-// 모임 개수 구하기
+  } else if(!strcmp($search_select, "작성자")){
+    $class_total = "select count(*) from class where sub_category = '$sub_category' and class_leader_id like '%$search_text%'";
+    }
+  
+}
+// 총 모임 개수 $class_total
 $class_total_result = mysqli_query($connection, $class_total);
 $class_total = mysqli_fetch_array($class_total_result);
-// 총 모임 개수 $class_count
-
 // 페이징 처리
 /* paging : 한 페이지 당 데이터 개수 */
 $list_num = 6;
@@ -69,7 +85,6 @@ $total_page = ceil($class_total[0] / $list_num);
 
 /* paging : 전체 블럭 수 = 전체 페이지 수 / 블럭 당 페이지 수 */
 $total_block = ceil($total_page / $page_num);
-
 /* paging : 현재 블럭 번호 = 현재 페이지 번호 / 블럭 당 페이지 수 */
 $now_block = ceil($page / $page_num);
 
@@ -89,36 +104,40 @@ if($e_pageNum > $total_page){
 
 /* paging : 시작 번호 = (현재 페이지 번호 - 1) * 페이지 당 보여질 데이터 수 */
 $start = ($page - 1) * $list_num;
+/* paging : 글번호 */
+$cnt = $start + 1;
 
-/* paging : 쿼리 작성 - limit 몇번부터, 몇개 */
-$query_class = "select class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
-        sub_category from class where sub_category='$sub_category' order by class_idx desc limit $start, $list_num";
+
+
+// 검색하였을 경우와 하지 않았을 경우를 나누어야 한다.
+if(!$search_text){
+  /* paging : 쿼리 작성 - limit 몇번부터, 몇개 */
+  $query_class = "select class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
+  sub_category from class where sub_category='$sub_category' order by class_idx desc limit $start, $list_num";
+
+}
+else {
+  if(!strcmp($search_select, "제목")){
+    $query_class = "select class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
+    sub_category from class where sub_category='$sub_category' and class_title like '%$search_text%' order by class_idx desc limit $start, $list_num";
+
+  } else if(!strcmp($search_select, "내용")){
+    $query_class = "select class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
+    sub_category from class where sub_category='$sub_category' and class_contents like '%$search_text%' order by class_idx desc limit $start, $list_num";
+
+  } else if(!strcmp($search_select, "작성자")){
+    $query_class = "select class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
+    sub_category from class where sub_category='$sub_category' and class_leader_id like '%$search_text%' order by class_idx desc limit $start, $list_num";
+  }
+  
+}
 
 /* paging : 쿼리 전송 */
 $result_class = mysqli_query($connection, $query_class);
 $class = mysqli_fetch_array($result_class);
 $class_count = mysqli_num_rows($result_class);
 
-/* paging : 글번호 */
-$cnt = $start + 1;
-
-// 검색하기 get으로 가져온다.
-$search_select = $_GET['search_select'];
-$search_text = $get['search_text'];
-if(strcmp($search_select, "제목")){
-  $search_query = "class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
-  sub_category from class where class_title like '%$search_text%' order by class_idx desc limit $start, $list_num";
-} else if(strcmp($search_select, "내용")){
-  $search_query = "class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
-  sub_category from class where class_contents like '%$search_text%' order by class_idx desc limit $start, $list_num";
-} else if(strcmp($search_select, "작성자")){
-  $search_query = "class_idx, class_title, class_place, class_leader_id, total_member, write_date, 
-  sub_category from class where class_leader_id like '%$search_text%' order by class_idx desc limit $start, $list_num";
-}
-$search_result = mysqli_query($connection, $search_query);
-$searchPro = mysqli_fetch_array($search_result);
-
-
+echo "$e_pageNum  ,,,,  ,$s_pageNum";
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -182,7 +201,18 @@ $searchPro = mysqli_fetch_array($search_result);
             location = 'mainClassList.php?main_category_name='+mainItem[i].innerText;
           })
         }
-    })
+        // 검색어를 입력하지 않고 버튼을 클릭 시
+        let search_text = document.querySelector(".search_text");
+        let search_btn = document.querySelector(".search_btn");
+        let form = document.search_form;
+        search_btn.addEventListener("click", function() {
+          if(search_text.value.length == 0){
+            alert("검색어를 입력해 주세요");
+            return;
+          }
+          form.submit();
+        })
+      })
     </script>
   </head>
 
@@ -232,7 +262,7 @@ $searchPro = mysqli_fetch_array($search_result);
         </div>
         <!-- 검색 기능 -->
         <div class="search">
-          <form action="mainClassList.php" method="get"> 
+          <form action="mainClassList.php" method="get" name="search_form"> 
             <!-- main_category_name get으로 가져온 것 -->
             <input type="hidden" class="main_category_name" name="main_category_name" value="<?=$main_category_name ?>">
             <!-- sub_category get으로 가져온 것 -->
@@ -242,8 +272,8 @@ $searchPro = mysqli_fetch_array($search_result);
               <option value="내용">내용</option>
               <option value="작성자">작성자</option>
             </select>
-            <input type="text" name="search_text" placeholder="검색어 입력">
-            <input type="submit" value="검색">
+            <input type="text" name="search_text" class="search_text" placeholder="검색어 입력">
+            <input type="button" class="search_btn" value="검색">
           </form>
         </div>
 
@@ -285,26 +315,50 @@ $searchPro = mysqli_fetch_array($search_result);
             <?php
             /* paging : 이전 페이지 */
             if($page <= 1){
+              if(!$search_text){
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&page=1'>이전</a>";
+              }else{
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=1'>이전</a>";
+              }
             ?>
-            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=1">이전</a>
-            <?php } else{ ?>
-            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=<?php echo ($page-1); ?>">이전</a>
+            <?php } else{ 
+              if(!$search_text){
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&page=($page-1)'>이전</a>";
+              }else{
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=($page-1)'>이전</a>";;
+              }?>
+            
             <?php };?>
-
+              
             <?php
             /* pager : 페이지 번호 출력 */
-            for($print_page = $s_pageNum; $print_page <= $e_pageNum; $print_page++){
+            for($print_page = $s_pageNum; $print_page <=$e_pageNum; $print_page++){
+              if(!$search_text){
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&page=$print_page'>$print_page</a>";
+              }else {
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=$print_page'>$print_page</a>";
+              }
             ?>
-            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=<?php echo $print_page; ?>"><?php echo $print_page; ?></a>
+            
             <?php };?>
 
             <?php
             /* paging : 다음 페이지 */
             if($page >= $total_page){
+              if(!$search_text) {
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&page=$total_page'>다음</a>";
+              }else {
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=$total_page'>다음</a>";
+              }
             ?>
-            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=<?php echo $total_page; ?>">다음</a>
-            <?php } else{ ?>
-            <a href="mainClassList.php?main_category_name=<?=$main_category_name ?>&sub_category_name=<?=$sub_category ?>&page=<?php echo ($page+1); ?>">다음</a>
+            <?php } else{ 
+              if(!$search_text) {
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category>&page=($page+1)'>다음</a>";
+              } else {
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=($page+1)'>다음</a>";
+              }
+              ?>
+            
             <?php };?>
       </section>
 
