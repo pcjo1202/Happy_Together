@@ -42,23 +42,27 @@
             <td>기타</td>
         </tr>   
   <?php
-    $database = "happytogether";
-    $connect=mysql_connect('localhost','happy', 'hato')or die("mySQL ���� ���� Error!");
-    mysql_select_db($database, $connect);
-    $query = "select * from member";
-    $result = mysql_query($query,$connect);
+    $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
+    
+    $class_select_query = "select class_idx, class_title, class_leader_id, 
+    main_category, sub_category from class order by write_date desc";
+    $class_result = mysqli_query($connection, $class_select_query);
+    $class = mysqli_fetch_array($class_result);
 
-    $num = mysql_num_rows($result);
+    // 개수
+    $class_count = mysqli_num_rows($class_result);
 
-    for($i=0; $i<$num; $i++) {
-        $ans = mysql_fetch_row($result);       
-        print "<tr class='data'><td>".$ans[0]."</td><td>".$ans[1]."</td><td>".$ans[2];
-        print "</td><td>".$ans[3]."</td><td><button class='button'>삭제</button></td></tr><br>";
-        
+    for($i=0; $i<$class_count; $i++) {
+        echo "<tr class='data'>
+                <td>$class[0]</td>
+                <td>$class[1]</td>
+                <td>$class[2]</td>
+                <td>$class[3] / $class[4]</td>
+                <td><button class='button'>삭제</button></td>
+              </tr>";
+        $class = mysqli_fetch_array($class_result);
     }
-
-    print "</table>"
-
   ?>
+  </table>
 </body>
 </html>

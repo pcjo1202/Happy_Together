@@ -67,10 +67,26 @@
         .plus {
             img src="image/plus.png" width="50" height="60"
         }
+        .plus_image {
+            float: right;
+            margin-right : 20px;
+        }
     </style>
     <script>
-        function mainPopup() { window.open("maincate_pop.html", "category_insert", "width=400, height=300, left=100, top=50"); }
-        function subPopup() { window.open("subcate_pop.php", "category_insert", "width=400, height=300, left=100, top=50"); }
+        document.addEventListener("DOMContentLoaded", function() {
+            let main_category_image = document.querySelector(".main_category_image");
+            let sub_category_image = document.querySelector(".sub_category_image");
+
+            main_category_image.addEventListener("click",function() {
+                window.open(
+                    "maincate_pop.php",
+                    "Child",
+                    "width=800, height=500, top=200, left=320"
+                );
+
+            })
+
+        })
     </script>
 </head>
 
@@ -97,7 +113,7 @@
         $sub_category_count = mysqli_num_rows($sub_category_result);
     ?>
 <div class="container">
-    <div class="left">  <a href="admin.html">* 관리자 페이지 *</a> </div>
+    <div class="left">  <a href="adminMain.php">* 관리자 페이지 *</a> </div>
     <div class="center"> <h1>카테고리</h1> </div>
     <div class="right"> </div>
 </div>  
@@ -110,10 +126,7 @@
                 $main_category = mysqli_fetch_array($main_category_result);
             }
         ?>
-        <form action="" style="width: 50px; float:right; ">
-            <input type="image" src="image/plus.png" alt="plus" width="48" height="48" margin-right="30px"
-                onclick="mainPopup();">
-        </form>
+        <img src="image/plus.png" class="plus_image main_category_image" width="48" height="48">
     </div>
     <br>
     <p> 서브 카테고리 </p>
@@ -124,10 +137,7 @@
                 $sub_category = mysqli_fetch_array($sub_category_result);
             }
         ?>
-        <form action="" style="width: 50px; float:right; ">
-            <input type="image" src="image/plus.png" alt="plus" width="48" height="48" margine-right="30px"
-                onclick="subPopup();">
-        </form>
+        <img src="image/plus.png" class="plus_image sub_category_image" width="48" height="48">
     </div>
 
 </body>
