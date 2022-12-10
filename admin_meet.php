@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="left">  <a href="admin.html">* 관리자 페이지 *</a> </div>
+    <div class="left">  <a href="adminMain.php">* 관리자 페이지 *</a> </div>
     <div class="center"> <h1>게시판 관리</h1> </div>
     <div class="right"> </div>
 </div>    

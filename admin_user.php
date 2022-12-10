@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,42 +26,65 @@
         table a:hover{border:0 none;background:rgb(0, 132, 255);color:#fff;}
         h1{color:rgb(0, 132, 255)}
  </style>
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let button = document.querySelectorAll(".button");
+        let userId = document.querySelectorAll(".userId");
+
+        for(let i=0; i < button.length; i++){
+            button[i].addEventListener("click",function() {
+                let delete_confirm = confirm('영구적으로 방출됩니다!!!!!\n정말 방출시키시겠습니까?');
+                if(delete_confirm) {
+                    location = 'admin_user_delete.php?userId='+userId[i].innerText;
+                }else {
+                    return;
+                }
+                
+            })
+        }
+
+    })
+ </script>
 </head>
 <body>
+    <?php 
+        $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);        
+        if(!isset($_SESSION['id'])){
+            echo "<script>alert('관리자 권한이 없습니다.'); location='admin_login.html';</script>";
+        }
+    ?>
 <div class="container">
-    <div class="left">  <a href="admin.html">* 관리자 페이지 *</a> </div>
+    <div class="left">  <a href="adminMain.php">* 관리자 페이지 *</a> </div>
     <div class="center"> <h1>유저 설정</h1> </div>
     <div class="right">  </div>
 </div>    
     <hr>
-
     <table>
         <tr class="title">
             <td>NO</td>
-            <td>이름(아이디)</td>
-            <td>이메일</td>
+            <td>이름</td>
+            <td>ID</td>
+            <td>E-MAIL</td>
             <td>가입일자</td>
             <td>기타</td>
         </tr>
      
   <?php
-    $database = "happytogether";
-    $connect=mysql_connect('localhost','happy', 'together')or die("mySQL ?���? ?���? Error!");
-    mysql_select_db($database, $connect);
-    $query = "select * from member";
-    $result = mysql_query($query,$connect);
-
-    $num = mysql_num_rows($result);
-
-    for($i=0; $i<$num; $i++) {
-        $ans = mysql_fetch_row($result);       
-        print "<tr class='data'><td>".$ans[0]."</td><td>".$ans[1]."</td><td>".$ans[2];
-        print "</td><td>".$ans[3]."</td><td><button class='button'>방출</button></td></tr><br>";
-        
-    }
-
-    print "</table>"
-
+    $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
+    
+    $select_query = "select name, id, email, signup_date from member order by signup_date desc";
+    $select_result = mysqli_query($connection, $select_query);
+    $user = mysqli_fetch_array($select_result);
+    // 개수
+    $select_count = mysqli_num_rows($select_result);
+    
+    for($i=0; $i < $select_count; $i++) {?>
+        <tr class='data'><td><?=$i+1?></td><td><?=$user[0]?></td>
+        <td class='userId'><?=$user[1]?></td><td><?=$user[2]?></td><td><?=$user[3]?></td>
+        <td><button class='button'>방출</button></td></tr><br>
+        <?php $user = mysqli_fetch_array($select_result);
+     }
   ?>
+  </table>
 </body>
 </html>

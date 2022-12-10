@@ -30,7 +30,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="left">  <a href="admin.html">* 관리자 페이지 *</a> </div>
+    <div class="left">  <a href="adminMain.php">* 관리자 페이지 *</a> </div>
     <div class="center"> <h1>공지사항</h1> </div>
     <div class="right"><a href="admin_post.html"><button class="addbut">공지사항 추가하기</button> </a>  </div>
 </div>    
