@@ -4,24 +4,51 @@
         <style>
         input,
         select { border: 1;}
-        textarea {
-            background-color: rgb(255, 255, 255);
-            border: 1;
-            border-color: rgb(0, 0, 0);
+        .button{
+        background-color:#CCEEFF;
+        border: 1;
+        border-color:#CCEEFF;
+        width:100px;
+        margin:20px;
         }
+            .button{
+        background-color:#CCEEFF;
+        border: 1;
+        border-color:#CCEEFF;
 
+        }
+        .textarea {
+        background-color: #EEFBFF;
+        border: 1;
+        border-color: #CCEEFF;
+        width: 150px;
+        margin: 10px;
+        }
+        .mainmessage{
+            font-size:50px;
+            text-align: center;
+            font-weight: 600;
+            margin:50px;
+        }
+        .message{
+        font-weight: 800; 
+        font-size: 18px; 
+        color: rgb(0, 6, 128);
+        margin: 30px;
+        }     
+        .container {
+        text-align: center;
+        }
         </style>
     </head>
     <body>
-        <p align="center">
-        <font size="7"><b>카테고리 입력</b></font>
-        <br />
-        <br />
+        <p class='mainmessage'>
+        서브 카테고리 추가하기
         </p>
 
-        <form name="form" method="post" action="./custom_input.php">
-        <span style="font-weight: bold; font-size: 1.5em/1em; color: rgb(0, 6, 128)"
-            >1. 메인 카테고리 선택 : &ensp; </span
+        <form name="form" method="post" action="./custom_input.php" class='container'>
+        <span class='message'
+            >1. 메인 카테고리 선택   </span
         ><select name="month" style="width: 100px ;">
         <option >선택</option>
         <?php
@@ -34,16 +61,12 @@
             }
         ?>
         </select>
-
+        <span class='message'
+            >2. 서브 카테고리 입력 </span
+        ><input type="textarea" name="sub_category" class='textarea' />
         <br />
-        <br />
-        <span style="font-weight: bold; font-size: 1.5em/1em; color: rgb(0, 6, 128)"
-            >2. 서브 카테고리 입력 : &ensp;</span
-        ><input type="textarea" name="sub_category" style="width: 100px" />
-        <br />
-        <br />
-        <input type="submit" value="입력" />&emsp;&nbsp;
-        <input type="reset" value="취소" />&ensp;&ensp;
+        <input type="submit" value="입력"  class='button' />
+        <input type="reset" value="취소" class='button' />
         </form>
     </body>
     <html></html>
