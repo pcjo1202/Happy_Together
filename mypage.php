@@ -128,26 +128,26 @@
             <!--  -->
             <ul class="list_wrapper">
               <?php
-              "select * from class where";
-              $register_query = "select class_idx from register_class where register_id = '$id'";
-              $register_result = mysqli_query($connection, $register_query);
-              $register_count = mysqli_num_rows($register_result);
-              // $registerClass = mysqli_fetch_array($register_result);
+              // "select * from class where";
+              // $register_query = "select class_idx from register_class where register_id = '$id'";
+              // $register_result = mysqli_query($connection, $register_query);
+              // $register_count = mysqli_num_rows($register_result);
+              // // $registerClass = mysqli_fetch_array($register_result);
 
-                for($i=0; $i < $register_count; $i++) {
-                  $registerClass = mysqli_fetch_array($lead_result);
+              //   for($i=0; $i < $register_count; $i++) {
+              //     $registerClass = mysqli_fetch_array($lead_result);
                  
-                  $index = $registerClass[0];
-                  echo "
-                   <li class='classList_item'>
-                     <div class='item_data list_index'>$index</div>
-                     <div class='item_data list_title'>축구 할 사람!</div>
-                     <div class='item_data list_field'>운동/축구</div>
-                     <div class='item_data list_date'>일자</div>
-                   </li>
-                  ";
+              //     $index = $registerClass[0];
+              //     echo "
+              //      <li class='classList_item'>
+              //        <div class='item_data list_index'>$index</div>
+              //        <div class='item_data list_title'>축구 할 사람!</div>
+              //        <div class='item_data list_field'>운동/축구</div>
+              //        <div class='item_data list_date'>일자</div>
+              //      </li>
+              //     ";
                  
-               } 
+              //  } 
                ?>
               <li class="classList_item">
                 <div class="item_data list_index">1</div>

@@ -17,6 +17,7 @@
 
     body {
       background-color: #dadde2;
+      height: 100%;
     }
 
     a {
@@ -76,6 +77,7 @@
     }
 
     main {
+      height: 100%;
       background-color: #b4c1c6;
       padding: 1rem 0;
       flex: 32rem;
@@ -96,13 +98,8 @@
       padding: 1rem;
       display: grid;
       gap: 0.8rem;
-      grid-template-columns: 3fr 2fr;
-      grid-template-areas:
-        'title title'
-        'category members'
-        'place date'
-        'contents contents'
-        'regBtn befBtn';
+      grid-template-columns: 1fr 1fr;
+
       align-items: center;
     }
 
@@ -118,8 +115,8 @@
     }
 
     .title {
-      align-self: center;
-      grid-area: title;
+      /* align-self: center;
+      grid-area: title; */
       display: flex;
       width: 100%;
     }
@@ -129,8 +126,8 @@
     }
 
     .category {
-      grid-area: category;
-      justify-self: center;
+      /* grid-area: category;
+      justify-self: center; */
       display: flex;
       align-items: center;
     }
@@ -141,8 +138,8 @@
     }
 
     .members {
-      grid-area: members;
-      justify-self: flex-start;
+      /* grid-area: members;
+      justify-self: flex-start; */
       display: flex;
       align-items: center;
       width: 100%;
@@ -153,8 +150,8 @@
     }
 
     .place {
-      grid-area: place;
-      justify-self: flex-start;
+      /* grid-area: place;
+      justify-self: flex-start; */
       display: flex;
       align-items: center;
       width: 100%;
@@ -173,16 +170,25 @@
     }
 
     .contents {
-      grid-area: contents;
+      grid-column: 1/3;
       display: flex;
       border: none;
       border-radius: 10px;
+      padding: 1rem;
     }
 
-    input[type="button"],
-    input[type="submit"] {
+    .btnBox {
+      grid-column: 1/3;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      width: 80%;
       border: none;
-      justify-self: center;
       padding: 10px 0;
       border-radius: 8px;
       background-color: #628281;
@@ -191,19 +197,24 @@
       cursor: pointer;
     }
 
-    input[type="button"]:hover {
-      background-color: #fff9ce;
-
-    }
-
     .regBtn {
+      flex: 1;
       width: 80%;
-      grid-area: regBtn;
     }
 
     .befBtn {
-      grid-area: befBtn;
+      flex: 0 0 200px;
       width: 40%;
+      background-color: #ffffff;
+    }
+
+    .delBtn {
+      flex: 0 0 200px;
+      background-color: #d5a7a7;
+    }
+
+    .btn:hover {
+      background-color: #c9c9c9;
     }
     </style>
 
@@ -232,37 +243,53 @@
         </div>
         <div class="right">
           <div class="myPage">
-            <a href='myInfo.php'>마이페이지</a>
+            <a href='./mypage.php'>마이페이지</a>
           </div>
         </div>
       </header>
 
       <main>
         <div class="wrapper">
+          <?php
+          $idx = $classPro[0];
+          $leader_id = $classPro[4];
+          $title = $classPro[1];
+          $main = $classPro[6];
+          $sub = $classPro[7];
+          $numbers = $classPro[5];
+          $place = $classPro[3];
+          $contents = $classPro[2];
+          ?>
           <form class="formBox" action="classUpdatePro.php" method="post">
-            <input type="hidden" value="<?=$classPro[0]?>" class="idx" name="class_idx">
-            <input type="hidden" value="<?=$classPro[4]?>" class="leader_id" name="leader_id">
+            <!--  -->
+            <input type="hidden" value="<?=$idx?>" class="idx" name="class_idx">
+            <input type="hidden" value="<?=$leader_id?>" class="leader_id" name="leader_id">
             <input type="hidden" value="<?=$current_id?>" class="session_id">
+            <!--  -->
             <div class="title">
               <span>제목</span>
-              <input type="text" value="<?=$classPro[1]?>" name="title" />
+              <input type="text" value="<?=$title?>" name="title" />
             </div>
+            <!--  -->
             <div class="category">
               <span>카테고리</span>
-              <input type="text" value="<?=$classPro[6]?>" name="mainCategory" readonly /> &ensp;/
-              <input type="text" value="<?=$classPro[7]?>" name="subCategory" readonly />
+              <input type="text" value="<?=$main?>" name="mainCategory" readonly /> &ensp;/
+              <input type="text" value="<?=$sub?>" name="subCategory" readonly />
             </div>
+            <!--  -->
             <div class="members">
               <span>모집인원</span>
-              <input type="number" name="memberCount" value="<?=$classPro[5]?>" />
+              <input type="number" name="memberCount" value="<?=$numbers?>" />
             </div>
+            <!--  -->
             <div class="place">
               <span>장소</span>
-              <input type="text" name="place" value="<?=$classPro[3]?>" />
+              <input type="text" name="place" value="<?=$place?>" />
             </div>
-            <textarea class="contents" name="contents" id="" cols="30" rows="10" placeholder="
-              모입 시간, 장소, 모집인원
-              "><?=$classPro[2]?></textarea>
+            <!--  -->
+            <textarea class="contents" name="contents" id="" cols="30" rows="10"
+              placeholder="모입 시간, 장소, 모집인원"><?=$contents?>
+            </textarea>
 
             <!-- 수정 삭제 신청 이전 버튼 css 수정 필요!!!!!!!!!!!!!!!!!! -->
             <?php
@@ -280,10 +307,12 @@
             //   return;
             // }
             ?>
-            <input class='updBtn' type='submit' value='수정' />
-            <input class='delBtn' type='button' value='삭제' />
-            <input class='regBtn' type='button' value='신청' />
-            <input class='befBtn' type='button' value='이전' />
+            <div class="btnBox">
+              <input class='btn delBtn' type='button' value='삭제' />
+              <input class='btn updBtn' type='submit' value='수정' />
+              <input class='btn regBtn' type='button' value='신청' />
+              <input class='btn befBtn' type='button' value='이전' />
+            </div>
 
           </form>
         </div>

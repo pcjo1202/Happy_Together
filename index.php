@@ -155,7 +155,7 @@ $category = mysqli_fetch_array($result);
       echo "
         <p>
           <span class='span_id'>
-            <a class='a_myInfo' href='myInfo.php'>$name</a>
+            <a class='a_myInfo' href='mypage.php'>$name</a>
           </span>님 환영합니다.
         </p>
         <br>";
