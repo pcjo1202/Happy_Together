@@ -59,21 +59,39 @@
       width: 50%;
       margin-left: 25%;
     }
+    .btns {
+      text-align : center;
+    }
+    .btns [type="submit"], .btns [type="button"] {
+      width : 80px; 
+      height : 34px;
+      
+    }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      let before = document.querySelector(".before");
+      
+      before.addEventListener("click", function() {
+        history.back();
+      })
+    })
+  </script>
 </head>
 
 <body>
   <div class="container">
-    <a href="admin.html">* 관리자 페이지 *</a>
+    <a href="adminMain.php">* 관리자 페이지 *</a>
   </div>
   <hr />
-  <form name="form" method="post" action="admin_post.php">
-    <p>[제목]</p>
-    <textarea name="title" rows="1" cols="15"></textarea>
+  <form action="admin_post_insert.php" name="form" method="post">
+    <p>[제목]</p><input type="text" name="title" size="50">
     <p>[내용]</p>
-    <textarea name="post" rows="15" cols="100"></textarea>
-    <input type="submit" value="입력" />&emsp;&nbsp;
-    <input type="reset" value="취소" />&ensp;&ensp;
+    <textarea name="contents" rows="15" cols="100"></textarea>
+    <div class="btns">
+      <input type="submit" value="입력" />    
+      <input type="button" class="before" value="이전" />
+    </div>
   </form>
 </body>
 

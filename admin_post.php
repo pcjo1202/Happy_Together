@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,23 +45,28 @@
         </tr>
      
   <?php
-    $database = "happytogether";
-    $connect=mysql_connect('localhost','happy', 'together')or die("mySQL ?���? ?���? Error!");
-    mysql_select_db($database, $connect);
-    $query = "select * from member";
-    $result = mysql_query($query,$connect);
+    $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
 
-    $num = mysql_num_rows($result);
-
-    for($i=0; $i<$num; $i++) {
-        $ans = mysql_fetch_row($result);       
-        print "<tr class='data'><td>".$ans[0]."</td><td>".$ans[1]."</td><td>".$ans[2];
-        print "</td><td><button class='fix'>수정</button>&ensp;<button class='delete'>삭제</button></td></tr><br>";
-        
+    if(!isset($_SESSION['id'])){
+        echo "<script>alert('관리자 권한이 없습니다.'); location='admin_login.html';</script>";
     }
 
-    print "</table>"
+    $query = "select * from post";
+    $result = mysqli_query($connection,$query);
 
+    $post = mysqli_fetch_array($result);
+    $num = mysqli_num_rows($result);
+
+    for($i=0; $i<$num; $i++) {      
+        echo "<tr class='data'>
+                <td>$post[0]</td>
+                <td>$post[1]</td>
+                <td>$post[3]</td>
+                <td><button class='fix'>삭제</button></td>
+              </tr>";
+        $post = mysqli_fetch_array($result);
+    }
   ?>
+  </table>
 </body>
 </html>
