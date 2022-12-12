@@ -338,17 +338,17 @@ $class_count = mysqli_num_rows($result_class);
             /* paging : 이전 페이지 */
             if($page <= 1){
               if(!$search_text){
-                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&page=1'>이전</a>";
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&page=1'>◁</a>";
               }else{
-                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=1'>이전</a>";
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=1'>◁</a>";
               }
             ?>
           <?php } else{ 
-              if(!$search_text){
-                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&page=($page-1)'>이전</a>";
-              }else{
-                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=($page-1)'>이전</a>";;
-              }?>
+              if(!$search_text){?>
+                <a href="mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>&page=<?=$page-1?>">◁</a>
+              <?php }else{ ?>
+                <a href="mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name='<?=$sub_category?>'&search_select='<?=$search_select?>'&search_text='<?=$search_text?>'&page='<?=$page-1?>'">◁</a>
+              <?php } ?>
 
           <?php };?>
 
@@ -368,19 +368,18 @@ $class_count = mysqli_num_rows($result_class);
             /* paging : 다음 페이지 */
             if($page >= $total_page){
               if(!$search_text) {
-                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&page=$total_page'>다음</a>";
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&page=$total_page'>▷</a>";
               }else {
-                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=$total_page'>다음</a>";
+                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=$total_page'>▷</a>";
               }
             ?>
           <?php } else{ 
-              if(!$search_text) {
-                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category>&page=($page+1)'>다음</a>";
-              } else {
-                echo "<a href='mainClassList.php?main_category_name=$main_category_name&sub_category_name=$sub_category&search_select=$search_select&search_text=$search_text&page=($page+1)'>다음</a>";
-              }
+              if(!$search_text) {?>
+                <a href='mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>&page=<?=($page+1)?>'>▷</a>
+              <?php } else {?>
+                <a href='mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>&search_select=<?=$search_select?>&search_text=<?=$search_text?>&page=<?=($page+1)?>'>▷</a>
+              <?php }
               ?>
-
           <?php };?>
       </section>
 

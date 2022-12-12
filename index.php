@@ -138,7 +138,7 @@ $category = mysqli_fetch_array($result);
     <ul>
       <?php for ($i = 0; $i < $category_count[0]; $i++) {
         echo "<li>
-          <button class='cateItem cate$i'>$category[0]</button>
+          <button class='cateItem category'>$category[0]</button>
         </li>";
         $category = mysqli_fetch_array($result);
       } ?>
@@ -166,26 +166,14 @@ $category = mysqli_fetch_array($result);
     ?>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-      let cate0 = document.querySelector(".cate0");
-      let cate1 = document.querySelector(".cate1");
-      let cate2 = document.querySelector(".cate2");
-      let cate3 = document.querySelector(".cate3");
-      let cate0Value = cate0.innerText;
-      let cate1Value = cate1.innerText;
-      let cate2Value = cate2.innerText;
-      let cate3Value = cate3.innerText;
-      cate0.addEventListener("click", function() {
-        location = "mainClassList.php?main_category_name=" + cate0Value;
-      })
-      cate1.addEventListener("click", function() {
-        location = "mainClassList.php?main_category_name=" + cate1Value;
-      })
-      cate2.addEventListener("click", function() {
-        location = "mainClassList.php?main_category_name=" + cate2Value;
-      })
-      cate3.addEventListener("click", function() {
-        location = "mainClassList.php?main_category_name=" + cate3Value;
-      })
+      let category = document.querySelectorAll(".category");
+
+      for(let i =0; i<category.length; i++) {
+        category[i].addEventListener("click", function() {
+          location = "mainClassList.php?main_category_name=" + category[i].innerText;
+        })
+      }
+
     });
     </script>
 </body>
