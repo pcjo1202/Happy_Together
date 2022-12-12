@@ -1,6 +1,6 @@
     <html>
     <head>
-        <title>HTML,PHP,MYSQL 과의 연동</title>
+        <title>서브카테고리</title>
         <style>
         input,
         select { border: 1;}

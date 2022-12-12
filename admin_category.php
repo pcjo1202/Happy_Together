@@ -85,6 +85,14 @@
                 );
 
             })
+            sub_category_image.addEventListener("click",function() {
+                window.open(
+                    "subcate_pop.php",
+                    "Child",
+                    "width=800, height=500, top=200, left=320"
+                );
+
+            })
 
         })
     </script>
