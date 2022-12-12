@@ -8,30 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
     <style>
-        button {
-            font-size: 40px;
-        }
-
-        h1 {
+         h1 {
             text-align: center;
-        }
-
-        body {
-            font-size: 16px;
         }
 
         a {
             text-decoration: none;
-            color: rgb(0, 132, 255);
+            color: #000000;
             font-size: 40px;
-            cursor :pointer;
-        }
-        button {
             cursor: pointer;
-        }
-
-        a:hover {
-            color: rgb(255, 153, 0)
         }
 
         .container {
@@ -44,6 +29,69 @@
             justify-content: center;
             align-items: center;
             height: 100px;
+        }
+
+        hr {
+            height: 2px;
+            background-color: #1AAB8A;
+        }
+
+        /* html,
+        body {
+            height: 100%;
+        }*/
+        body {
+            text-align: center;
+        }
+
+        body:before {
+            content: '';
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        button {
+            background: #1AAB8A;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1.6em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+        }
+
+        button:hover {
+            background: #fff;
+            color: #1AAB8A;
+        }
+
+        button:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #1AAB8A;
+            transition: 400ms ease all;
+        }
+
+        button:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        button:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
         }
     </style>
 </head>
@@ -58,6 +106,7 @@
         <div class="center">
             <a href="#">관리자 페이지 </a>
         </div>
+        <hr>
         <div class="center">
             <button type="button" onclick="location.href='admin_user.php' ">유저관리 페이지</button>
         </div>
