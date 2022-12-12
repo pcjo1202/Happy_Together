@@ -47,14 +47,25 @@ if (!$sub_category) {
 }
 // 검색하기 get으로 가져온다.
 $search_select = $_GET['search_select'];
-$search_text = $_GET['search_text'];
+// $search_text = $_GET['search_text'];
+
+// 
+if($_GET['search_text']){
+  $search_text = $_GET['search_text'];
+}else{
+  $search_text = null;
+}
+
+
+
 // 검색하였을 경우와 하지 않았을 경우를 나누어야 한다.
 if(!$search_text){
   $class_total = "select count(*) from class where sub_category = '$sub_category'";
   // 모임 개수 구하기 페이징 처리에 필요한 모임 총 개수
   
 }
-else if($search_text) {
+
+if($search_text) {
   if(!strcmp($search_select, "제목")){
     $class_total = "select count(*) from class where sub_category = '$sub_category' and class_title like '%$search_text%'";
 
@@ -137,7 +148,7 @@ $result_class = mysqli_query($connection, $query_class);
 $class = mysqli_fetch_array($result_class);
 $class_count = mysqli_num_rows($result_class);
 
-echo "$e_pageNum  ,,,,  ,$s_pageNum";
+// echo "$e_pageNum  ,,,,  ,$s_pageNum";
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -170,6 +181,7 @@ echo "$e_pageNum  ,,,,  ,$s_pageNum";
       } else {
         for (let i = 0; i < subItem.length; i++) {
           if (sub_category == subItem[i].innerText) {
+            // subItem[i].classList.add('mainFocus');
             subItem[i].style.transform = "scale(1.2)";
             subItem[i].style.backgroundColor = "#b4c3ac";
           }
@@ -196,12 +208,21 @@ echo "$e_pageNum  ,,,,  ,$s_pageNum";
 
       // main_category 클릭했을 때
       let mainItem = document.querySelectorAll(".mainItem");
+      // console.log(main_category_name, mainItem)
 
-      for (let i = 0; i < mainItem.length; i++) {
-        mainItem[i].addEventListener("click", function() {
-          location = 'mainClassList.php?main_category_name=' + mainItem[i].innerText;
+
+      mainItem.forEach(item => {
+
+        if (main_category_name == item.innerText) {
+          item.style.transform = "scale(1.2)";
+          item.style.backgroundColor = "#b4c3ac";
+        }
+        item.addEventListener("click", function() {
+          location = 'mainClassList.php?main_category_name=' + item.innerText;
+
         })
-      }
+      })
+
       // 검색어를 입력하지 않고 버튼을 클릭 시
       let search_text = document.querySelector(".search_text");
       let search_btn = document.querySelector(".search_btn");

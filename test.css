@@ -73,9 +73,8 @@ header {
 }
 
 .mainCategoryBox>ul .mainItem:hover {
-  background-color: #9c9c9c;
-  color: #fcfcfc;
-  transform: scale(1.1);
+  background-color: #889fa5;
+  transform: scale(1.2);
 }
 
 section {
@@ -108,7 +107,8 @@ section {
   cursor: pointer;
 }
 
-.subCategoryBox ul>.subItem:hover {
+.subCategoryBox ul>.subItem:hover,
+:focus {
   background-color: #889fa5;
   transform: scale(1.2);
 }
@@ -129,7 +129,7 @@ main .classList {
   align-items: center;
   gap: 1rem;
   width: 80%;
-  height: 460px;
+  height: 450px;
   overflow: auto;
 }
 
