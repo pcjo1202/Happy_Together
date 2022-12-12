@@ -7,7 +7,7 @@
     <title>게시글페이지</title>
     <style type="text/css">
         .container {
-        display: flex; }
+        text-align:center; }
         .left{width: 400px;  margin: auto 0;}
         .center{flex:3; text-align: center;}
         .right{width:400px; text-align:right; margin: auto 0;}
@@ -16,7 +16,8 @@
         body{font-size:16px}
         a{text-decoration:none; color:rgb(0, 132, 255); font-size:40px; align:center;}
         a:hover{color:rgb(255, 153, 0)}
-        table{width:1328px;border-collapse:collapse; align:center;}
+        table{width:1328px;border-collapse:collapse;  margin-left: auto; 
+  margin-right: auto;}
         td{padding:10px 15px;text-align:center}
         .title{border-top:3px solid #999;border-bottom:2px solid #999;background:#eee;font-weight:bold}
         .data{border-top:3px solid #999;border-bottom:2px solid #999;background:#fff;font-weight:bold}
@@ -45,9 +46,9 @@
 </head>
 <body>
 <div class="container">
-    <div class="left">  <a href="adminMain.php">* 관리자 페이지 *</a> </div>
-    <div class="center"> <h1>게시판 관리</h1> </div>
-    <div class="right"> </div>
+    <a href="adminMain.php">* 관리자 페이지 *</a> 
+    <br><h2>게시판 관리</h2> 
+    
 </div>    
     <hr>
     <table>

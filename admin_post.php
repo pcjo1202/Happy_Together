@@ -20,7 +20,8 @@
         body{font-size:16px;}
         a{text-decoration:none; color:rgb(0, 132, 255); font-size:40px;}
         a:hover{color:rgb(255, 153, 0);}
-        table{width:1328px;border-collapse:collapse;}
+        table{width:1328px;border-collapse:collapse;  margin-left: auto; 
+  margin-right: auto;}
         td{padding:10px 15px;text-align:center;}
         .title{border-top:3px solid #999;border-bottom:2px solid #999;background:#eee;font-weight:bold;}
         .data{border-top:3px solid #999;border-bottom:2px solid #999;background: #fff;;font-weight:bold;}
@@ -49,8 +50,8 @@
 </head>
 <body>
 <div class="container">
-    <div class="left">  <a href="adminMain.php">* 관리자 페이지 *</a> </div>
-    <div class="center"> <h1>공지사항</h1> </div>
+    <div class="left">  </div>
+    <div class="center"><a href="adminMain.php">* 관리자 페이지 *</a> <h2>공지사항</h2> </div>
     <div class="right"><a href="admin_post.html"><button class="addbut">공지사항 추가하기</button> </a>  </div>
 </div>    
     <hr>

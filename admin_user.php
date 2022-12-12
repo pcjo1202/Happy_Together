@@ -8,23 +8,24 @@
     <title>사용자 목록</title>
     <style type="text/css">
         .container {
-        display: flex; }
+        text-align:center; }
         .left{width: 400px;  margin: auto 0;}
         .center{flex:3; text-align: center;}
         .right{width:400px; text-align:right; margin: auto 0;}
         button{background-color:black; border:none; color:white;}
         .button:hover{background-color:red; border:none; color:black;}
-        body{font-size:16px;}
+        body{font-size:16px; }
         a{text-decoration:none; color:rgb(0, 132, 255); font-size:40px; align:center;}
         a:hover{color:rgb(255, 153, 0);}
-        table{width:1328px;border-collapse:collapse;}
+        table{width:1328px;border-collapse:collapse;  margin-left: auto; 
+  margin-right: auto;}
         td{padding:10px 15px;text-align:center;}
         .title{border-top:3px solid #999;border-bottom:2px solid #999;background:#eee;font-weight:bold;}
         .data{border-top:3px solid #999;border-bottom:2px solid #999;background: #fff;;font-weight:bold;}
         .brd{border-bottom:1px solid #999;}
         table a{text-decoration:none;color:#000;border:1px solid #333;display:inline-block;padding:3px 5px;font-size:12px;border-radius:5px;}
         table a:hover{border:0 none;background:rgb(0, 132, 255);color:#fff;}
-        h1{color:rgb(0, 132, 255)}
+        h2{color:rgb(0, 0, 0)}
  </style>
  <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -50,10 +51,9 @@
             echo "<script>alert('관리자 권한이 없습니다.'); location='admin_login.html';</script>";
         }
     ?>
-<div class="container">
-    <div class="left">  <a href="adminMain.php">* 관리자 페이지 *</a> </div>
-    <div class="center"> <h1>유저 설정</h1> </div>
-    <div class="right">  </div>
+<div class="container">  
+    <a href="adminMain.php">* 관리자 페이지 *</a>  
+    <br> <h2>유저 설정</h2>    
 </div>    
     <hr>
     <table>
