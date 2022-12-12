@@ -25,6 +25,23 @@
         table a:hover{border:0 none;background:rgb(0, 132, 255);color:#fff}
         h1{color:rgb(0, 132, 255)}
  </style>
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let button = document.querySelectorAll(".button");
+        let class_idx = document.querySelectorAll(".class_idx");
+
+
+        for(let i=0; i<button.length; i++){
+            button[i].addEventListener("click",function() {
+                let delete_confirm = confirm('정말 삭제하시겠습니까?\n영구적으로 삭제됩니다.');
+                if(delete_confirm){
+                    location = 'delete_class.php?class_idx=' + class_idx[i].innerText;  
+                }
+            })
+        }
+
+    })
+ </script>
 </head>
 <body>
 <div class="container">
@@ -54,7 +71,7 @@
 
     for($i=0; $i<$class_count; $i++) {
         echo "<tr class='data'>
-                <td>$class[0]</td>
+                <td class='class_idx'>$class[0]</td>
                 <td>$class[1]</td>
                 <td>$class[2]</td>
                 <td>$class[3] / $class[4]</td>
