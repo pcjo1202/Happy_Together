@@ -36,10 +36,7 @@
                 let delete_confirm = confirm('영구적으로 방출됩니다!!!!!\n정말 방출시키시겠습니까?');
                 if(delete_confirm) {
                     location = 'admin_user_delete.php?userId='+userId[i].innerText;
-                }else {
-                    return;
                 }
-                
             })
         }
 

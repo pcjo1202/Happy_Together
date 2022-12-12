@@ -1,4 +1,5 @@
-<?php session_start();?>
+<?php session_start();
+header("refresh: 2;");?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,6 +102,7 @@
 
 <body>
     <?php 
+    
          $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);        
          if(!isset($_SESSION['id'])){
              echo "<script>alert('관리자 권한이 없습니다.'); location='admin_login.html';</script>";
@@ -120,6 +122,7 @@
  
         //  서브 카테고리 총 데이터 개수
         $sub_category_count = mysqli_num_rows($sub_category_result);
+        
     ?>
 <div class="container">
     <div class="left">  <a href="adminMain.php">* 관리자 페이지 *</a> </div>

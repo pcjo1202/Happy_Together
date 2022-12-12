@@ -33,9 +33,14 @@
     document.addEventListener("DOMContentLoaded", function() {
         let fix = document.querySelectorAll(".fix");
         let post_idx = document.querySelectorAll(".post_idx");
+        
         for(let i=0; i< fix.length; i++){
             fix[i].addEventListener("click", function() {
-                location = 'delete_post.php?post_idx=' + post_idx[i].innerText;
+                let delete_confirm = confirm('정말 삭제하시겠습니까?\n영구적으로 삭제됩니다.');
+                if(delete_confirm) {
+                    location = 'delete_post.php?post_idx=' + post_idx[i].innerText;
+                }
+                
             })
         }
         
@@ -74,7 +79,7 @@
         echo "<tr class='data'>
                 <td class='post_idx'>$post[0]</td>
                 <td>$post[1]</td>
-                <td>$post[3]</td>
+                <td>$post[4]</td>
                 <td><button class='fix'>삭제</button></td>
               </tr>";
         $post = mysqli_fetch_array($result);
