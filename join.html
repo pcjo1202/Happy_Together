@@ -125,7 +125,8 @@
 
     /* 비밀 번호 유효성 검사 <span> id = password_check */
     #password_check,
-    #password2_check {
+    #password2_check,
+    #email_check {
       font-size: 0.7rem;
       margin-left: 0.7rem;
     }
@@ -164,12 +165,12 @@
       </div>
 
       <label for="birth">생년월일</label>
-      <input type="text" name="birth" />
+      <input type="text" name="birth" placeholder="ex) 991029" />
 
       <label for="phone">전화번호</label>
-      <input type="text" name="phone" />
+      <input type="text" name="phone" placeholder="(-)하이픈 없이 입력하시오." />
 
-      <label for="email">이메일</label>
+      <label for="email">이메일<span id="email_check"></span></label>
       <input type="text" name="email" />
 
       <div class="buttones">
@@ -181,6 +182,27 @@
       document.addEventListener('DOMContentLoaded', function () {
         let form = document.getElementById('form');
         let id_check = document.getElementById('id_check');
+
+        // 이메일 유효성 검사
+        //이메일 검사 함수
+        let isEmail = function (value) {
+          return (value.indexOf('@') > 2) && (value.split('@')[1].indexOf('.') > 2)
+            && (value.split('.')[1].length > 1);
+
+        }
+        // 이메일 확인
+        let email_check = document.querySelector("#email_check");
+        form.email.addEventListener("keyup", function (event) {
+          let value = event.currentTarget.value;
+          if (isEmail(value)) {    //이메일 형식이 맞을 때
+            email_check.innerHTML = "올바른 형식입니다. : " + value;
+            email_check.style.color = "blue";
+          } else {   // 이메일 형식이 아닐 때
+            email_check.innerHTML = "잘못된 형식입니다. : " + value;
+            email_check.style.color = "red";
+          }
+        })
+
 
         // 비밀번호 유효성 검사!!!
         let password_check = document.querySelector("#password_check");
@@ -227,6 +249,11 @@
           if (form.password.value.length == 0) {
             alert('password를 입력하시오.');
             form.password.focus();
+            return;
+          }
+          if (password2_check.style.color == "red") {
+            alert('잘못된 정보입니다.');
+            form.password2.focus();
             return;
           }
           if (form.name.value.length == 0) {
