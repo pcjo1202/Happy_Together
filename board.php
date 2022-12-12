@@ -94,7 +94,6 @@
           // }
           location = 'board.php?main_category_name=' + main_category_name + '&sub_category_name=' + sub_cate[i]
             .innerText;
-
           for (let j = 0; j < sub_cate.length; j++) {
             if (sub_cate[j].style.color == "blue") {
               sub_cate[j].style.color = "black";
@@ -110,7 +109,6 @@
             current.innerHTML = sub_cate[i].innerText;
           }
 
-
         })
       }
     });
@@ -119,103 +117,142 @@
   </head>
 
   <body>
-    <?php 
-        $connection = mysqli_connect('localhost','happy','together','happytogether');
+    <?php
+  $connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
+  $main_category_name = $_GET['main_category_name'];
 
-        $main_category_name = $_GET['main_category_name'];
-        
-       
-        $query = "select sub_category_name from sub_category where main_category = '$main_category_name'";
-        $count_query = "select count(*) from sub_category where main_category = '$main_category_name'";
-        
 
-        $result = mysqli_query($connection, $query);
-        $count_result = mysqli_query($connection, $count_query);
-        
-        $sub_category_name = mysqli_fetch_array($result); 
-        $sub_count = mysqli_fetch_array($count_result);
+  $query = "select sub_category_name from sub_category where main_category = '$main_category_name'";
+  $count_query = "select count(*) from sub_category where main_category = '$main_category_name'";
 
-        $sub_category = $_GET['sub_category_name'];
-        if(!$sub_category){
-            $sub_category = $sub_category_name[0];
-        }
-        $query_class = "select class_idx, class_title, class_place, class_date,
-        class_user_id, total_member, write_date from class where sub_category = '$sub_category'";
-        $result_class = mysqli_query($connection, $query_class);
-        $classPro = mysqli_fetch_array($result_class);
-    ?>
+
+  $result = mysqli_query($connection, $query);
+  $count_result = mysqli_query($connection, $count_query);
+
+  $sub_category_name = mysqli_fetch_array($result);
+  $sub_count = mysqli_fetch_array($count_result);
+
+  $sub_category = $_GET['sub_category_name'];
+  if (!$sub_category) {
+    $sub_category = $sub_category_name[0];
+  }
+  $query_class = "select class_idx, class_title, class_place,
+        class_leader_id, total_member, write_date from class where sub_category = '$sub_category'";
+  $result_class = mysqli_query($connection, $query_class);
+  $classPro = mysqli_fetch_array($result_class);
+  ?>
     <div class="container">
-      <<<<<<< HEAD <input type="hidden" class="sub_category" value="<?=$sub_category ?>">
-        <input type="hidden" class="sub_category_name" value="<?=$sub_category_name[0]?>">
+      <<<<<<< HEAD <input type="hidden" class="sub_category" value="<?= $sub_category ?>">
+        <input type="hidden" class="sub_category_name" value="<?= $sub_category_name[0] ?>">
         <div class="top"><a href="index.php" class="home">HATO</a>
-          <h1><span class="main_category_name"><?=$main_category_name ?></span>&ensp; 게시판</h1>
+          <h1><span class="main_category_name"><?= $main_category_name ?></span>&ensp; 게시판</h1>
         </div>
 
         <ul class="board_ul">
           <?php
-                 for($i=0; $i < $sub_count[0]; $i++) {
-                     echo "<li><div class='sub_cate'> $sub_category_name[0]</div></li>";
-                     $sub_category_name = mysqli_fetch_array($result);
-
-                }
+        for ($i = 0; $i < $sub_count[0]; $i++) {
+          echo "<li><div class='sub_cate'> $sub_category_name[0]</div></li>";
+          $sub_category_name = mysqli_fetch_array($result);
+        }
+        ?>
+          <<<<<<< HEAD </ul>
+            <h3>현재 게시글 : <span class="current"> </span></h3>
+            <table>
+              <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>장소</th>
+                <th>주최자</th>
+                <th>작성 일자</th>
+              </tr>
+              <?php
+            //   if ($classPro[0] .length == 0) {
+            //   echo "<tr><td colspan='6'>게시글이 존재하지 않습니다.</td></tr>";
+            // } else {
             ?>
-        </ul>
-        <h3>현재 게시글 : <span class="current"> </span></h3>
-        <<<<<<< HEAD <table>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>장소</th>
-            <th>일정</th>
-            <th>주최자</th>
-            <th>작성 일자</th>
-          </tr>
-          <tr>
-            <td><?=$classPro[0]?></td>
-            <td><?=$classPro[1]?></td>
-            <td><?=$classPro[2]?></td>
-            <td><?=$classPro[3]?></td>
-            <td><?=$classPro[4]?></td>
-            <td><?=$classPro[6]?></td>
-          </tr>
-          </table>
-          =======
-          >>>>>>> 2b712e0 (메인 게시글 DB 연결 및 카테고리 화면 노출 성공)
-          =======
-          <input type="hidden" class="sub_category" value="<?=$sub_category ?>">
-          <input type="hidden" class="sub_category_name" value="<?=$sub_category_name[0]?>">
-          <div class="top"><a href="index.php" class="home">HATO</a>
-            <h1><span class="main_category_name"><?=$main_category_name ?></span>&ensp; 게시판</h1>
-          </div>
 
-          <ul class="board_ul">
-            <?php
-                 for($i=0; $i < $sub_count[0]; $i++) {
-                     echo "<li><div class='sub_cate'> $sub_category_name[0]</div></li>";
-                     $sub_category_name = mysqli_fetch_array($result);
+              <tr>
+                <td><?= $classPro[0] ?></td>
+                <td><a href="classContent.php?class_idx=<?= $classPro[0] ?>"><?= $classPro[1] ?></a></td>
+                <td><?= $classPro[2] ?></td>
+                <td><?= $classPro[3] ?></td>
+                <td><?= $classPro[5] ?></td>
+              </tr>
+              <?php  ?>
+
+            </table>
+            =======
+            <<<<<<< HEAD <input type="hidden" class="sub_category" value="<?= $sub_category ?>">
+              <input type="hidden" class="sub_category_name" value="<?= $sub_category_name[0] ?>">
+              <div class="top"><a href="index.php" class="home">HATO</a>
+                <h1><span class="main_category_name"><?= $main_category_name ?></span>&ensp; 게시판</h1>
+              </div>
+
+              <ul class="board_ul">
+                <?php
+              for ($i = 0; $i < $sub_count[0]; $i++) {
+                echo "<li><div class='sub_cate'> $sub_category_name[0]</div></li>";
+                $sub_category_name = mysqli_fetch_array($result);
+              }
+              ?>
+              </ul>
+              <h3>현재 게시글 : <span class="current"> </span></h3>
+              <<<<<<< HEAD <table>
+                <tr>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>장소</th>
+                  <th>일정</th>
+                  <th>주최자</th>
+                  <th>작성 일자</th>
+                </tr>
+                <tr>
+                  <td><?= $classPro[0] ?></td>
+                  <td><?= $classPro[1] ?></td>
+                  <td><?= $classPro[2] ?></td>
+                  <td><?= $classPro[3] ?></td>
+                  <td><?= $classPro[4] ?></td>
+                  <td><?= $classPro[6] ?></td>
+                </tr>
+                </table>
+                =======
+                >>>>>>> 2b712e0 (메인 게시글 DB 연결 및 카테고리 화면 노출 성공)
+                =======
+                <input type="hidden" class="sub_category" value="<?= $sub_category ?>">
+                <input type="hidden" class="sub_category_name" value="<?= $sub_category_name[0] ?>">
+                <div class="top"><a href="index.php" class="home">HATO</a>
+                  <h1><span class="main_category_name"><?= $main_category_name ?></span>&ensp; 게시판</h1>
+                </div>
+
+                <ul class="board_ul">
+                  <?php
+                for ($i = 0; $i < $sub_count[0]; $i++) {
+                  echo "<li><div class='sub_cate'> $sub_category_name[0]</div></li>";
+                  $sub_category_name = mysqli_fetch_array($result);
                 }
-            ?>
-          </ul>
-          <h3>현재 게시글 : <span class="current"> </span></h3>
-          <table>
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>장소</th>
-              <th>일정</th>
-              <th>주최자</th>
-              <th>작성 일자</th>
-            </tr>
-            <tr>
-              <td><?=$classPro[0]?></td>
-              <td><?=$classPro[1]?></td>
-              <td><?=$classPro[2]?></td>
-              <td><?=$classPro[3]?></td>
-              <td><?=$classPro[4]?></td>
-              <td><?=$classPro[6]?></td>
-            </tr>
-          </table>
-          >>>>>>> 217a8c0 (게시글 테이블 완성 및 출력 성공)
+                ?>
+                </ul>
+                <h3>현재 게시글 : <span class="current"> </span></h3>
+                <table>
+                  <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>장소</th>
+                    <th>일정</th>
+                    <th>주최자</th>
+                    <th>작성 일자</th>
+                  </tr>
+                  <tr>
+                    <td><?= $classPro[0] ?></td>
+                    <td><?= $classPro[1] ?></td>
+                    <td><?= $classPro[2] ?></td>
+                    <td><?= $classPro[3] ?></td>
+                    <td><?= $classPro[4] ?></td>
+                    <td><?= $classPro[6] ?></td>
+                  </tr>
+                </table>
+                >>>>>>> 217a8c0 (게시글 테이블 완성 및 출력 성공)
+                >>>>>>> 2af9763 (게시글 테이블 완성 및 출력 성공)
     </div>
 
   </body>
