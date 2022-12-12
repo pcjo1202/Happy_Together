@@ -103,6 +103,13 @@
             cate3.addEventListener("click", function(){
               location = "mainClassList.php?main_category_name="+cate3Value;
             })
+            // let cate = document.querySelectorAll(".cate");
+            
+            // for (let i=0; i<cate.length; i++){
+            //   cate[i].addEventListener("click", function() {
+            //     location = "mainClassList.php?main_category_name=" + cate[i].innerText;
+            //   })
+            // }
         });
 
   </script>
@@ -110,7 +117,6 @@
 
 <body>
   <?php  
-    // $connection = mysqli_connect('localhost','happy','together','happytogether');
     $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
 
     $query = "select main_category_name from main_category";
