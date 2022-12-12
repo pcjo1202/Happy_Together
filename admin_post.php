@@ -27,7 +27,20 @@
         .brd{border-bottom:1px solid #999;}
         
         h1{color:black; align:center;}
+        .fix {cursor: pointer;}
  </style>
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let fix = document.querySelectorAll(".fix");
+        let post_idx = document.querySelectorAll(".post_idx");
+        for(let i=0; i< fix.length; i++){
+            fix[i].addEventListener("click", function() {
+                location = 'delete_post.php?post_idx=' + post_idx[i].innerText;
+            })
+        }
+        
+    })
+ </script>
 </head>
 <body>
 <div class="container">
@@ -59,7 +72,7 @@
 
     for($i=0; $i<$num; $i++) {      
         echo "<tr class='data'>
-                <td>$post[0]</td>
+                <td class='post_idx'>$post[0]</td>
                 <td>$post[1]</td>
                 <td>$post[3]</td>
                 <td><button class='fix'>삭제</button></td>

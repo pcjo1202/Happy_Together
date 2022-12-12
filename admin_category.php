@@ -70,6 +70,7 @@
         .plus_image {
             float: right;
             margin-right : 20px;
+            cursor: pointer;
         }
     </style>
     <script>
@@ -79,12 +80,21 @@
 
             main_category_image.addEventListener("click",function() {
                 window.open(
-                    "maincate_pop.php",
+                    "maincate_pop.html",
                     "Child",
                     "width=800, height=500, top=200, left=320"
                 );
 
             })
+            sub_category_image.addEventListener("click",function() {
+                window.open(
+                    "subcate_pop.php",
+                    "Child",
+                    "width=800, height=500, top=200, left=320"
+                );
+
+            })
+
 
         })
     </script>

@@ -1,49 +1,91 @@
-    <html>
-    <head>
-        <title>HTML,PHP,MYSQL °úÀÇ ¿¬µ¿</title>
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>ì„œë¸Œì¹´í…Œê³ ë¦¬</title>
         <style>
         input,
         select { border: 1;}
-        textarea {
-            background-color: rgb(255, 255, 255);
-            border: 1;
-            border-color: rgb(0, 0, 0);
+        .button{
+        background-color:#CCEEFF;
+        border: 1;
+        border-color:#CCEEFF;
+        width:100px;
+        margin:20px;
         }
+            .button{
+        background-color:#CCEEFF;
+        border: 1;
+        border-color:#CCEEFF;
 
+        }
+        .textarea {
+        background-color: #EEFBFF;
+        border: 1;
+        border-color: #CCEEFF;
+        width: 150px;
+        margin: 10px;
+        }
+        .mainmessage{
+            font-size:50px;
+            text-align: center;
+            font-weight: 600;
+            margin:50px;
+        }
+        .message{
+        font-weight: 800; 
+        font-size: 18px; 
+        color: rgb(0, 6, 128);
+        margin: 30px;
+        }     
+        .container {
+        text-align: center;
+        }
+        .btns {
+            margin-top : 40px;
+            text-align : center;
+        }
         </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                let close = document.querySelector(".close");
+                close.addEventListener("click", function() {
+                    window.close();
+            })
+    })
+        </script>
     </head>
     <body>
-        <p align="center">
-        <font size="7"><b>Ä«Å×°í¸® ÀÔ·Â</b></font>
-        <br />
-        <br />
+        <?php 
+            $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);        
+
+            $main_category_query = "select main_category_name from main_category";
+            $main_category_result = mysqli_query($connection, $main_category_query);
+            $main_category_count = mysqli_num_rows($main_category_result);
+            $main_category = mysqli_fetch_array($main_category_result);
+
+        ?>
+        <p class='mainmessage'>
+        ì„œë¸Œ ì¹´í…Œê³ ë¦¬ ì¶”ê°€í•˜ê¸°
         </p>
 
-        <form name="form" method="post" action="./custom_input.php">
-        <span style="font-weight: bold; font-size: 1.5em/1em; color: rgb(0, 6, 128)"
-            >1. ¸ŞÀÎ Ä«Å×°í¸® ¼±ÅÃ : &ensp; </span
-        ><select name="month" style="width: 100px ;">
-        <option >¼±ÅÃ</option>
+        <form name="form" method="post" action="insert_sub_category.php" class='container'>
+        <span class='message'>1. ë©”ì¸ ì¹´í…Œê³ ë¦¬ ì„ íƒ</span>
+        <select name="main_category" style="width: 100px ;">
+        <option >ì„ íƒ</option>
         <?php
-        $i = 0;
-            $arr = array("Ãà±¸","³ó±¸","¾ß±¸");
-            foreach ($arr as $value) 
-            {
-                $i= $i + 1;
-                echo "<option value= $i>".$value."</option>";
+            for($i=0; $i < $main_category_count; $i++){
+                echo "<option value= $main_category[0]>$main_category[0]</option>";
+                $main_category = mysqli_fetch_array($main_category_result);
             }
         ?>
         </select>
-
-        <br />
-        <br />
-        <span style="font-weight: bold; font-size: 1.5em/1em; color: rgb(0, 6, 128)"
-            >2. ¼­ºê Ä«Å×°í¸® ÀÔ·Â : &ensp;</span
-        ><input type="textarea" name="sub_category" style="width: 100px" />
-        <br />
-        <br />
-        <input type="submit" value="ÀÔ·Â" />&emsp;&nbsp;
-        <input type="reset" value="Ãë¼Ò" />&ensp;&ensp;
+        <span class='message'>2. ì„œë¸Œ ì¹´í…Œê³ ë¦¬ ì…ë ¥ </span>
+        <input type="text" name="sub_category" class='textarea' />
+        <div class="btns">
+            <input type="submit" value="ì…ë ¥"  class='button' />
+            <input type="button" value="ë‹«ê¸°" class="button close" />
+        </div>
         </form>
     </body>
     <html></html>
