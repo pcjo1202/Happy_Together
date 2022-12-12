@@ -14,7 +14,6 @@ $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether'
         echo "<script>alert('로그인 성공'); location='adminMain.php';</script>";
         session_start();
         $_SESSION['id'] = $id;
-        
     }
     else {
         echo "<script>alert('Password 오류'); history.back(); </script>";

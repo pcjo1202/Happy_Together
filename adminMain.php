@@ -97,8 +97,9 @@
 </head>
 <body>
     <?php 
-        $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);        
-        if(!isset($_SESSION['id'])){
+        $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);  
+        $admin = $_SESSION['id'];      
+        if(!$admin){
             echo "<script>alert('관리자 권한이 없습니다.'); location='admin_login.html';</script>";
         }
     ?>
