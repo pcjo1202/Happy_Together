@@ -121,7 +121,7 @@ header("refresh: 2;");?>
          $main_category_count = mysqli_num_rows($main_category_result);
 
         // 서브 카테고리 데이터 
-        $sub_category_query = "select sub_category_name from sub_category";
+        $sub_category_query = "select sub_category_name from sub_category order by main_category desc";
         $sub_category_result = mysqli_query($connection, $sub_category_query);
         $sub_category = mysqli_fetch_array($sub_category_result);
  

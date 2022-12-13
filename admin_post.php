@@ -14,7 +14,7 @@
         .center{flex:3; text-align: center;}
         .right{width:400px; text-align:right; margin: auto 0;}
         button{background-color:white; border:1px solid black; color:black;}
-        .addbut{background-color:white; border: 3px solid black; color:black; font-size:30px; }
+        .addbut{background-color:white; border: 3px solid black; color:black; font-size:30px; cursor: pointer; }
         .addbut:hover{background-color:gray; border: 3px solid black; color:white; font-size:30px;}
         .delete:hover{background-color:red; border:none; color:black;}
         .fix:hover{background-color:blue; border:none; color:white;}
@@ -22,7 +22,7 @@
         a{text-decoration:none; color:rgb(0, 132, 255); font-size:40px;}
         a:hover{color:rgb(255, 153, 0);}
         table{width:1328px;border-collapse:collapse;  margin-left: auto; 
-  margin-right: auto;}
+        margin-right: auto;}
         td{padding:10px 15px;text-align:center;}
         .title{border-top:3px solid #1AAB8A;border-bottom:2px solid #1AAB8A;background:#1AAB8A;font-weight:bold;
         color:white;}
@@ -33,7 +33,7 @@
             background-color: #1AAB8A;
         }
         h1{color:black; align:center;}
-        .fix {cursor: pointer;}
+        .fix {cursor: pointer;} .post_title {cursor: pointer;} .post_title:hover { font-weight : bold; color :#1AAB8A; }
  </style>
  <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -46,7 +46,13 @@
                 if(delete_confirm) {
                     location = 'delete_post.php?post_idx=' + post_idx[i].innerText;
                 }
-                
+            })
+        }
+        
+        let post_title = document.querySelectorAll(".post_title");
+        for(let i=0; i < post_title.length; i++) {
+            post_title[i].addEventListener("click", function() {
+                location = 'admin_post_content.php?post_idx=' + post_idx[i].innerText;
             })
         }
         
@@ -84,7 +90,7 @@
     for($i=0; $i<$num; $i++) {      
         echo "<tr class='data'>
                 <td class='post_idx'>$post[0]</td>
-                <td>$post[1]</td>
+                <td class='post_title'>$post[1]</td>
                 <td>$post[4]</td>
                 <td><button class='fix'>삭제</button></td>
               </tr>";

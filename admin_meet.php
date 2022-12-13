@@ -11,7 +11,7 @@
         .left{width: 400px;  margin: auto 0;}
         .center{flex:3; text-align: center;}
         .right{width:400px; text-align:right; margin: auto 0;}
-        button{background-color:black; border:none; color:white;}
+        button{background-color:black; border:none; color:white; cursor: pointer;}
         .button:hover{background-color:red; border:none; color:black;}
         body{font-size:16px; background:#EEFFF1;}
         a{text-decoration:none; color:rgb(0, 132, 255); font-size:40px; align:center;}

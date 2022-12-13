@@ -11,9 +11,9 @@ $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether'
 
  if($loginPro[0]){
     if($loginPro[1] == $password){
-        echo "<script>alert('로그인 성공'); location='adminMain.php';</script>";
         session_start();
         $_SESSION['id'] = $id;
+        echo "<script>alert('로그인 성공'); location='adminMain.php';</script>";
     }
     else {
         echo "<script>alert('Password 오류'); history.back(); </script>";
