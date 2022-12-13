@@ -8,7 +8,8 @@
     <title>공지사항 페이지</title>
     <style type="text/css">
         .container {
-        display: flex; }
+        display: flex; 
+        }
         .left{width: 400px;  margin: auto 0;}
         .center{flex:3; text-align: center;}
         .right{width:400px; text-align:right; margin: auto 0;}
@@ -17,16 +18,20 @@
         .addbut:hover{background-color:gray; border: 3px solid black; color:white; font-size:30px;}
         .delete:hover{background-color:red; border:none; color:black;}
         .fix:hover{background-color:blue; border:none; color:white;}
-        body{font-size:16px;}
+        body{font-size:16px; background:#EEFFF1;}
         a{text-decoration:none; color:rgb(0, 132, 255); font-size:40px;}
         a:hover{color:rgb(255, 153, 0);}
         table{width:1328px;border-collapse:collapse;  margin-left: auto; 
   margin-right: auto;}
         td{padding:10px 15px;text-align:center;}
-        .title{border-top:3px solid #999;border-bottom:2px solid #999;background:#eee;font-weight:bold;}
-        .data{border-top:3px solid #999;border-bottom:2px solid #999;background: #fff;;font-weight:bold;}
+        .title{border-top:3px solid #1AAB8A;border-bottom:2px solid #1AAB8A;background:#1AAB8A;font-weight:bold;
+        color:white;}
+        .data{border-top:3px solid #1AAB8A;border-bottom:2px solid #1AAB8A;background: #fff;;font-weight:bold;}
         .brd{border-bottom:1px solid #999;}
-        
+        hr {
+            height: 2px;
+            background-color: #1AAB8A;
+        }
         h1{color:black; align:center;}
         .fix {cursor: pointer;}
  </style>
@@ -51,7 +56,7 @@
 <body>
 <div class="container">
     <div class="left">  </div>
-    <div class="center"><a href="adminMain.php">* 관리자 페이지 *</a> <h2>공지사항</h2> </div>
+    <div class="center"><a href="adminMain.php"> 관리자 페이지 </a> <h2>공지사항</h2> </div>
     <div class="right"><a href="admin_post.html"><button class="addbut">공지사항 추가하기</button> </a>  </div>
 </div>    
     <hr>

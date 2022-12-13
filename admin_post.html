@@ -17,6 +17,7 @@
 
     body {
       font-size: 16px;
+      background: #EEFFF1;
     }
 
     a {
@@ -59,20 +60,23 @@
       width: 50%;
       margin-left: 25%;
     }
+
     .btns {
-      text-align : center;
+      text-align: center;
     }
-    .btns [type="submit"], .btns [type="button"] {
-      width : 80px; 
-      height : 34px;
-      
+
+    .btns [type="submit"],
+    .btns [type="button"] {
+      width: 80px;
+      height: 34px;
+
     }
   </style>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
       let before = document.querySelector(".before");
-      
-      before.addEventListener("click", function() {
+
+      before.addEventListener("click", function () {
         history.back();
       })
     })
@@ -81,7 +85,7 @@
 
 <body>
   <div class="container">
-    <a href="adminMain.php">* 관리자 페이지 *</a>
+    <a href="adminMain.php"> 관리자 페이지 </a>
   </div>
   <hr />
   <form action="admin_post_insert.php" name="form" method="post">
@@ -89,7 +93,7 @@
     <p>[내용]</p>
     <textarea name="contents" rows="15" cols="100"></textarea>
     <div class="btns">
-      <input type="submit" value="입력" />    
+      <input type="submit" value="입력" />
       <input type="button" class="before" value="이전" />
     </div>
   </form>

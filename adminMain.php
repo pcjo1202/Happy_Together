@@ -16,12 +16,13 @@
             text-decoration: none;
             color: #000000;
             font-size: 40px;
-            cursor: pointer;
+            cursor: pointer;           
         }
 
         .container {
             height: 200px;
             position: relative;
+           
         }
 
         .center {
@@ -29,6 +30,7 @@
             justify-content: center;
             align-items: center;
             height: 100px;
+            margin: 10px;
         }
 
         hr {
@@ -42,6 +44,7 @@
         }*/
         body {
             text-align: center;
+            background:#EEFFF1;
         }
 
         body:before {
@@ -57,6 +60,7 @@
             border: none;
             position: relative;
             height: 60px;
+            width: 400px;
             font-size: 1.6em;
             padding: 0 2em;
             cursor: pointer;

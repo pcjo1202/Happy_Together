@@ -24,7 +24,8 @@ header("refresh: 2;");?>
         a:hover{color:rgb(255, 153, 0);}
 
         body {
-            font-size: 16px
+            font-size: 16px;
+            background:#EEFFF1;
         }
 
         .title {
@@ -73,6 +74,10 @@ header("refresh: 2;");?>
             margin-right : 20px;
             cursor: pointer;
         }
+        hr {
+            height: 2px;
+            background-color: #1AAB8A;
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -107,7 +112,7 @@ header("refresh: 2;");?>
          if(!isset($_SESSION['id'])){
              echo "<script>alert('관리자 권한이 없습니다.'); location='admin_login.html';</script>";
          }
-        //  메인 카테고리 데이터 
+        //  메인 카테고리 데이터
          $main_category_query = "select main_category_name from main_category";
          $main_category_result = mysqli_query($connection, $main_category_query);
          $main_category = mysqli_fetch_array($main_category_result);
@@ -115,7 +120,7 @@ header("refresh: 2;");?>
         //  메인 카테고리 총 데이터 개수
          $main_category_count = mysqli_num_rows($main_category_result);
 
-        //  서브 카테고리 데이터 
+        // 서브 카테고리 데이터 
         $sub_category_query = "select sub_category_name from sub_category";
         $sub_category_result = mysqli_query($connection, $sub_category_query);
         $sub_category = mysqli_fetch_array($sub_category_result);
@@ -125,8 +130,8 @@ header("refresh: 2;");?>
         
     ?>
 <div class="container">
-    <div class="left">  <a href="adminMain.php">* 관리자 페이지 *</a> </div>
-    <div class="center"> <h1>카테고리</h1> </div>
+    <div class="left">   </div>
+    <div class="center"><a href="adminMain.php">관리자 페이지 </a> <br> <h2>카테고리</h2> </div>
     <div class="right"> </div>
 </div>  
 <hr>
