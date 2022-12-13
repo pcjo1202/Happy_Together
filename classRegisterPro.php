@@ -1,7 +1,8 @@
+<?php include("./connect.php")?>
+
 <?php
 header("Content-Type:text/html;charset=utf-8");
 session_start();
-    $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
 
     // 모임 상세 보기에서 가져온 것 class_Idx, class_leader_id
     $idx = $_GET['class_idx'];

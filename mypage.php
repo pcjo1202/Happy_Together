@@ -1,4 +1,5 @@
 <?php session_start();?>
+<?php include("./connect.php")?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,6 @@
     <link rel="stylesheet" href="./myInfo.css" />
   </head>
   <?php 
-        $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);        
         // 마이 페이지에서 자기 정보 보기
         if(!isset($_SESSION['id'])){
             echo "<script>alert('로그인을 하시오.'); location ='login.html';</script>";

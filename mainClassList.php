@@ -1,5 +1,6 @@
+<?php include("./connect.php")?>
+
 <?php
-$connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
 
 //url로 전달된 main카테고리 내용을 받아온다.
 $main_category_name = $_GET['main_category_name'];
@@ -161,7 +162,214 @@ $class_count = mysqli_num_rows($result_class);
   echo "
     <title>모임 페이지-🌟{$main_category_name}🌟</title>
     " ?>
-    <link rel="stylesheet" href="test.css" />
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 21px;
+    }
+
+    body {
+      background-color: #dadde2;
+      height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 1100px;
+      height: 100vh;
+      padding: 0.5rem 0;
+    }
+
+    header {
+      padding: 1rem 0.7rem;
+      width: 100%;
+      height: 130px;
+      border-bottom: 2px solid #000;
+
+      display: flex;
+      gap: 1rem;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .logo a img {
+      width: 150px;
+    }
+
+    .mainCategoryBox {
+      flex: 1;
+    }
+
+    /*
+  배경 #DADDE2
+  버튼 #B1BDC5
+   */
+
+    .mainCategoryBox>ul {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .mainCategoryBox>ul .mainItem {
+      background-color: #B1BDC5;
+      border: 1px solid #00000015;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: transform 0.5s ease;
+      cursor: pointer;
+    }
+
+    .mainCategoryBox>ul .mainItem:hover {
+      background-color: #889fa5;
+      transform: scale(1.2);
+    }
+
+    section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    .subCategoryBox {
+      width: 100%;
+      padding: 1rem 0;
+    }
+
+    .subCategoryBox ul {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 3rem;
+      gap: 3rem;
+    }
+
+    .subCategoryBox ul>.subItem {
+      background-color: #B1BDC5;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 200ms ease-out;
+      cursor: pointer;
+    }
+
+    .subCategoryBox ul>.subItem:hover,
+    :focus {
+      background-color: #889fa5;
+      transform: scale(1.2);
+    }
+
+    main {
+      padding: 1rem;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      position: relative;
+    }
+
+    main .classList {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      gap: 1rem;
+      width: 80%;
+      height: 450px;
+      overflow: auto;
+    }
+
+    main .classList .classItem {
+      background-color: #B1BDC5;
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      column-gap: 1rem;
+      row-gap: 2rem;
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+    }
+
+    main .classList .classItem .title {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    main .classList .classItem:hover {
+      background-color: #c9c9c9;
+      cursor: pointer;
+    }
+
+    .makerBtn {
+      position: fixed;
+      right: 5%;
+      bottom: 5%;
+      transition: all 200ms ease-in;
+    }
+
+    .makerBtn button {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 1rem;
+      gap: 0.6rem;
+      color: #c9c9c9;
+      border: none;
+      border-radius: 10px;
+      background-color: #43655A;
+      cursor: pointer;
+      transition: all 200ms ease-in;
+    }
+
+    .makerBtn button img {
+      width: 30px;
+    }
+
+    .makerBtn button:hover {
+      background-color: #889fa5;
+    }
+
+    .makerBtn button:active {
+      transform: scale(0.9);
+    }
+
+    footer {
+      width: 100%;
+      border-top: 1px solid gray;
+      text-align: center;
+    }
+
+    .pager {
+      display: block;
+    }
+
+    footer .copyright {
+      padding: 0.5rem 0;
+    }
+    </style>
     <script>
     document.addEventListener("DOMContentLoaded", () => {
       // 모임 글(리스트) 배열 형태!
@@ -263,7 +471,7 @@ $class_count = mysqli_num_rows($result_class);
           </ul>
         </div>
         <div class="myPage">
-          <a href="myInfo.php">마이페이지</a>
+          <a href="mypage.php">마이페이지</a>
         </div>
       </header>
       <section>
@@ -345,10 +553,12 @@ $class_count = mysqli_num_rows($result_class);
             ?>
           <?php } else{ 
               if(!$search_text){?>
-                <a href="mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>&page=<?=$page-1?>">◁</a>
-              <?php }else{ ?>
-                <a href="mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name='<?=$sub_category?>'&search_select='<?=$search_select?>'&search_text='<?=$search_text?>'&page='<?=$page-1?>'">◁</a>
-              <?php } ?>
+          <a
+            href="mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>&page=<?=$page-1?>">◁</a>
+          <?php }else{ ?>
+          <a
+            href="mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name='<?=$sub_category?>'&search_select='<?=$search_select?>'&search_text='<?=$search_text?>'&page='<?=$page-1?>'">◁</a>
+          <?php } ?>
 
           <?php };?>
 
@@ -375,10 +585,12 @@ $class_count = mysqli_num_rows($result_class);
             ?>
           <?php } else{ 
               if(!$search_text) {?>
-                <a href='mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>&page=<?=($page+1)?>'>▷</a>
-              <?php } else {?>
-                <a href='mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>&search_select=<?=$search_select?>&search_text=<?=$search_text?>&page=<?=($page+1)?>'>▷</a>
-              <?php }
+          <a
+            href='mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>&page=<?=($page+1)?>'>▷</a>
+          <?php } else {?>
+          <a
+            href='mainClassList.php?main_category_name=<?=$main_category_name?>&sub_category_name=<?=$sub_category?>&search_select=<?=$search_select?>&search_text=<?=$search_text?>&page=<?=($page+1)?>'>▷</a>
+          <?php }
               ?>
           <?php };?>
       </section>

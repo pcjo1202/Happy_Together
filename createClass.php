@@ -1,3 +1,5 @@
+<?php include("./connection.php")?>
+
 <?php
 
   // function getMainCategory(){ //main category 반환
@@ -12,12 +14,12 @@
 
   header("Content-Type:text/html;charset=utf-8");
   
-  $dbname = 'happyTogther';
-  $serverName = '52.78.0.158:56946';
-  $user = 'remoteJO';
-  $password = 'remoteJO';
+  // $dbname = 'happyTogther';
+  // $serverName = '52.78.0.158:56946';
+  // $user = 'remoteJO';
+  // $password = 'remoteJO';
 
-  $connect = mysqli_connect($serverName, $user, $password, $dbname);
+  // $connection = mysqli_connect($serverName, $user, $password, $dbname);
 
   $title = $_POST['title'];
   $mainCategory = $_POST['mainCategory'];
@@ -31,12 +33,12 @@
 
   $query = "insert into 000 values('$title','$date', '$mainCategory', '$subCategory', '$memberCount', '$place', '$contents')";
 
-  // $result = mysqli_query($connect, $query);
+  // $result = mysqli_query($connection, $query);
 
   // if(!$result){
   //   die("서버와 연결 실패" . mysqli_connect_error());
   // }
   // echo " 서버 연결 성공!";
 
-  mysqli_close($connect);
+  mysqli_close($connection);
 ?>

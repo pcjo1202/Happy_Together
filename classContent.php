@@ -1,4 +1,6 @@
 <?php session_start();?>
+<?php include("./connect.php")?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +24,11 @@
 
     a {
       text-decoration: none;
+    }
+
+    ul,
+    li {
+      list-style: none;
     }
 
     .container {
@@ -77,30 +84,54 @@
     }
 
     main {
+      width: 100%;
       height: 100%;
       background-color: #b4c1c6;
-      padding: 1rem 0;
+      padding: 1rem;
       flex: 32rem;
       display: flex;
       justify-content: center;
-      align-items: center;
     }
 
-    main .wrapper {
-      width: 900px;
-      height: 100%;
+    .wrapper {
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 0.5rem;
     }
 
+    main .classData_wrapper {
+      /* width: 900px; */
+      flex: 1;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+    }
+
+    main .applicant_wrapper {
+      width: 350px;
+      height: 100%;
+      border-radius: 15px;
+      background-color: #fff;
+      /* display: none; */
+    }
+
+    main .applicant_wrapper .applicant_list {}
+
     .formBox {
-      padding: 1rem;
+      width: 90%;
+      padding: 0.5rem;
       display: grid;
-      gap: 0.8rem;
+      gap: 1.5rem;
       grid-template-columns: 1fr 1fr;
 
       align-items: center;
+    }
+
+    .subject>span {
+      align-self: center;
     }
 
     input[type='text'],
@@ -115,8 +146,7 @@
     }
 
     .title {
-      /* align-self: center;
-      grid-area: title; */
+      grid-column: 1/3;
       display: flex;
       width: 100%;
     }
@@ -126,20 +156,17 @@
     }
 
     .category {
-      /* grid-area: category;
-      justify-self: center; */
+      grid-column: 1/3;
+
       display: flex;
       align-items: center;
     }
 
     .category>input {
       width: 50%;
-      /* background-color: red; */
     }
 
     .members {
-      /* grid-area: members;
-      justify-self: flex-start; */
       display: flex;
       align-items: center;
       width: 100%;
@@ -150,8 +177,7 @@
     }
 
     .place {
-      /* grid-area: place;
-      justify-self: flex-start; */
+
       display: flex;
       align-items: center;
       width: 100%;
@@ -221,9 +247,7 @@
   </head>
 
   <body>
-    <?php 
-    $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
-    
+    <?php     
     $class_idx = $_GET['class_idx'];
     $current_id = $_SESSION['id'];
 
@@ -250,49 +274,50 @@
 
       <main>
         <div class="wrapper">
-          <?php
-          $idx = $classPro[0];
-          $leader_id = $classPro[4];
-          $title = $classPro[1];
-          $main = $classPro[6];
-          $sub = $classPro[7];
-          $numbers = $classPro[5];
-          $place = $classPro[3];
-          $contents = $classPro[2];
-          ?>
-          <form class="formBox" action="classUpdatePro.php" method="post">
-            <!--  -->
-            <input type="hidden" value="<?=$idx?>" class="idx" name="class_idx">
-            <input type="hidden" value="<?=$leader_id?>" class="leader_id" name="leader_id">
-            <input type="hidden" value="<?=$current_id?>" class="session_id">
-            <!--  -->
-            <div class="title">
-              <span>제목</span>
-              <input type="text" value="<?=$title?>" name="title" />
-            </div>
-            <!--  -->
-            <div class="category">
-              <span>카테고리</span>
-              <input type="text" value="<?=$main?>" name="mainCategory" readonly /> &ensp;/
-              <input type="text" value="<?=$sub?>" name="subCategory" readonly />
-            </div>
-            <!--  -->
-            <div class="members">
-              <span>모집인원</span>
-              <input type="number" name="memberCount" value="<?=$numbers?>" />
-            </div>
-            <!--  -->
-            <div class="place">
-              <span>장소</span>
-              <input type="text" name="place" value="<?=$place?>" />
-            </div>
-            <!--  -->
-            <textarea class="contents" name="contents" id="" cols="30" rows="10"
-              placeholder="모입 시간, 장소, 모집인원"><?=$contents?>
-            </textarea>
-
-            <!-- 수정 삭제 신청 이전 버튼 css 수정 필요!!!!!!!!!!!!!!!!!! -->
+          <div class="classData_wrapper">
             <?php
+            $idx = $classPro[0];
+            $leader_id = $classPro[4];
+            $title = $classPro[1];
+            $main = $classPro[6];
+            $sub = $classPro[7];
+            $numbers = $classPro[5];
+            $place = $classPro[3];
+            $contents = $classPro[2];
+          ?>
+            <form class="formBox" action="classUpdatePro.php" method="post">
+              <!--  -->
+              <input type="hidden" value="<?=$idx?>" class="idx" name="class_idx">
+              <input type="hidden" value="<?=$leader_id?>" class="leader_id" name="leader_id">
+              <input type="hidden" value="<?=$current_id?>" class="session_id">
+              <!--  -->
+              <div class="subject title">
+                <span>제목</span>
+                <input type="text" value="<?=$title?>" name="title" />
+              </div>
+              <!--  -->
+              <div class="subject category">
+                <span>카테고리</span>
+                <input type="text" value="<?=$main?>" name="mainCategory" readonly /> &ensp;/
+                <input type="text" value="<?=$sub?>" name="subCategory" readonly />
+              </div>
+              <!--  -->
+              <div class="subject members">
+                <span>모집인원</span>
+                <input type="number" name="memberCount" value="<?=$numbers?>" />
+              </div>
+              <!--  -->
+              <div class="subject place">
+                <span>장소</span>
+                <input type="text" name="place" value="<?=$place?>" />
+              </div>
+              <!--  -->
+              <textarea class="contents" name="contents" id="" cols="30" rows="10"
+                placeholder="모입 시간, 장소, 모집인원"><?=$contents?>
+              </textarea>
+
+              <!-- 수정 삭제 신청 이전 버튼 css 수정 필요!!!!!!!!!!!!!!!!!! -->
+              <?php
             // if (!strcmp($classPro[4], $current_id)){
             //   echo "<input class='updBtn' type='submit' value='수정' />
             //     <input class='delBtn' type='button' value='삭제' />
@@ -307,14 +332,29 @@
             //   return;
             // }
             ?>
-            <div class="btnBox">
-              <input class='btn delBtn' type='button' value='삭제' />
-              <input class='btn updBtn' type='submit' value='수정' />
-              <input class='btn regBtn' type='button' value='신청' />
-              <input class='btn befBtn' type='button' value='이전' />
-            </div>
+              <div class="btnBox">
+                <input class='btn delBtn' type='button' value='삭제' />
+                <input class='btn updBtn' type='submit' value='수정' />
+                <input class='btn regBtn' type='button' value='신청' />
+                <input class='btn befBtn' type='button' value='이전' />
+              </div>
 
-          </form>
+            </form>
+          </div>
+          <div class="applicant_wrapper">
+            <h3>신청자 현황</h3>
+            <ul class="applicant_list">
+              <li class="applicant">
+                박창조
+              </li>
+              <li class="applicant">
+                박창조
+              </li>
+              <li class="applicant">
+                박창조
+              </li>
+            </ul>
+          </div>
         </div>
       </main>
     </div>

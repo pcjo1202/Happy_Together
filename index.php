@@ -1,8 +1,7 @@
 <?php session_start(); ?>
+<?php include("./connect.php")?>
 
 <?php
-// $connection = mysqli_connect('localhost','happy','together','happytogether');
-$connection = mysqli_connect('52.78.0.158', 'remoteJO', 'remoteJO', 'happyTogether', 56946);
 
 $query = "select main_category_name from main_category";
 $query2 = "select count(*) from main_category";
@@ -65,6 +64,7 @@ $category = mysqli_fetch_array($result);
     color: #43655A;
   }
 
+
   .loginBox {
     margin-top: 40px;
     width: 200px;
@@ -84,9 +84,12 @@ $category = mysqli_fetch_array($result);
     font-weight: bold;
   }
 
-  ul {
+  .category_list {
+    width: 900px;
     list-style-type: none;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 2rem;
   }
 
@@ -135,7 +138,7 @@ $category = mysqli_fetch_array($result);
       <sub>우리들의 모임 플랫폼</sub>
       <h1 class="title">Happy Together</h1>
     </header>
-    <ul>
+    <ul class="category_list">
       <?php for ($i = 0; $i < $category_count[0]; $i++) {
         echo "<li>
           <button class='cateItem category'>$category[0]</button>
@@ -168,7 +171,7 @@ $category = mysqli_fetch_array($result);
     document.addEventListener("DOMContentLoaded", function() {
       let category = document.querySelectorAll(".category");
 
-      for(let i =0; i<category.length; i++) {
+      for (let i = 0; i < category.length; i++) {
         category[i].addEventListener("click", function() {
           location = "mainClassList.php?main_category_name=" + category[i].innerText;
         })

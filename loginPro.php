@@ -1,7 +1,7 @@
+<?php include("./connect.php")?>
+
 <?php
- header("Content-Type:text/html;charset=utf-8");
- $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
-  
+ header("Content-Type:text/html;charset=utf-8");  
 
   $id = $_POST['id'];
   $password = $_POST['password'];

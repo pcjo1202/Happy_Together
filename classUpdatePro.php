@@ -1,7 +1,8 @@
+<?php include("./connect.php")?>
+
 <?php 
 header("Content-Type:text/html;charset=utf-8");
 session_start();
-    $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
 
     $idx = $_POST['class_idx'];
     $title = $_POST['title'];
