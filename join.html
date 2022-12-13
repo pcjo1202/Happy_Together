@@ -1,292 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <style>
+      * {
+        font-size: 18px;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>회원가입</title>
-  <style>
-    * {
-      font-size: 20px;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      body {
+        background-color: #dadde2;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
-    body {
-      background-color: #dadde2;
-      width: 100%;
-      height: 100vh;
-    }
+      .container {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+      }
 
-    .container {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-    }
+      h1 {
+        font-size: 1.5rem;
+        color: #43655a;
+      }
 
-    h1 {
-      font-size: 1.5rem;
-      color: #43655a;
-    }
+      label {
+        font-size: 0.9rem;
+      }
 
-    label {
-      font-size: 0.9rem;
-    }
+      form {
+        width: 500px;
+        padding: 1rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.3rem;
+        background-color: #fafafa;
+        border-radius: 10px;
+      }
 
-    form {
-      width: 500px;
-      padding: 1rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.5rem;
-      background-color: #fafafa;
-      border-radius: 10px;
-    }
+      input {
+        border: none;
+        padding: 0.5rem 1rem;
+        background-color: #dadde2;
+        border-bottom: 1px solid #43655a54;
+        transition: all 500ms ease-out;
+      }
 
-    input {
-      border: none;
-      padding: 0.5rem 1rem;
-      background-color: #dadde2;
-      border-bottom: 1px solid #43655a54;
-      transition: all 200ms ease-out;
-    }
+      input:focus,
+      input:hover {
+        outline: none;
+        background-color: #cdc7c0;
+      }
 
-    input:focus,
-    input:hover {
-      outline: none;
-      background-color: #cdc7c0;
-    }
+      .id_check {
+        display: inline;
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 10px;
+        width: 40px;
+        background-color: #43655a;
+        color: white;
+        cursor: pointer;
+      }
 
-    .id_check {
-      display: inline;
-      font-size: 0.7rem;
-      padding: 0.3rem;
-      border-radius: 10px;
-      width: 40px;
-      background-color: #43655a;
-      color: white;
-      cursor: pointer;
-    }
+      .buttones {
+        margin-top: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
 
-    .buttones {
-      margin-top: 0.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-    }
+      .radio_gender {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
 
-    .radio_gender {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
+      .genderBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
-    .genderBox {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-    }
+      .join {
+        background-color: #43655a;
+        color: white;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 200ms ease-out;
+      }
 
-    .join {
-      background-color: #43655a;
-      color: white;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 200ms ease-out;
-    }
+      .before {
+        background-color: #dadde2;
+        color: black;
+        border-radius: 10px;
+        transition: all 200ms ease-out;
+        font-weight: bold;
+        cursor: pointer;
+      }
 
-    .before {
-      background-color: #dadde2;
-      color: black;
-      border-radius: 10px;
-      transition: all 200ms ease-out;
-      font-weight: bold;
-      cursor: pointer;
-    }
+      .join:hover {
+        background-color: #dadde2;
+        color: black;
+      }
 
-    .join:hover {
-      background-color: #dadde2;
-      color: black;
-    }
+      .before:hover {
+        background-color: #cdc7c0;
+        color: white;
+      }
 
-    .before:hover {
-      background-color: #cdc7c0;
-      color: white;
-    }
+      /* 비밀 번호 유효성 검사 <span> id = password_check */
+      #password_check,
+      #password2_check,
+      #email_check {
+        font-size: 0.7rem;
+        margin-left: 0.7rem;
+      }
+    </style>
+  </head>
 
-    /* 비밀 번호 유효성 검사 <span> id = password_check */
-    #password_check,
-    #password2_check,
-    #email_check {
-      font-size: 0.7rem;
-      margin-left: 0.7rem;
-    }
-  </style>
-</head>
+  <body>
+    <div class="container">
+      <h1>회원가입</h1>
+      <form action="joinPro.php" method="post" id="form">
+        <label for="id"
+          >아이디
+          <div class="id_check" id="id_check">ID 체크</div>
+        </label>
+        <input type="text" name="id" id="input_id" />
 
-<body>
-  <div class="container">
-    <h1>회원가입</h1>
-    <form action="joinPro.php" method="post" id="form">
-      <label for="id">아이디
-        <div class="id_check" id="id_check">ID 체크</div>
-      </label>
-      <input type="text" name="id" id="input_id" />
+        <label for="password">비밀번호<span id="password_check"></span></label>
+        <input type="password" name="password" />
+        <label for="password2"
+          >비밀번호 확인<span id="password2_check"></span
+        ></label>
+        <input type="password" name="password2" />
 
-      <label for="password">비밀번호<span id="password_check"></span></label>
-      <input type="password" name="password" />
-      <label for="password2">비밀번호 확인<span id="password2_check"></span></label>
-      <input type="password" name="password2" />
+        <label for="name">이름</label>
+        <input type="text" name="name" />
+        <label for="nickname">별명</label>
+        <input type="text" name="nickname" />
 
-      <label for="name">이름</label>
-      <input type="text" name="name" />
-      <label for="nickname">별명</label>
-      <input type="text" name="nickname" />
-
-      <label for="gender">성별</label>
-      <div class="radio_gender">
-        <div class="genderBox female">
-          남자
-          <input type="radio" name="gender" value="남자" checked class="radio_gender" />
+        <label for="gender">성별</label>
+        <div class="radio_gender">
+          <div class="genderBox female">
+            남자
+            <input
+              type="radio"
+              name="gender"
+              value="남자"
+              checked
+              class="radio_gender"
+            />
+          </div>
+          <div class="genderBox male">
+            여자
+            <input
+              type="radio"
+              name="gender"
+              value="여자"
+              class="radio_gender"
+            />
+          </div>
         </div>
-        <div class="genderBox male">
-          여자
-          <input type="radio" name="gender" value="여자" class="radio_gender" />
+
+        <label for="birth">생년월일</label>
+        <input type="text" name="birth" placeholder="ex) 991029" />
+
+        <label for="phone">전화번호</label>
+        <input
+          type="text"
+          name="phone"
+          placeholder="(-)하이픈 없이 입력하시오."
+        />
+
+        <label for="email">이메일<span id="email_check"></span></label>
+        <input type="text" name="email" />
+
+        <div class="buttones">
+          <input type="button" value="회원가입" class="join" id="join" />
+          <input type="button" value="이전" class="before" id="before" />
         </div>
-      </div>
+      </form>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          let form = document.getElementById('form');
+          let id_check = document.getElementById('id_check');
 
-      <label for="birth">생년월일</label>
-      <input type="text" name="birth" placeholder="ex) 991029" />
+          // 이메일 유효성 검사
+          //이메일 검사 함수
+          let isEmail = function (value) {
+            return (
+              value.indexOf('@') > 2 &&
+              value.split('@')[1].indexOf('.') > 2 &&
+              value.split('.')[1].length > 1
+            );
+          };
+          // 이메일 확인
+          let email_check = document.querySelector('#email_check');
+          form.email.addEventListener('keyup', function (event) {
+            let value = event.currentTarget.value;
+            if (isEmail(value)) {
+              //이메일 형식이 맞을 때
+              email_check.innerHTML = '올바른 형식입니다. : ' + value;
+              email_check.style.color = 'blue';
+            } else {
+              // 이메일 형식이 아닐 때
+              email_check.innerHTML = '잘못된 형식입니다. : ' + value;
+              email_check.style.color = 'red';
+            }
+          });
 
-      <label for="phone">전화번호</label>
-      <input type="text" name="phone" placeholder="(-)하이픈 없이 입력하시오." />
+          // 비밀번호 유효성 검사!!!
+          let password_check = document.querySelector('#password_check');
+          let password2_check = document.querySelector('#password2_check');
+          form.password.addEventListener('keyup', function () {
+            if (form.password.value.length < 8) {
+              password_check.innerText = '비밀 번호는 8자 이상이어야 합니다.';
+              password_check.style.color = 'red';
+            } else {
+              password_check.innerText = '사용 가능한 비밀번호입니다.';
+              password_check.style.color = 'blue';
+            }
+          });
+          // 비밀번호 확인 유효성 검사!!!
+          form.password2.addEventListener('keyup', function () {
+            if (form.password.value != form.password2.value) {
+              password2_check.innerText = '비밀번호가 일치하지 않습니다.';
+              password2_check.style.color = 'red';
+            } else {
+              password2_check.innerText = '비밀번호가 일치합니다.';
+              password2_check.style.color = 'blue';
+            }
+          });
+          // 아이디 유효성 검사
+          id_check.addEventListener('click', function () {
+            if (form.id.value.length < 8) {
+              alert('아이디를 8자 이상 입력해 주세요!');
+              form.id.focus();
+            } else {
+              location = 'idCheckPro.php?id=' + form.id.value;
+            }
+          });
+          let before = document.getElementById('before');
+          before.addEventListener('click', function () {
+            location = 'index.php';
+          });
+          let join = document.getElementById('join');
+          join.addEventListener('click', function () {
+            if (form.id.value.length == 0) {
+              alert('id를 입력하시오.');
+              form.id.focus();
+              return;
+            }
+            if (form.password.value.length == 0) {
+              alert('password를 입력하시오.');
+              form.password.focus();
+              return;
+            }
+            if (password2_check.style.color == 'red') {
+              alert('잘못된 정보입니다.');
+              form.password2.focus();
+              return;
+            }
+            if (form.name.value.length == 0) {
+              alert('이름을 입력하시오.');
+              form.name.focus();
+              return;
+            }
+            if (form.nickname.value.length == 0) {
+              alert('닉네임을 입력하시오.');
+              form.nickname.focus();
+              return;
+            }
+            if (form.birth.value.length == 0) {
+              alert('생년월일을 입력하시오.');
+              form.birth.focus();
+              return;
+            }
+            if (form.phone.value.length == 0) {
+              alert('전화번호를 입력하시오.');
+              form.phone.focus();
+              return;
+            }
+            if (form.email.value.length == 0) {
+              alert('이메일을 입력하시오.');
+              form.email.focus();
+              return;
+            }
 
-      <label for="email">이메일<span id="email_check"></span></label>
-      <input type="text" name="email" />
-
-      <div class="buttones">
-        <input type="button" value="회원가입" class="join" id="join" />
-        <input type="button" value="이전" class="before" id="before" />
-      </div>
-    </form>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        let form = document.getElementById('form');
-        let id_check = document.getElementById('id_check');
-
-        // 이메일 유효성 검사
-        //이메일 검사 함수
-        let isEmail = function (value) {
-          return (value.indexOf('@') > 2) && (value.split('@')[1].indexOf('.') > 2)
-            && (value.split('.')[1].length > 1);
-
-        }
-        // 이메일 확인
-        let email_check = document.querySelector("#email_check");
-        form.email.addEventListener("keyup", function (event) {
-          let value = event.currentTarget.value;
-          if (isEmail(value)) {    //이메일 형식이 맞을 때
-            email_check.innerHTML = "올바른 형식입니다. : " + value;
-            email_check.style.color = "blue";
-          } else {   // 이메일 형식이 아닐 때
-            email_check.innerHTML = "잘못된 형식입니다. : " + value;
-            email_check.style.color = "red";
-          }
-        })
-
-
-        // 비밀번호 유효성 검사!!!
-        let password_check = document.querySelector("#password_check");
-        let password2_check = document.querySelector("#password2_check");
-        form.password.addEventListener("keyup", function () {
-          if (form.password.value.length < 8) {
-            password_check.innerText = "비밀 번호는 8자 이상이어야 합니다.";
-            password_check.style.color = "red";
-          } else {
-            password_check.innerText = "사용 가능한 비밀번호입니다.";
-            password_check.style.color = "blue";
-          }
-        })
-        // 비밀번호 확인 유효성 검사!!!
-        form.password2.addEventListener("keyup", function () {
-          if (form.password.value != form.password2.value) {
-            password2_check.innerText = "비밀번호가 일치하지 않습니다.";
-            password2_check.style.color = "red";
-          } else {
-            password2_check.innerText = "비밀번호가 일치합니다.";
-            password2_check.style.color = "blue";
-          }
-        })
-        // 아이디 유효성 검사
-        id_check.addEventListener('click', function () {
-          if (form.id.value.length < 8) {
-            alert('아이디를 8자 이상 입력해 주세요!');
-            form.id.focus();
-          } else {
-            location = 'idCheckPro.php?id=' + form.id.value;
-          }
+            form.submit();
+          });
         });
-        let before = document.getElementById('before');
-        before.addEventListener('click', function () {
-          location = 'index.php';
-        });
-        let join = document.getElementById('join');
-        join.addEventListener('click', function () {
-          if (form.id.value.length == 0) {
-            alert('id를 입력하시오.');
-            form.id.focus();
-            return;
-          }
-          if (form.password.value.length == 0) {
-            alert('password를 입력하시오.');
-            form.password.focus();
-            return;
-          }
-          if (password2_check.style.color == "red") {
-            alert('잘못된 정보입니다.');
-            form.password2.focus();
-            return;
-          }
-          if (form.name.value.length == 0) {
-            alert('이름을 입력하시오.');
-            form.name.focus();
-            return;
-          }
-          if (form.nickname.value.length == 0) {
-            alert('닉네임을 입력하시오.');
-            form.nickname.focus();
-            return;
-          }
-          if (form.birth.value.length == 0) {
-            alert('생년월일을 입력하시오.');
-            form.birth.focus();
-            return;
-          }
-          if (form.phone.value.length == 0) {
-            alert('전화번호를 입력하시오.');
-            form.phone.focus();
-            return;
-          }
-          if (form.email.value.length == 0) {
-            alert('이메일을 입력하시오.');
-            form.email.focus();
-            return;
-          }
-
-          form.submit();
-        });
-      });
-    </script>
-  </div>
-</body>
-
+      </script>
+    </div>
+  </body>
 </html>
