@@ -34,7 +34,7 @@
           <a onclick="history.go(-1)">돌아가기</a>
         </div>
       </header>
-      <!--  -->
+      <!-- 회원 탈퇴해야 돼 -->
       <section class="userInfo">
         <div class="withdrawBox">
           <form action="" method="POST">

@@ -1,9 +1,6 @@
 <?php include("./connect.php")?>
 
 <?php 
- header("Content-Type:text/html;charset=utf-8");
- 
-
  $id = $_POST['id'];
  $password = $_POST['password'];
  $name = $_POST['name'];
@@ -13,7 +10,6 @@
  $phone = $_POST['phone'];
  $email = $_POST['email'];
  
-echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
  $query = "insert into member(id, password, name, nickname, gender, birth, phone, email)
             values('$id', '$password', '$name', '$nickname', '$gender', '$birth', '$phone', '$email')";
  $result = mysqli_query($connection, $query);
@@ -24,12 +20,10 @@ echo "$id, $password, $name, $nickname, $gender, $birth, $phone, $email";
  if($joinCheck[0]) {
     echo "<script>
     alert('회원가입에 성공하였습니다.!!!!!');
-    location = 'login.html';
 </script>";
  }else {
     echo "<script>
     alert('회원가입에 실패하였습니다.!!!!!');
-    location = 'index.php';
 </script>";
- }
+ } echo "<script>location = 'login.html';</script>";
  mysqli_close($connection);

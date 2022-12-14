@@ -1,8 +1,6 @@
 <?php include("./connect.php")?>
 
 <?php 
-header("Content-Type:text/html;charset=utf-8");
-
     $idx = $_GET['class_idx'];
 
     $cate_query = "select main_category, sub_category from class where class_idx='$idx'";

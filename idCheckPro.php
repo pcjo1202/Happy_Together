@@ -1,9 +1,6 @@
 <?php include("./connect.php")?>
 
 <?php
-header("Content-Type:text/html;charset=utf-8");
-
-
 $id = $_GET['id'];
 
 $query = "select * from member where id='$id'";

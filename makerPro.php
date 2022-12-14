@@ -1,8 +1,6 @@
-<?php include("./connect.php")?>
+<?php session_start(); include("./connect.php")?>
 
 <?php
-    header("Content-Type:text/html;charset=utf-8");
-    session_start();
 
     $title = $_POST['title'];
     if(!isset($_SESSION['id'])){

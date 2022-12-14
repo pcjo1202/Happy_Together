@@ -399,22 +399,6 @@
                 placeholder="모입 시간, 장소, 모집인원" readonly><?=$contents?>
               </textarea>
 
-              <!-- 수정 삭제 신청 이전 버튼 css 수정 필요!!!!!!!!!!!!!!!!!! -->
-              <?php
-            // if (!strcmp($classPro[4], $current_id)){
-            //   echo "<input class='updBtn' type='submit' value='수정' />
-            //     <input class='delBtn' type='button' value='삭제' />
-            //     <input class='befBtn' type='button' value='이전' />";
-            //     return;
-            // } else if(!isset($_SESSION['id'])) {
-            //   echo "<input class='befBtn' type='button' value='이전' />";
-            //   return;
-            // }else{
-            //   echo "<input class='regBtn' type='button' value='신청' />
-            //   <input class='befBtn' type='button' value='이전' />";
-            //   return;
-            // }
-            ?>
               <div class="btnBox">
                 <input class='btn delBtn' type='button' value='삭제' />
                 <input class='btn updBtn' type='button' value='수정' />
@@ -435,16 +419,14 @@
               <ul class="member_list attendor_list">
                 <?php
                   // 참여자 목록 불러오기
-                  $register_member_query = "select register_id from register_class where class_idx = $class_idx;";
-                  $register_result = mysqli_query($connection, $register_member_query);
+                  $join_member_query = "select join_id from join_class where class_idx = '$class_idx'";
+                  $join_result = mysqli_query($connection, $join_member_query);
 
-                  while($register_member = mysqli_fetch_array($register_result)){
+                  while($join_member = mysqli_fetch_array($join_result)){
                     echo "
                     <li class='member'>
-                      <span class='member_name'>$register_member[0]</span>
-                    </li>
-                  ";
-            
+                      <span class='member_name'>$join_member[0]</span>
+                    </li>";
                   }
                   
                 ?>
@@ -456,45 +438,20 @@
               <ul class="member_list applicant_list">
                 <?php
                 // 신청자 현황 받아오기
-
-                echo "
+                $register_member_query = "select register_idx, register_id from register_class where class_idx = '$class_idx'";
+                $register_result = mysqli_query($connection, $register_member_query);
+                while($register_member = mysqli_fetch_array($register_result)){
+                  echo "
                   <li class='member'>
-                  <span class='member_name'>박창조</span>
+                  <input type='hidden' class='register_idx' value='$register_idx[0]'>
+                  <span class='member_name register_member_name'>$register_member[1]</span>
                   <div class='member_btn'>
                     <span class='accept'>수락</span>
                     <span class='refuse'>거절</span>
                   </div>
-                  </li>
-                ";
+                  </li>";
+                }
                 ?>
-                <li class="member">
-                  <span class="member_name">테스트</span>
-                  <div class="member_btn">
-                    <span class="accept">수락</span>
-                    <span class="refuse">거절</span>
-                  </div>
-                </li>
-                <li class="member">
-                  <span class="member_name">world</span>
-                  <div class="member_btn">
-                    <span class="accept">수락</span>
-                    <span class="refuse">거절</span>
-                  </div>
-                </li>
-                <li class="member">
-                  <span class="member_name">hello</span>
-                  <div class="member_btn">
-                    <span class="accept">수락</span>
-                    <span class="refuse">거절</span>
-                  </div>
-                </li>
-                <li class="member">
-                  <span class="member_name">abcd1234</span>
-                  <div class="member_btn">
-                    <span class="accept">수락</span>
-                    <span class="refuse">거절</span>
-                  </div>
-                </li>
               </ul>
             </div>
           </div>
@@ -541,6 +498,31 @@
        updBtn.addEventListener("click",function() {
         location = 'class_getUpdate.php?class_idx=' + idx.value;
       })
+
+      // 수락 누를 시 
+      let accept = document.querySelectorAll(".accept");
+      let register_member_name = document.querySelectorAll(".register_member_name");
+      let refuse = document.querySelectorAll(".refuse");
+      let register_idx = document.querySelectorAll(".register_idx");
+
+
+      for(let i=0; i < accept.length; i++){
+        accept[i].addEventListener("click",function() {
+          let accept_confirm = confirm(`${register_member_name[i].innerText} 님을 모임에 참여하시겠습니까?`);
+          if(accept_confirm){
+            location = 'join_class_insert.php?class_idx=' + idx.value + '&leader_id=' + leader_id + '&join_id=' + register_member_name[i].innerText;
+          }
+        })
+      }
+      // 거절 누를 시
+      for(let i=0; i < accept.length; i++){
+        refuse[i].addEventListener("click",function() {
+          let accept_confirm = confirm(`${register_member_name[i].innerText} 님의 모임 신청을 거절하시겠습니까?`);
+          if(accept_confirm){
+            location = 'registerDeletePro.php?register_idx='+register_idx[i].innerText;
+          }
+        })
+      }
 
     })
     </script>

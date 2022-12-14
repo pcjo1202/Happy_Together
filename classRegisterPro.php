@@ -1,9 +1,6 @@
-<?php include("./connect.php")?>
+<?php session_start(); include("./connect.php")?>
 
 <?php
-header("Content-Type:text/html;charset=utf-8");
-session_start();
-
     // 모임 상세 보기에서 가져온 것 class_Idx, class_leader_id
     $idx = $_GET['class_idx'];
     $leader_id = $_GET['class_leader_id'];
