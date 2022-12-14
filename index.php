@@ -48,6 +48,65 @@ $category = mysqli_fetch_array($result);
     gap: 2rem;
   }
 
+  /* 공지사항 */
+  .post_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: #889FA5;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 5s ease;
+  }
+
+  .none {
+    top: -100%;
+  }
+
+  .post_wrapper .post_title {
+    font-size: 1.5rem;
+  }
+
+  .post_contents {
+    flex: 1;
+    align-self: center;
+  }
+
+  .exitBtn {
+    flex-basis: 50px;
+    cursor: pointer;
+    transition: all 200ms ease;
+
+    width: 30px;
+    height: 7px;
+    background-color: #000;
+    transform: rotate(45deg);
+  }
+
+  .exitBtn:hover {
+    transform: rotate(225deg);
+  }
+
+  .exitBtn::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 7px;
+    background-color: #000;
+    transform: rotate(90deg);
+  }
+
+
+
+
+  /*  */
+
   header {
     display: flex;
     flex-direction: column;
@@ -131,9 +190,22 @@ $category = mysqli_fetch_array($result);
 </head>
 
 <body>
-
-
   <div class="container">
+    <div class="post_wrapper">
+      <?php
+        $post_query = "select * from post;";
+        $post_result = mysqli_query($connection, $post_query);
+        $post_data = mysqli_fetch_array($post_result);
+
+      // print_r($post_data);
+        echo "
+          <h1 class='post_title'>$post_data[0]</h1>
+          <p class='post_contents'>$post_data[2]</p>
+          <div class='exitBtn' onclick='exitPost()'></div>
+        "
+      ?>
+
+    </div>
     <header>
       <sub>우리들의 모임 플랫폼</sub>
       <h1 class="title">Happy Together</h1>
@@ -178,6 +250,12 @@ $category = mysqli_fetch_array($result);
       }
 
     });
+
+    const exitPost = (event) => {
+      const post = document.querySelector('.post_wrapper');
+      console.log(post)
+      post.classList.add("none");
+    }
     </script>
 </body>
 
