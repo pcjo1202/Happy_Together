@@ -263,7 +263,7 @@
               <img src="./image/logo.png" alt="HATO">
             </a>
           </div>
-          <div class="subTitle">모임 상세보기</div>
+          <div class="subTitle">모임 수정</div>
         </div>
         <div class="right">
           <div class="myPage">
@@ -293,112 +293,37 @@
               <!--  -->
               <div class="subject title">
                 <span>제목</span>
-                <input type="text" value="<?=$title?>" name="title" readonly />
+                <input type="text" value="<?=$title?>" name="title" />
               </div>
               <!--  -->
               <div class="subject category">
                 <span>카테고리</span>
-                <input type="text" value="<?=$main?>" name="mainCategory" readonly /> &ensp;/
+                <input type="text" value="<?=$main?>" name="mainCategory" readonly/> &ensp;/
                 <input type="text" value="<?=$sub?>" name="subCategory" readonly />
               </div>
               <!--  -->
               <div class="subject members">
                 <span>모집인원</span>
-                <input type="number" name="memberCount" value="<?=$numbers?>" readonly/>
+                <input type="number" name="memberCount" value="<?=$numbers?>"/>
               </div>
               <!--  -->
               <div class="subject place">
                 <span>장소</span>
-                <input type="text" name="place" value="<?=$place?>" readonly/>
+                <input type="text" name="place" value="<?=$place?>"/>
               </div>
               <!--  -->
               <textarea class="contents" name="contents" id="" cols="30" rows="10"
-                placeholder="모입 시간, 장소, 모집인원" readonly><?=$contents?>
+                placeholder="모입 시간, 장소, 모집인원"><?=$contents?>
               </textarea>
-
-              <!-- 수정 삭제 신청 이전 버튼 css 수정 필요!!!!!!!!!!!!!!!!!! -->
-              <?php
-            // if (!strcmp($classPro[4], $current_id)){
-            //   echo "<input class='updBtn' type='submit' value='수정' />
-            //     <input class='delBtn' type='button' value='삭제' />
-            //     <input class='befBtn' type='button' value='이전' />";
-            //     return;
-            // } else if(!isset($_SESSION['id'])) {
-            //   echo "<input class='befBtn' type='button' value='이전' />";
-            //   return;
-            // }else{
-            //   echo "<input class='regBtn' type='button' value='신청' />
-            //   <input class='befBtn' type='button' value='이전' />";
-            //   return;
-            // }
-            ?>
               <div class="btnBox">
-                <input class='btn delBtn' type='button' value='삭제' />
-                <input class='btn updBtn' type='button' value='수정' />
-                <input class='btn regBtn' type='button' value='신청' />
+                <input class='btn updBtn' type='submit' value='수정' />
                 <input class='btn befBtn' type='button' value='이전' />
               </div>
-
             </form>
-          </div>
-          <div class="applicant_wrapper">
-            <h3>신청자 현황</h3>
-            <ul class="applicant_list">
-              <li class="applicant">
-                박창조
-              </li>
-              <li class="applicant">
-                박창조
-              </li>
-              <li class="applicant">
-                박창조
-              </li>
-            </ul>
           </div>
         </div>
       </main>
     </div>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      let befBtn = document.querySelector(".befBtn");
-      let updBtn = document.querySelector(".updBtn");
-      let delBtn = document.querySelector(".delBtn");
-      let regBtn = document.querySelector(".regBtn");
-      let leader_id = document.querySelector(".leader_id").value;
-      let session_id = document.querySelector(".session_id").value;
-      let idx = document.querySelector(".idx");
-
-
-      if (session_id == leader_id) {
-        regBtn.style.display = 'none';
-      } else if (session_id.length == 0) {
-        updBtn.style.display = 'none';
-        delBtn.style.display = 'none';
-        regBtn.style.display = 'none';
-      } else if (session_id != leader_id) {
-        updBtn.style.display = 'none';
-        delBtn.style.display = 'none';
-      }
-
-
-      befBtn.addEventListener("click", function() {
-        history.back();
-      })
-      // 삭제 기능 완료
-      delBtn.addEventListener("click", function() {
-        location = 'classDeletePro.php?class_idx=' + idx.value;
-      })
-      // 신청 기능 
-      regBtn.addEventListener("click", function() {
-        location = 'classRegisterPro.php?class_idx=' + idx.value + '&class_leader_id=' + leader_id;
-      })
-      // 수정 기능
-      updBtn.addEventListener("click",function() {
-        location = 'class_getUpdate.php?class_idx=' + idx.value;
-      })
-
-    })
-    </script>
   </body>
 
 </html>

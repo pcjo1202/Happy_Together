@@ -1,8 +1,7 @@
-<?php include("./connect.php")?>
-
 <?php 
-header("Content-Type:text/html;charset=utf-8");
 session_start();
+include("./connect.php");
+
 
     $idx = $_POST['class_idx'];
     $title = $_POST['title'];
