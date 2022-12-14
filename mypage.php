@@ -36,6 +36,11 @@
       </header>
       <!--  -->
       <section class="userInfo">
+        <div class="withdrawBox">
+          <form action="" method="POST">
+            <button>회원탈퇴</button>
+          </form>
+        </div>
         <?php
           $myInfo_query = "select name, gender, phone, nickname, birth, email  from member where id ='$id'";
           $myInfo_result = mysqli_query($connection, $myInfo_query);
@@ -128,11 +133,11 @@
             <!--  -->
             <ul class="list_wrapper">
               <?php
-              // "select * from class where";
-              // $register_query = "select class_idx from register_class where register_id = '$id'";
-              // $register_result = mysqli_query($connection, $register_query);
-              // $register_count = mysqli_num_rows($register_result);
-              // // $registerClass = mysqli_fetch_array($register_result);
+              "select * from class where";
+              $register_query = "select class_idx from register_class where register_id = '$id'";
+              $register_result = mysqli_query($connection, $register_query);
+              $register_count = mysqli_num_rows($register_result);
+              $registerClass = mysqli_fetch_array($register_result);
 
               //   for($i=0; $i < $register_count; $i++) {
               //     $registerClass = mysqli_fetch_array($lead_result);
