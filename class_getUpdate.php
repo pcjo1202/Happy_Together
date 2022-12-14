@@ -325,5 +325,12 @@
       </main>
     </div>
   </body>
-
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      let befBtn = document.querySelector(".befBtn");
+      befBtn.addEventListener("click", function() {
+        history.back();
+      })
+    })
+    </script>
 </html>

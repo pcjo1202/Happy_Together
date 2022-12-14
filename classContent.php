@@ -376,7 +376,7 @@
               <!--  -->
               <div class="subject title">
                 <span>제목</span>
-                <input type="text" value="<?=$title?>" name="title" />
+                <input type="text" value="<?=$title?>" name="title" readonly />
               </div>
               <!--  -->
               <div class="subject category">
@@ -387,16 +387,16 @@
               <!--  -->
               <div class="subject members">
                 <span>모집인원</span>
-                <input type="number" name="memberCount" value="<?=$numbers?>" />
+                <input type="number" name="memberCount" value="<?=$numbers?>" readonly />
               </div>
               <!--  -->
               <div class="subject place">
                 <span>장소</span>
-                <input type="text" name="place" value="<?=$place?>" />
+                <input type="text" name="place" value="<?=$place?>" readonly />
               </div>
               <!--  -->
               <textarea class="contents" name="contents" id="" cols="30" rows="10"
-                placeholder="모입 시간, 장소, 모집인원"><?=$contents?>
+                placeholder="모입 시간, 장소, 모집인원" readonly><?=$contents?>
               </textarea>
 
               <!-- 수정 삭제 신청 이전 버튼 css 수정 필요!!!!!!!!!!!!!!!!!! -->
