@@ -134,35 +134,29 @@
             <ul class="list_wrapper">
               <?php
               "select * from class where";
-              $register_query = "select class_idx from register_class where register_id = '$id'";
+              $register_query = "select * from register_class where register_id = '$id'";
               $register_result = mysqli_query($connection, $register_query);
-              $register_count = mysqli_num_rows($register_result);
-              $registerClass = mysqli_fetch_array($register_result);
 
-              //   for($i=0; $i < $register_count; $i++) {
-              //     $registerClass = mysqli_fetch_array($lead_result);
-                 
-              //     $index = $registerClass[0];
-              //     echo "
-              //      <li class='classList_item'>
-              //        <div class='item_data list_index'>$index</div>
-              //        <div class='item_data list_title'>축구 할 사람!</div>
-              //        <div class='item_data list_field'>운동/축구</div>
-              //        <div class='item_data list_date'>일자</div>
-              //      </li>
-              //     ";
-                 
-              //  } 
+              while($registerClass = mysqli_fetch_array($register_result)){
+
+                $myclass_query = "select class_title, main_category, sub_category,write_date from class where class_idx = $registerClass[class_idx]";
+                
+                $myclass_result = mysqli_query($connection, $myclass_query);
+                
+                while($myClass = mysqli_fetch_array($myclass_result)){
+                  
+                   echo "
+                   <li class='classList_item'>
+                     <div class='item_data list_index'>$registerClass[class_idx]</div>
+                     <div class='item_data list_title'>$myClass[class_title]</div>
+                     <div class='item_data list_field'>$myClass[main_category] / $myClass[main_category]</div>
+                     <div class='item_data list_date'>$myClass[write_date]</div>
+                   </li>
+                  ";
+                }
+              }
+
                ?>
-              <li class="classList_item">
-                <div class="item_data list_index">1</div>
-                <div class="item_data list_title">축구 할 사람!</div>
-                <div class="item_data list_field">운동/축구</div>
-                <div class="item_data list_date">일자</div>
-              </li>
-              <!--  -->
-
-              <!--  -->
             </ul>
           </article>
         </div>
