@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>관리자 페이지</title>
+  <style type="text/css">
+    .container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body {
+      font-size: 16px;
+      background: #EEFFF1;
+    }
+
+    a {
+      text-decoration: none;
+      color: rgb(0, 132, 255);
+      font-size: 40px;
+      /* align: center; */
+    }
+
+    a:hover {
+      color: rgb(255, 153, 0);
+    }
+
+    .title {
+      border-top: 3px solid #999;
+      border-bottom: 2px solid #999;
+      background: #eee;
+      font-weight: bold;
+    }
+
+    h1 {
+      color: rgb(0, 132, 255);
+    }
+
+    textarea {
+      font-size: 16px bold;
+      letter-spacing: 1px;
+    }
+
+    textarea {
+      padding: 10px;
+      max-width: 100%;
+      line-height: 1.5;
+      border-radius: 5px;
+      border: 1px solid rgb(95, 93, 93);
+      box-shadow: 1px 1px 1px #999;
+    }
+
+    form {
+      width: 50%;
+      margin-left: 25%;
+    }
+
+    .btns {
+      text-align: center;
+    }
+
+    .btns [type="submit"],
+    .btns [type="button"] {
+      width: 80px;
+      height: 34px;
+
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let before = document.querySelector(".before");
+
+      before.addEventListener("click", function () {
+        history.back();
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <a href="adminMain.php"> 관리자 페이지 </a>
+  </div>
+  <hr />
+  <form action="admin_post_insert.php" name="form" method="post">
+    <p>[제목]</p><input type="text" name="title" size="50">
+    <p>[내용]</p>
+    <textarea name="contents" rows="15" cols="100"></textarea>
+    <div class="btns">
+      <input type="submit" value="입력" />
+      <input type="button" class="before" value="이전" />
+    </div>
+  </form>
+</body>
+
+</html>
