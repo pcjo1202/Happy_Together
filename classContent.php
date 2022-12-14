@@ -102,7 +102,7 @@
     }
 
     main .classData_wrapper {
-      /* width: 900px; */
+      width: 900px;
       flex: 1;
       height: 100%;
       display: flex;
@@ -110,15 +110,98 @@
       align-items: baseline;
     }
 
-    main .applicant_wrapper {
-      width: 350px;
-      height: 100%;
-      border-radius: 15px;
+    main .memberStatus_wrapper {
+      flex: 0 0 400px;
+      height: 600px;
+      border-radius: 10px;
       background-color: #fff;
-      /* display: none; */
+
+      display: flex;
+      flex-direction: column;
+      display: none;
     }
 
-    main .applicant_wrapper .applicant_list {}
+    main .memberStatus_wrapper .attendor_status {
+      flex: 0 0 400px;
+      padding: 0.5rem 1rem;
+      border-bottom: 3px solid #43655A;
+      overflow: auto;
+    }
+
+    main .memberStatus_wrapper .applicant_status {
+      flex: 0 0 200px;
+      padding: 0.5rem 1rem;
+    }
+
+    .member_title {
+      font-size: 1.2rem;
+    }
+
+    main .memberStatus_wrapper .member_list {
+      padding: 0.3rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      overflow: auto;
+    }
+
+    main .memberStatus_wrapper .member_list::-webkit-scrollbar-thumb {
+      background-color: #43655A;
+    }
+
+    .attendor_list {
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .attendor_list>li {}
+
+    .applicant_list {
+      height: 150px;
+    }
+
+    .member_list li {
+      padding: 0.3rem;
+      display: flex;
+      align-items: center;
+      /* cursor: pointer; */
+    }
+
+    .member_list li .member_name {
+      background-color: #e9eaea;
+      border-radius: 15px;
+      text-align: center;
+      padding: 0.2rem 0.5rem;
+      flex: 1;
+    }
+
+    .member_list li .member_btn {
+      flex: 0 0 60%;
+
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.7rem;
+    }
+
+    .member_list li .member_btn>span {
+      background-color: wheat;
+      padding: 0.1rem 0.5rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      transition: all 200ms;
+      cursor: pointer;
+    }
+
+    .member_list li .member_btn>span:hover {
+      background-color: #b4c1c6;
+    }
+
+    .member_list li .member_btn .refuse {
+      background-color: #ffc5c5;
+    }
+
+    /*  */
 
     .formBox {
       width: 90%;
@@ -341,36 +424,98 @@
 
             </form>
           </div>
-          <div class="applicant_wrapper">
-            <h3>신청자 현황</h3>
-            <ul class="applicant_list">
-              <li class="applicant">
-                박창조
-              </li>
-              <li class="applicant">
-                박창조
-              </li>
-              <li class="applicant">
-                박창조
-              </li>
-            </ul>
+          <!-- 신청자, 참여자 현황 :: 모임의 리더만 볼 수 있게...
+              -> 평소에 display : none 상태이고, 
+              if( 모임 리더 id == 로그인 중인 id) 이면 display: block;
+         -->
+          <div class="memberStatus_wrapper">
+            <!-- attendor 참여자 목록-->
+            <div class="attendor_status">
+              <h3 class="member_title attendor_title">참여자 목록</h3>
+              <ul class="member_list attendor_list">
+                <?php
+                  // 참여자 목록 불러오기
+                  $register_member_query = "select register_id from register_class where class_idx = $class_idx;";
+                  $register_result = mysqli_query($connection, $register_member_query);
+
+                  while($register_member = mysqli_fetch_array($register_result)){
+                    echo "
+                    <li class='member'>
+                      <span class='member_name'>$register_member[0]</span>
+                    </li>
+                  ";
+            
+                  }
+                  
+                ?>
+              </ul>
+            </div>
+            <!-- applicant 신청자 현황<-->
+            <div class="applicant_status">
+              <h3 class="member_title applicant_title">신청자 현황</h3>
+              <ul class="member_list applicant_list">
+                <?php
+                // 신청자 현황 받아오기
+
+                echo "
+                  <li class='member'>
+                  <span class='member_name'>박창조</span>
+                  <div class='member_btn'>
+                    <span class='accept'>수락</span>
+                    <span class='refuse'>거절</span>
+                  </div>
+                  </li>
+                ";
+                ?>
+                <li class="member">
+                  <span class="member_name">테스트</span>
+                  <div class="member_btn">
+                    <span class="accept">수락</span>
+                    <span class="refuse">거절</span>
+                  </div>
+                </li>
+                <li class="member">
+                  <span class="member_name">world</span>
+                  <div class="member_btn">
+                    <span class="accept">수락</span>
+                    <span class="refuse">거절</span>
+                  </div>
+                </li>
+                <li class="member">
+                  <span class="member_name">hello</span>
+                  <div class="member_btn">
+                    <span class="accept">수락</span>
+                    <span class="refuse">거절</span>
+                  </div>
+                </li>
+                <li class="member">
+                  <span class="member_name">abcd1234</span>
+                  <div class="member_btn">
+                    <span class="accept">수락</span>
+                    <span class="refuse">거절</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </main>
     </div>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-      let befBtn = document.querySelector(".befBtn");
-      let updBtn = document.querySelector(".updBtn");
-      let delBtn = document.querySelector(".delBtn");
-      let regBtn = document.querySelector(".regBtn");
-      let leader_id = document.querySelector(".leader_id").value;
-      let session_id = document.querySelector(".session_id").value;
-      let idx = document.querySelector(".idx");
-
+      const befBtn = document.querySelector(".befBtn");
+      const updBtn = document.querySelector(".updBtn");
+      const delBtn = document.querySelector(".delBtn");
+      const regBtn = document.querySelector(".regBtn");
+      const leader_id = document.querySelector(".leader_id").value;
+      const session_id = document.querySelector(".session_id").value;
+      const idx = document.querySelector(".idx");
+      const memberStatus = document.querySelector(".memberStatus_wrapper");
 
       if (session_id == leader_id) {
         regBtn.style.display = 'none';
+        memberStatus.style.display = "flex";
+
       } else if (session_id.length == 0) {
         updBtn.style.display = 'none';
         delBtn.style.display = 'none';
