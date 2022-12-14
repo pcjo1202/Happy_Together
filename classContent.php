@@ -436,6 +436,7 @@
             <div class="applicant_status">
               <h3 class="member_title applicant_title">신청자 현황</h3>
               <ul class="member_list applicant_list">
+                
                 <?php
                 // 신청자 현황 받아오기
                 $register_member_query = "select register_idx, register_id from register_class where class_idx = '$class_idx'";
@@ -443,7 +444,7 @@
                 while($register_member = mysqli_fetch_array($register_result)){
                   echo "
                   <li class='member'>
-                  <input type='hidden' class='register_idx' value='$register_idx[0]'>
+                  <input type='hidden' value='$register_member[0]' class='register_idx'>
                   <span class='member_name register_member_name'>$register_member[1]</span>
                   <div class='member_btn'>
                     <span class='accept'>수락</span>
@@ -518,8 +519,9 @@
       for(let i=0; i < accept.length; i++){
         refuse[i].addEventListener("click",function() {
           let accept_confirm = confirm(`${register_member_name[i].innerText} 님의 모임 신청을 거절하시겠습니까?`);
+          
           if(accept_confirm){
-            location = 'registerDeletePro.php?register_idx='+register_idx[i].innerText;
+            location = 'registerDeletePro.php?register_idx='+register_idx[i].value;
           }
         })
       }

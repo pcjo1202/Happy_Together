@@ -134,12 +134,12 @@
             <ul class="list_wrapper">
               <?php
               "select * from class where";
-              $register_query = "select * from register_class where register_id = '$id'";
-              $register_result = mysqli_query($connection, $register_query);
+              $join_query = "select * from join_class where join_id = '$id'";
+              $join_result = mysqli_query($connection, $join_query);
 
-              while($registerClass = mysqli_fetch_array($register_result)){
+              while($joinClass = mysqli_fetch_array($join_result)){
 
-                $myclass_query = "select class_title, main_category, sub_category,write_date from class where class_idx = $registerClass[class_idx]";
+                $myclass_query = "select class_title, main_category, sub_category,write_date from class where class_idx = $joinClass[class_idx]";
                 
                 $myclass_result = mysqli_query($connection, $myclass_query);
                 
@@ -147,7 +147,7 @@
                   
                    echo "
                    <li class='classList_item'>
-                     <div class='item_data list_index'>$registerClass[class_idx]</div>
+                     <div class='item_data list_index'>$joinClass[class_idx]</div>
                      <div class='item_data list_title'>$myClass[class_title]</div>
                      <div class='item_data list_field'>$myClass[main_category] / $myClass[main_category]</div>
                      <div class='item_data list_date'>$myClass[write_date]</div>

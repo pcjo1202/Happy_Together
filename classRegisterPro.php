@@ -17,6 +17,15 @@
     if($confirm_over_pro[0]){
         echo "<script>alert('이미 신청한 모임입니다.'); history.back();</script>";
         return;
+    }else {
+        // 이미 가입한 모임이라면 register에도 못 들어감
+        $confirm_join_select_query = "select * from join_class where class_idx = '$idx' and join_id='$id'";
+        $confirm_join_result = mysqli_query($connection, $confirm_join_select_query);
+        $confirm_join_pro = mysqli_fetch_array($confirm_join_result);
+        if($confirm_join_pro[0]) {
+            echo"<script>alert('이미 가입된 모임입니다.'); history.back();</script>";
+            return;
+        }
     }
 
     $insert_query = "insert into register_class(class_idx, leader_id, register_id) 
