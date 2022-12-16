@@ -37,9 +37,8 @@
       <!-- 회원 탈퇴해야 돼 -->
       <section class="userInfo">
         <div class="withdrawBox">
-          <form action="" method="POST">
-            <button>회원탈퇴</button>
-          </form>
+            <input type="hidden" value="<?=$id?>" class="session_id">
+            <button class="member_discard">회원탈퇴</button>
         </div>
         <?php
           $myInfo_query = "select name, gender, phone, nickname, birth, email  from member where id ='$id'";
@@ -165,7 +164,21 @@
       </section>
     </div>
     <script>
-    document.querySelectorAll('.list_wrapper').forEach((list) => {
+    
+      document.addEventListener("DOMContentLoaded", function() {
+        const member_discard = document.querySelector(".member_discard");
+        const session_id = document.querySelector(".session_id");
+        member_discard.addEventListener("click", function() {
+          const confirm_delete = confirm('정말 탈퇴하시겠습니까??\n복구할 수 없습니다.');
+          if(confirm_delete){
+            location = 'member_delete.php?id=' + session_id.value;
+            return;
+          }
+        })
+
+
+
+        document.querySelectorAll('.list_wrapper').forEach((list) => {
       const list_item = list.querySelectorAll('li');
       list_item.forEach((item, key) => {
 
@@ -182,6 +195,10 @@
 
       });
     });
+      })
+      
+
+    
 
     //
     </script>
