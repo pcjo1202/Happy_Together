@@ -193,7 +193,7 @@ $category = mysqli_fetch_array($result);
   <div class="container">
     <div class="post_wrapper">
       <?php
-        $post_query = "select * from post;";
+        $post_query = "select * from post order by write_date desc";
         $post_result = mysqli_query($connection, $post_query);
         $post_data = mysqli_fetch_array($post_result);
 
