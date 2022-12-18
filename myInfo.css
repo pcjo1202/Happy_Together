@@ -119,6 +119,10 @@ header {
   row-gap: 1.3rem;
 }
 
+img .message {
+  cursor: pointer;
+}
+
 .info_box {
 
   display: flex;
