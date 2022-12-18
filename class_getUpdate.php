@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Happy Together - 모임 만들기</title>
     <style>
+    @import url(./reset.css);
+
     * {
       margin: 0;
       padding: 0;
@@ -298,18 +300,18 @@
               <!--  -->
               <div class="subject category">
                 <span>카테고리</span>
-                <input type="text" value="<?=$main?>" name="mainCategory" readonly/> &ensp;/
+                <input type="text" value="<?=$main?>" name="mainCategory" readonly /> &ensp;/
                 <input type="text" value="<?=$sub?>" name="subCategory" readonly />
               </div>
               <!--  -->
               <div class="subject members">
                 <span>모집인원</span>
-                <input type="number" name="memberCount" value="<?=$numbers?>"/>
+                <input type="number" name="memberCount" value="<?=$numbers?>" />
               </div>
               <!--  -->
               <div class="subject place">
                 <span>장소</span>
-                <input type="text" name="place" value="<?=$place?>"/>
+                <input type="text" name="place" value="<?=$place?>" />
               </div>
               <!--  -->
               <textarea class="contents" name="contents" id="" cols="30" rows="10"
@@ -326,11 +328,12 @@
     </div>
   </body>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      let befBtn = document.querySelector(".befBtn");
-      befBtn.addEventListener("click", function() {
-        history.back();
-      })
+  document.addEventListener("DOMContentLoaded", function() {
+    let befBtn = document.querySelector(".befBtn");
+    befBtn.addEventListener("click", function() {
+      history.back();
     })
-    </script>
+  })
+  </script>
+
 </html>

@@ -163,6 +163,8 @@ $class_count = mysqli_num_rows($result_class);
     <title>모임 페이지-🌟{$main_category_name}🌟</title>
     " ?>
     <style>
+    @import url(./reset.css);
+
     * {
       margin: 0;
       padding: 0;

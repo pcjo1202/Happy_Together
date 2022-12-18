@@ -17,6 +17,8 @@ $category = mysqli_fetch_array($result);
   <meta charset="UTF-8">
   <title>우리들 모임 플랫폼 - Happy Together</title>
   <style>
+  @import url(./reset.css);
+
   * {
     font-size: 20px;
     margin: 0;
@@ -119,6 +121,7 @@ $category = mysqli_fetch_array($result);
   }
 
   header>.title {
+    font-family: 'Dongle', sans-serif;
     font-size: 4rem;
     color: #43655A;
   }

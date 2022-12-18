@@ -5,6 +5,8 @@
       <meta charset="UTF-8">
       <title>서브카테고리</title>
       <style>
+      @import url(./reset.css);
+
       input,
       select {
         border: 1;

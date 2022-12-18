@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Happy Together - 모임 만들기</title>
     <style>
+    @import url(./reset.css);
+
     * {
       margin: 0;
       padding: 0;
