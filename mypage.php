@@ -1,5 +1,6 @@
 <?php session_start();?>
-<?php include("./connect.php")?>
+<?php include("./connect.php");
+header("refresh: 2;");?>
 
 <!DOCTYPE html>
 <html lang="en">
