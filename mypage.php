@@ -30,6 +30,29 @@
           </a>
         </div>
         <h1 class="title">마이페이지</h1>
+        <?php
+          $read_count_query = "select read_count from message where receive_id='$id'";
+          $read_count_result = mysqli_query($connection, $read_count_query);
+          $read_count = mysqli_fetch_array($read_count_result);
+          $read_count_count = mysqli_num_rows($read_count_result);
+          $cnt =0;
+          for($i=0; $i < $read_count_count; $i++) {
+            if($read_count[0] == 0) {
+              $cnt++;
+            }
+            $read_count = mysqli_fetch_array($read_count_result);
+          }
+          if($cnt > 0){
+            echo "<div class='image'>
+                      <img src='image/newMessage.png' class='message' width='64'>
+                    </div>";
+          }
+          else{
+            echo "<div class='image'>
+            <img src='image/message.png' class='message' width='64'>
+          </div>";
+          }
+        ?>
         <div class="goBack">
           <a onclick="history.go(-1)">돌아가기</a>
         </div>
@@ -175,8 +198,14 @@
             return;
           }
         })
-
-
+        const message = document.querySelector(".message");
+        message.addEventListener("click",function() {
+          window.open(
+            "message_box.php?receive_id=" + session_id.value,
+            "child",
+            "width=600, height=600, top=200, left=320"
+          );
+        })
 
         document.querySelectorAll('.list_wrapper').forEach((list) => {
       const list_item = list.querySelectorAll('li');

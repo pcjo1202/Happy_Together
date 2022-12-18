@@ -325,6 +325,7 @@
     .btn:hover {
       background-color: #c9c9c9;
     }
+    .message {cursor: pointer;}
     </style>
 
   </head>
@@ -359,14 +360,14 @@
         <div class="wrapper">
           <div class="classData_wrapper">
             <?php
-            $idx = $classPro[0];
-            $leader_id = $classPro[4];
-            $title = $classPro[1];
-            $main = $classPro[6];
-            $sub = $classPro[7];
-            $numbers = $classPro[5];
-            $place = $classPro[3];
-            $contents = $classPro[2];
+              $idx = $classPro[0];
+              $leader_id = $classPro[4];
+              $title = $classPro[1];
+              $main = $classPro[6];
+              $sub = $classPro[7];
+              $numbers = $classPro[5];
+              $place = $classPro[3];
+              $contents = $classPro[2];
           ?>
             <form class="formBox" action="classUpdatePro.php" method="post">
               <!--  -->
@@ -424,9 +425,11 @@
 
                   while($join_member = mysqli_fetch_array($join_result)){
                     echo "
-                    <li class='member'>
+                    <li class='member join_member_name'>
                       <span class='member_name'>$join_member[0]</span>
+                      <img src='image/message.png' class='message'>
                     </li>";
+
                   }
                   
                 ?>
@@ -525,7 +528,26 @@
           }
         })
       }
-
+      const message = document.querySelectorAll(".message");
+      const join_member_name = document.querySelectorAll(".join_member_name");
+      for(let i=0; i< message.length; i++) {
+        message[i].addEventListener("mouseover",function() {
+          message[i].src = 'image/message2.png';
+        })
+        message[i].addEventListener("mouseout",function() {
+          message[i].src = 'image/message.png';
+        })
+      }
+      for(let i=0; i< message.length; i++) {
+        message[i].addEventListener("click", function() {
+        window.open(
+            "message_form.php?id="+join_member_name[i].innerText,
+            "Child",
+            "width=600, height=400, top=200, left=320"
+        );
+      })
+      }
+      
     })
     </script>
   </body>
