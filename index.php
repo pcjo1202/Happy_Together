@@ -17,6 +17,8 @@ $category = mysqli_fetch_array($result);
   <meta charset="UTF-8">
   <title>우리들 모임 플랫폼 - Happy Together</title>
   <style>
+  @import url(./reset.css);
+
   * {
     font-size: 20px;
     margin: 0;
@@ -46,6 +48,19 @@ $category = mysqli_fetch_array($result);
     justify-content: center;
     align-items: center;
     gap: 2rem;
+  }
+
+  .adminPage {
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+    color: #628281;
+    transition: all 200ms;
+  }
+
+  .adminPage:hover {
+    color: #43655A;
+    font-weight: bold;
   }
 
   /* 공지사항 */
@@ -119,6 +134,7 @@ $category = mysqli_fetch_array($result);
   }
 
   header>.title {
+    font-family: 'Dongle', sans-serif;
     font-size: 4rem;
     color: #43655A;
   }
@@ -191,6 +207,7 @@ $category = mysqli_fetch_array($result);
 
 <body>
   <div class="container">
+    <a class="adminPage" href="./adminPage/admin_login.html">관리자 로그인</a>
     <div class="post_wrapper">
       <?php
         $post_query = "select * from post order by write_date desc";

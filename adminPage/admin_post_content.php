@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>관리자 상세보기 페이지</title>
-  <style type="text/css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 상세보기 페이지</title>
+    <style type="text/css">
+    @import url(./reset.css);
+
     .container {
       height: 100%;
       display: flex;
@@ -71,22 +73,23 @@
       height: 34px;
 
     }
+
     .before {
       cursor: pointer;
     }
-  </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    </style>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
       let before = document.querySelector(".before");
 
-      before.addEventListener("click", function () {
+      before.addEventListener("click", function() {
         history.back();
       })
     })
-  </script>
-</head>
+    </script>
+  </head>
 
-<body>
+  <body>
     <?php 
         $connection = mysqli_connect('52.78.0.158','remoteJO','remoteJO','happyTogether',56946);
         
@@ -95,18 +98,18 @@
         $select_result = mysqli_query($connection, $select_query);
         $select = mysqli_fetch_array($select_result);
     ?>
-  <div class="container">
-    <a href="adminMain.php"> 관리자 페이지 </a>
-  </div>
-  <hr />
-  <form action="admin_post_insert.php" name="form" method="post">
-    <p>[제목]</p><input type="text" name="title" size="50" value="<?=$select[0]?>" readonly>
-    <p>[내용]</p>
-    <textarea name="contents" readonly rows="15" cols="100"><?=$select[1]?></textarea>
-    <div class="btns">
-      <input type="button" class="before" value="이전" />
+    <div class="container">
+      <a href="adminMain.php"> 관리자 페이지 </a>
     </div>
-  </form>
-</body>
+    <hr />
+    <form action="admin_post_insert.php" name="form" method="post">
+      <p>[제목]</p><input type="text" name="title" size="50" value="<?=$select[0]?>" readonly>
+      <p>[내용]</p>
+      <textarea name="contents" readonly rows="15" cols="100"><?=$select[1]?></textarea>
+      <div class="btns">
+        <input type="button" class="before" value="이전" />
+      </div>
+    </form>
+  </body>
 
 </html>

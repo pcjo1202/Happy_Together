@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Happy Together - 모임 만들기</title>
     <style>
+    @import url(./reset.css);
+
     * {
       margin: 0;
       padding: 0;
@@ -396,8 +398,8 @@
                 <input type="text" name="place" value="<?=$place?>" readonly />
               </div>
               <!--  -->
-              <textarea class="contents" name="contents" id="" cols="30" rows="10"
-                placeholder="모입 시간, 장소, 모집인원" readonly><?=$contents?>
+              <textarea class="contents" name="contents" id="" cols="30" rows="10" placeholder="모입 시간, 장소, 모집인원"
+                readonly><?=$contents?>
               </textarea>
 
               <div class="btnBox">
@@ -439,7 +441,7 @@
             <div class="applicant_status">
               <h3 class="member_title applicant_title">신청자 현황</h3>
               <ul class="member_list applicant_list">
-                
+
                 <?php
                 // 신청자 현황 받아오기
                 $register_member_query = "select register_idx, register_id from register_class where class_idx = '$class_idx'";
@@ -498,8 +500,8 @@
       regBtn.addEventListener("click", function() {
         location = 'classRegisterPro.php?class_idx=' + idx.value + '&class_leader_id=' + leader_id;
       })
-       // 수정 기능
-       updBtn.addEventListener("click",function() {
+      // 수정 기능
+      updBtn.addEventListener("click", function() {
         location = 'class_getUpdate.php?class_idx=' + idx.value;
       })
 
@@ -510,21 +512,22 @@
       let register_idx = document.querySelectorAll(".register_idx");
 
 
-      for(let i=0; i < accept.length; i++){
-        accept[i].addEventListener("click",function() {
+      for (let i = 0; i < accept.length; i++) {
+        accept[i].addEventListener("click", function() {
           let accept_confirm = confirm(`${register_member_name[i].innerText} 님을 모임에 참여하시겠습니까?`);
-          if(accept_confirm){
-            location = 'join_class_insert.php?class_idx=' + idx.value + '&leader_id=' + leader_id + '&join_id=' + register_member_name[i].innerText;
+          if (accept_confirm) {
+            location = 'join_class_insert.php?class_idx=' + idx.value + '&leader_id=' + leader_id +
+              '&join_id=' + register_member_name[i].innerText;
           }
         })
       }
       // 거절 누를 시
-      for(let i=0; i < accept.length; i++){
-        refuse[i].addEventListener("click",function() {
+      for (let i = 0; i < accept.length; i++) {
+        refuse[i].addEventListener("click", function() {
           let accept_confirm = confirm(`${register_member_name[i].innerText} 님의 모임 신청을 거절하시겠습니까?`);
-          
-          if(accept_confirm){
-            location = 'registerDeletePro.php?register_idx='+register_idx[i].value;
+
+          if (accept_confirm) {
+            location = 'registerDeletePro.php?register_idx=' + register_idx[i].value;
           }
         })
       }
